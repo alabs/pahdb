@@ -9,8 +9,8 @@ como de nivel bajo, aunque implementemos a nivel técnico algunas medidas de niv
 superiores.
 
 Más información:
-*  [Guía de seguridad de la AGPD](GUIA_SEGURIDAD_2010.pdf)
-*  [Modelo de documento de seguridad](modelo_doc_seguridad.pdf)
+*  [Guía de seguridad de la AGPD](GUIA_SEGURIDAD_2010.pdf?raw=true)
+*  [Modelo de documento de seguridad](modelo_doc_seguridad.pdf?raw=true)
 *  [Web de la Agencia de Protección de Datos](https://www.agpd.es/portalwebAGPD/canalresponsable/guia_documento/index-ides-idphp.php)
 
 Licencia
