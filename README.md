@@ -50,12 +50,12 @@ Implementación de un motor de estadísticas con capacidad de generación de gr�
 Calendario
 ==========
 
-Inicio del proyecto: 25 de febrero de 2013
-Fase 0: 25-02 a 06-03
-Fase 1: 11-03 al 12-04
-Fase 2: 13-04 a 14-04
-Fase 3: 15-04 a 09-05
-Fase 4: 12-05 al 05-06
+*  Inicio del proyecto: 25 de febrero de 2013
+*  Fase 0: 25-02 a 06-03
+*  Fase 1: 11-03 al 12-04
+*  Fase 2: 13-04 a 14-04
+*  Fase 3: 15-04 a 09-05
+*  Fase 4: 12-05 al 05-06
 
 Documentación
 =============
