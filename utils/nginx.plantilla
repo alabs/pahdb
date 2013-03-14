@@ -1,0 +1,73 @@
+upstream pahdb-socket {
+	server unix:[[SOCKET]];
+}
+
+server {
+
+	listen 443;
+	server_name [[DOMINIO]];
+	root [[RAIZ]]/www;
+
+	# Logs
+	access_log [[RAIZ]]/log/visitas;
+	error_log [[RAIZ]]/log/errores;
+
+	# Oculta la versión de nginx
+	server_tokens off;
+	# Desactivamos la autoindexación
+	autoindex off;
+
+	# Activamos SSL
+	ssl on;
+	ssl_certificate		[[RAIZ]]/ssl/pahdb.crt;
+	ssl_certificate_key	[[RAIZ]]/ssl/pahdb.key;
+	ssl_session_timeout 20m;
+
+	location / {
+		index index.php index.html index.htm;
+		try_files $uri /index.php;
+	}
+
+	location ~ \.php$ {
+		try_files $uri =404;
+		include fastcgi_params;
+		fastcgi_intercept_errors        on;
+		fastcgi_pass pahdb-socket;
+		fastcgi_index index.php;
+		fastcgi_param SCRIPT_FILENAME $document_root/$fastcgi_script_name;
+	}
+
+	# Prohibimos acceso a ficheros ocultos
+	location ~ /\. {
+		access_log off;
+		log_not_found off; 
+		deny all;
+	}
+
+	# Desactivamos los logs para favicon.ico
+	location = /favicon.ico {
+		try_files   /favicon.ico    =204;
+		log_not_found off;
+		access_log off;
+	}
+
+	# Evitamos el acceso a ficheros de configuración, script, texto, etc
+	location ~* \.(?:bat|html?|git|ini|sh|svn[^.]*|txt|tpl|xml|cnf|conf)$ {
+		return 404;
+	}
+
+	# Evitamos indexaciones de arañas que respeten el archivito de marras
+	location = /robots.txt {
+		return 200 "User-agent: *\nDisallow: /\n";
+	}
+
+
+}
+
+# Forzamos el uso de HTTPS
+server {
+	listen      [[PUERTO]];
+	server_name [[DOMINIO]];
+	rewrite     ^   https://$server_name$request_uri? permanent;
+}
+
