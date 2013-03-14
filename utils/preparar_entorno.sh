@@ -8,6 +8,7 @@
 # 3. Generar el certificado SSL autofirmado
 # 4. Configura entorno de ejecución de php
 # 5. Configura virtualhost de nginx
+# 6. Ajustamos permisos
 #
 
 # Nos aseguramos que nos encontramos en el directorio donde está el script
@@ -107,4 +108,10 @@ if [[ "$CONFIRMA" == "S" || "$CONFIRMA" == "s" ]]; then
 fi
 
 cd "$SCRIPTPATH"
-# TODO: Ajustamos permisos
+# 6. Ajustamos permisos. TODO: Revisar
+read -p "¿Ajustamos permisos a la home del usuario? (S/N) " CONFIRMA
+if [[ "$CONFIRMA" == "S" || "$CONFIRMA" == "s" ]]; then
+	find "/home/$USUARIO" -name "*" -exec chown ${USUARIO}:${GRUPO} "{}" \;
+	find "/home/$USUARIO" -name "*" -type f -exec chmod 640 "{}" \;
+	find "/home/$USUARIO" -name "*" -type d -exec chmod 750 "{}" \;
+fi
