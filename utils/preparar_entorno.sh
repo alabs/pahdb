@@ -16,10 +16,12 @@ SCRIPTPATH=$( cd $(dirname $0) ; pwd -P)
 cd "$SCRIPTPATH"
 
 read -p "Usuario:         " USUARIO
-read -p "Grupo:           " GRUPO
+#read -p "Grupo:           " GRUPO
+GRUPO="www-data"
 read -p "Contraseña (BD): " PASSWD
 read -p "Dominio:         " DOMINIO
-read -p "Puerto (nginx):  " PUERTO
+PUERTO="8080"
+#read -p "Puerto (nginx):  " PUERTO
 
 if [[ -z "$USUARIO" || -z "$GRUPO" || -z "$PASSWD" || -z "$DOMINIO" || -z "$PUERTO" ]]; then
 	echo "ERROR: Todos los datos deben estar definidos. Abortado..."
@@ -59,9 +61,9 @@ if [[ "$CONFIRMA" == "S" || "$CONFIRMA" == "s" ]]; then
 		else
 			echo "$USUARIO creada"
 			# generamos .my.cnf
-			echo "[client]" > $USUARIO/.my.cnf
-			echo "user=$USUARIO" >> $USUARIO/.my.cnf
-			echo "password=$PASSWD" >> $USUARIO/.my.cnf
+			echo "[client]" > "/home/$USUARIO/.my.cnf"
+			echo "user=$USUARIO" >> "/home/$USUARIO/.my.cnf"
+			echo "password=$PASSWD" >> "/home/$USUARIO/.my.cnf"
 		fi
 	fi
 fi
