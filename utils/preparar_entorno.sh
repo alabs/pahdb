@@ -21,15 +21,19 @@ read -p "Dominio:         " DOMINIO
 read -p "Puerto (nginx):  " PUERTO
 
 if [[ -z "$USUARIO" || -z "$GRUPO" || -z "$PASSWD" || -z "$DOMINIO" || -z "$PUERTO" ]]; then
-	echo "ERROR: Todos los datos deben estar definidos"
-	echo "Saliendo..."
+	echo "ERROR: Todos los datos deben estar definidos. Abortado..."
 	exit 1
 fi
 
 # 1. Crea usuario en el sistema
 read -p "¿Crear usuario de sistema? (S/N) " CONFIRMA
 if [[ "$CONFIRMA" == "S" || "$CONFIRMA" == "s" ]]; then
-	adduser "$USUARIO"
+	if [[ -d "/home/$USUARIO" ]]; then
+		echo "ERROR: El usuario ya existe. Abortado..."
+		exit 1
+	fi
+	useradd -d "/home/$USUARIO" -m -s /bin/bash "$USUARIO"
+	echo "$USUARIO:$PASSWD" | chpasswd
 	# Añadimos el usuario al grupo
 	usermod -aG $USUARIO $GRUPO
 	# Damos al grupo permisos de lectura y ejecución sobre la home del usuario
