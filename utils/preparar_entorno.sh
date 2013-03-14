@@ -103,6 +103,7 @@ if [[ "$CONFIRMA" == "S" || "$CONFIRMA" == "s" ]]; then
 	sed -i "s/\[\[PUERTO\]\]/$PUERTO/g" $NGINX
 	# creamos directorio de log
 	mkdir -p "/home/${USUARIO}/log"
+	mkdir -p "/home/${USUARIO}/www"
 	# activamos virtualhost
 	ln -s "$NGINX" "/etc/nginx/sites-enabled/${DOMINIO}"
 	# recargamos nginx
