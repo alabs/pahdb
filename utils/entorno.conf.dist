@@ -1,0 +1,18 @@
+#
+# Renombrando este fichero a entorno.conf las variables aqui definidas tendrán prioridad sobre las definidas en el script.
+# Esto te permite poder actualizar el script sin perder la configuración dependiente de tu distribución.
+#
+# NGINX_EXE="/etc/init.d/nginx"
+# NGINX_SITES_AVAILABLE="/etc/nginx/sites-available"
+# NGINX_SITES_ENABLED="/etc/nginx/sites-enabled"
+# PHPFPM_EXE="/etc/init.d/php5-fpm"
+# PHPFPM_POOL_DIR="/etc/php5/fpm/pool.d"
+# SED_EXE="/bin/sed"
+# USUARIO=""
+# GRUPO="www-data"
+# PASSWD=""
+# DOMINIO=""
+# PUERTO="80"
+# PERMISOS_DIR="750"
+# PERMISOS_FICH="640"
+#
