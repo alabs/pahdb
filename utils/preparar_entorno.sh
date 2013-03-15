@@ -92,7 +92,7 @@ if [[ "$CONFIRMA" == "S" || "$CONFIRMA" == "s" ]]; then
 	fi
 	useradd -d "/home/$USUARIO" -m -s /bin/bash "$USUARIO"
 	echo "$USUARIO:$PASSWD" | chpasswd
-	# Añadimos el usuario al grupo
+	# Añadimos el grupo del usuario al usuario www-data
 	usermod -aG $USUARIO $GRUPO
 	# Damos al grupo permisos de lectura y ejecución sobre la home del usuario
 	chmod g+rx "/home/$USUARIO"
@@ -127,7 +127,7 @@ fi
 ## 3. Generar el certificado SSL autofirmado
 read -p "¿Generar certificado SSL autofirmado? (S/N) " CONFIRMA
 if [[ "$CONFIRMA" == "S" || "$CONFIRMA" == "s" ]]; then
-	./genera_certificado.sh "${USUARIO}:${GRUPO}" "/home/${USUARIO}/ssl"
+	./genera_certificado.sh "${USUARIO}:${USUARIO}" "/home/${USUARIO}/ssl"
 	if [[ "$?" == "0" ]]; then echo -e "${COLOR_VERDE}OK! Certificado autofirmado generado con éxito${COLOR_NORMAL}"; fi
 fi
 
@@ -177,7 +177,7 @@ cd "$SCRIPTPATH"
 ## 6. Ajustamos permisos. TODO: Revisar
 read -p "¿Ajustamos permisos a la home del usuario? (S/N) " CONFIRMA
 if [[ "$CONFIRMA" == "S" || "$CONFIRMA" == "s" ]]; then
-	find "/home/$USUARIO" -name "*" -exec chown ${USUARIO}:${GRUPO} "{}" \;
+	find "/home/$USUARIO" -name "*" -exec chown ${USUARIO}:${USUARIO} "{}" \;
 	find "/home/$USUARIO" -name "*" -type f -exec chmod ${PERMISOS_FICH} "{}" \;
 	find "/home/$USUARIO" -name "*" -type d -exec chmod ${PERMISOS_DIR} "{}" \;
 	if [[ "$?" == "0" ]]; then echo -e "${COLOR_VERDE}OK! Ajustados los permisos con éxito${COLOR_NORMAL}"; fi

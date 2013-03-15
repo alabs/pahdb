@@ -2,10 +2,10 @@
 listen =                    [[SOCKET]]
 listen.allowed_clients =    127.0.0.1
 listen.owner =              [[USUARIO]]
-listen.group =              [[GRUPO]]
+listen.group =              [[USUARIO]]
 listen.mode =               0660
 user =                      [[USUARIO]]
-group =                     [[GRUPO]]
+group =                     [[USUARIO]]
 
 request_slowlog_timeout =   10s
 slowlog =                   /home/[[USUARIO]]/log/consultas-lentas-php.log
