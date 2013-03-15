@@ -158,6 +158,7 @@ if [[ "$CONFIRMA" == "S" || "$CONFIRMA" == "s" ]]; then
 	# copiamos la plantilla
 	cp nginx.plantilla $NGINX
 	# sustituimos las marcas
+	$SED_EXE -i "s/\[\[USUARIO\]\]/$USUARIO/g" $NGINX
 	$SED_EXE -i "s/\[\[SOCKET\]\]/\/run\/${USUARIO}.socket/g" $NGINX
 	$SED_EXE -i "s/\[\[DOMINIO\]\]/${DOMINIO}/g" $NGINX
 	$SED_EXE -i "s/\[\[RAIZ\]\]/\/home\/$USUARIO/g" $NGINX
