@@ -23,13 +23,13 @@ fi
 cd $DESTINO
 
 # Generamos la clave privada protegida con contraseña: pahdb-passwd.key
-openssl genrsa -des3 -out pahdb-passwd.key -passout pass:"$PASSWD" 4096
+openssl genrsa -des3 -out pahdb-passwd.key -passout pass:$PASSWD 4096
 
 # Generamos la solicitud de firma de certificado (CSR)
-openssl req -new -key pahdb-passwd.key -out pahdb.csr -passin pass:"$PASSWD" -subj /CN="$DOMINIO"
+openssl req -new -key pahdb-passwd.key -out pahdb.csr -passin pass:$PASSWD -subj /CN="$DOMINIO"
 
 # Generamos la clave privada sin contraseña: pahdb.key
-openssl rsa -in pahdb-passwd.key -out pahdb.key -passin pass:"$PASSWD"
+openssl rsa -in pahdb-passwd.key -out pahdb.key -passin pass:$PASSWD
 
 # Generamos la clave pública autofirmada (CRT)
 openssl x509 -req -days 365 -in pahdb.csr -signkey pahdb.key -out pahdb.crt
