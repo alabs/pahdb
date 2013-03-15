@@ -127,7 +127,7 @@ fi
 ## 3. Generar el certificado SSL autofirmado
 read -p "¿Generar certificado SSL autofirmado? (S/N) " CONFIRMA
 if [[ "$CONFIRMA" == "S" || "$CONFIRMA" == "s" ]]; then
-	./genera_certificado.sh "${USUARIO}:${USUARIO}" "/home/${USUARIO}/ssl"
+	./genera_certificado.sh "${USUARIO}:${USUARIO}" "/home/${USUARIO}/ssl" "$PASSWORD" "$DOMINIO"
 	if [[ "$?" == "0" ]]; then echo -e "${COLOR_VERDE}OK! Certificado autofirmado generado con éxito${COLOR_NORMAL}"; fi
 fi
 
