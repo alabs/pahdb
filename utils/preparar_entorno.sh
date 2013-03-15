@@ -33,6 +33,16 @@ COLOR_VERDE="\e[32m"
 COLOR_AZUL="\e[36m"
 COLOR_NORMAL="\e[0m"
 
+# Nos aseguramos que nos encontramos en el directorio donde está el script
+SCRIPTPATH=$( cd $(dirname $0) ; pwd -P)
+cd "$SCRIPTPATH"
+
+# Si existe el archivo entorno.conf cargamos las variables de configuración personalizadas desde ahí
+if [[ -f entorno.conf ]]; then
+	source entorno.conf
+	echo -e "${COLOR_VERDE}Cargada configuración de entorno personalizada${COLOR_NORMAL}"
+fi
+
 ## REVISAMOS LA CONFIGURACIÓN
 SALIR=""
 # nginx
@@ -72,11 +82,8 @@ if [[ -z "$USUARIO" || -z "$GRUPO" || -z "$PASSWD" || -z "$DOMINIO" || -z "$PUER
 	exit 1
 fi
 
-# Nos aseguramos que nos encontramos en el directorio donde está el script
-SCRIPTPATH=$( cd $(dirname $0) ; pwd -P)
-cd "$SCRIPTPATH"
 
-# 1. Crea usuario en el sistema
+## 1. Crea usuario en el sistema
 read -p "¿Crear usuario de sistema? (S/N) " CONFIRMA
 if [[ "$CONFIRMA" == "S" || "$CONFIRMA" == "s" ]]; then
 	if [[ -d "/home/$USUARIO" ]]; then
@@ -89,10 +96,10 @@ if [[ "$CONFIRMA" == "S" || "$CONFIRMA" == "s" ]]; then
 	usermod -aG $USUARIO $GRUPO
 	# Damos al grupo permisos de lectura y ejecución sobre la home del usuario
 	chmod g+rx "/home/$USUARIO"
-	echo -e "${COLOR_VERDE}OK!${COLOR_NORMAL}"
+	echo -e "${COLOR_VERDE}OK! Usuario creado con éxito${COLOR_NORMAL}"
 fi
 
-# 2. Crea usuario y base de datos con el mismo nombre que el de sistema
+## 2. Crea usuario y base de datos con el mismo nombre que el de sistema
 read -p "¿Crear usuario en la base de datos? (S/N) " CONFIRMA
 if [[ "$CONFIRMA" == "S" || "$CONFIRMA" == "s" ]]; then
 	SENTENCIA="CREATE DATABASE IF NOT EXISTS $USUARIO CHARACTER SET utf8 COLLATE utf8_general_ci;"
@@ -117,7 +124,7 @@ if [[ "$CONFIRMA" == "S" || "$CONFIRMA" == "s" ]]; then
 	fi
 fi
 
-# 3. Generar el certificado SSL autofirmado
+## 3. Generar el certificado SSL autofirmado
 read -p "¿Generar certificado SSL autofirmado? (S/N) " CONFIRMA
 if [[ "$CONFIRMA" == "S" || "$CONFIRMA" == "s" ]]; then
 	./genera_certificado.sh "${USUARIO}:${GRUPO}" "/home/${USUARIO}/ssl"
@@ -126,7 +133,7 @@ fi
 
 cd "$SCRIPTPATH"
 
-# 4. Configura entorno de ejecución de php
+## 4. Configura entorno de ejecución de php
 read -p "¿Crear un entorno de ejecución para PHP-FPM? (S/N) " CONFIRMA
 if [[ "$CONFIRMA" == "S" || "$CONFIRMA" == "s" ]]; then
 	POOL="${PHPFPM_POOL_DIR}/${USUARIO}.conf"
@@ -144,7 +151,7 @@ if [[ "$CONFIRMA" == "S" || "$CONFIRMA" == "s" ]]; then
 	if [[ "$?" == "0" ]]; then echo -e "${COLOR_VERDE}OK! Entorno de ejecución php generado con éxito${COLOR_NORMAL}"; fi
 fi
 
-# 5. Configura virtualhost de nginx
+## 5. Configura virtualhost de nginx
 read -p "¿Crear un virtualhost de nginx? (S/N) " CONFIRMA
 if [[ "$CONFIRMA" == "S" || "$CONFIRMA" == "s" ]]; then
 	NGINX="${NGINX_SITES_AVAILABLE}/${DOMINIO}"
@@ -166,7 +173,7 @@ if [[ "$CONFIRMA" == "S" || "$CONFIRMA" == "s" ]]; then
 fi
 
 cd "$SCRIPTPATH"
-# 6. Ajustamos permisos. TODO: Revisar
+## 6. Ajustamos permisos. TODO: Revisar
 read -p "¿Ajustamos permisos a la home del usuario? (S/N) " CONFIRMA
 if [[ "$CONFIRMA" == "S" || "$CONFIRMA" == "s" ]]; then
 	find "/home/$USUARIO" -name "*" -exec chown ${USUARIO}:${GRUPO} "{}" \;

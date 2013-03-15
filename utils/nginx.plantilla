@@ -1,4 +1,4 @@
-upstream pahdb-socket {
+upstream [[USUARIO]]-socket {
 	server unix:[[SOCKET]];
 }
 
@@ -32,7 +32,7 @@ server {
 		try_files $uri =404;
 		include fastcgi_params;
 		fastcgi_intercept_errors        on;
-		fastcgi_pass pahdb-socket;
+		fastcgi_pass [[USUARIO]]-socket;
 		fastcgi_index index.php;
 		fastcgi_param SCRIPT_FILENAME $document_root/$fastcgi_script_name;
 	}
