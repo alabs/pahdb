@@ -34,26 +34,28 @@ COLOR_AZUL="\e[36m"
 COLOR_NORMAL="\e[0m"
 
 ## REVISAMOS LA CONFIGURACIÓN
+SALIR=""
 # nginx
 if [[ ! -x $NGINX_EXE || ! -d $NGINX_SITES_AVAILABLE || ! -d $NGINX_SITES_ENABLED ]]; then
 	echo -e "${COLOR_ROJO}ERROR:${COLOR_NORMAL} Configuración de Nginx incorrecta. Revisa $0"
-	exit 1
+	SALIR="ERROR"
 fi
 # phpfpm
 if [[ ! -x $PHPFPM_EXE || ! -d $PHPFPM_POOL_DIR ]]; then
 	echo -e "${COLOR_ROJO}ERROR:${COLOR_NORMAL} Configuración de PHPFPM incorrecta. Revisa $0"
-	exit 1
+	SALIR="ERROR"
 fi
 # sed
 if [[ ! -x $SED_EXE ]]; then
 	echo -e "${COLOR_ROJO}ERROR:${COLOR_NORMAL} comando sed no encontrado. Revisa $0"
-	exit 1
+	SALIR="ERROR"
 fi
 # /root/.my.cnf
 if [[ ! -f /root/.my.cnf ]]; then
 	echo -e "${COLOR_ROJO}ERROR:${COLOR_NORMAL} /root/.my.cnf no encontrado."
-	exit 1
+	SALIR="ERROR"
 fi
+if [[ ! -z $SALIR ]]; then exit 1; fi
 
 # Si están definidas como variables de configuración no preguntamos por su valor
 if [[ -z "$USUARIO" ]];       then read -p "Usuario:         " USUARIO;       else echo "Usuario:         $USUARIO"; fi
