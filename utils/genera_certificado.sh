@@ -37,6 +37,6 @@ rm pahdb-passwd.key pahdb.csr
 
 # Ajustamos los permisos
 chown "$USUARIO" pahdb.key pahdb.crt
-chmod 400 pahdb.key pahdb.crt
+chmod 440 pahdb.key pahdb.crt
 
 
