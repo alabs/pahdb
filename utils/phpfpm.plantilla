@@ -1,11 +1,14 @@
-[pahdb]
+[[[USUARIO]]]
 listen =                    [[SOCKET]]
 listen.allowed_clients =    127.0.0.1
+listen.owner =              [[USUARIO]]
+listen.group =              [[GRUPO]]
+listen.mode =               0660
 user =                      [[USUARIO]]
 group =                     [[GRUPO]]
 
 request_slowlog_timeout =   10s
-slowlog =                   /var/log/php-fpm/slowlog-pahdb.log
+slowlog =                   /home/[[USUARIO]]/log/consultas-lentas-php.log
 
 pm =                        dynamic
 
@@ -24,3 +27,4 @@ php_admin_value[post_max_size]= 10M
 php_admin_value[upload_max_filesize]= 1M
 php_admin_value[max_file_uploads]= 10
 
+php_admin_value[session.save_path] = /home/[[USUARIO]]/sesiones
