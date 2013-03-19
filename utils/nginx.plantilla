@@ -6,7 +6,7 @@ server {
 
 	listen 443;
 	server_name [[DOMINIO]];
-	root [[RAIZ]]/www;
+	root [[RAIZ]]/themes/pah/public_html;
 
 	# Logs
 	access_log [[RAIZ]]/log/visitas;

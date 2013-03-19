@@ -1,3 +1,7 @@
 *.swp
 utils/entorno.conf
-
+app/config.ini
+ssl/*
+.*
+sesiones/*
+log/*

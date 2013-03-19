@@ -1,0 +1,18 @@
+[globals]
+; Ruta donde el framework buscará las clases para cargarlas
+; Si se instala con virtualhost la ruta deberá ser absoluta
+AUTOLOAD=/var/www/app/
+; Ruta de la plantilla elegida
+; Si se instala con virtualhost la ruta deberá ser absoluta
+UI=/var/www/themes/pah/
+; Nivel de depuración, debe estar a 0 en entornos de producción
+DEBUG=2
+; Where errors are logged
+;LOGS=tmp/
+; Our custom error handler, so we also get a pretty page for our users
+;ONERROR="CMS->error"
+; Where uploads will be saved
+;UPLOADS=assets/
+
+sitio.titulo="PAHBD"
+sitio.descripcion="Gestión de expedientes de Afectados por la Hipoteca"
