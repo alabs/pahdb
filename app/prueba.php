@@ -2,7 +2,7 @@
 
 class Prueba {
 
-	protected framework;
+	protected $framework;
 
 	function mostrar() {
 		$f3=$this->framework;
