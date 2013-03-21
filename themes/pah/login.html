@@ -1,0 +1,25 @@
+<div class="row">
+<div class="six columns centered">
+	<form method="post" action="{{ @BASE }}/entrar" class="login">
+		<fieldset>
+		<h2>Identificación</h2>
+		<check if="{{ isset(@aviso) }}">
+		<p class="danger alert">{{ @aviso }}</p>
+		</check>
+		<label for="correo">Correo electrónico:</label>
+		<div class="append field">
+			<input class="email input" placeholder="Ejemplo: barcelona@afectadosporlahipoteca.com" id="correo" name="correo" type="email" {{ isset(@POST.user_id)?('value="'.@POST.correo.'"'):'' }}>
+			<span class="adjoined">@</span>
+		</div>
+		<div class="field">
+		<label for="passwd">Contraseña:</label>
+		<input class="passwd input" placeholder="Contraseña" id="passwd" name="passwd" type="password">
+		</div>
+		<br>
+		<div class="pretty secondary large btn">
+			<input type="submit" value="Entrar">
+		</div>
+		</fieldset>
+	</form>
+</div>
+</div>
