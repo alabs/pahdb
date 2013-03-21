@@ -8,23 +8,35 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <title>{{ @sitio.titulo }}</title>
         <meta name="description" content="{{ @sitio.descripcion }}">
-        <meta name="viewport" content="width=device-width">
-        <link rel="stylesheet" href="css/normalize.css">
-        <link rel="stylesheet" href="css/main.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+        <link rel="stylesheet" href="css/gumby.css">
         <script src="js/lib/modernizr-2.6.2.min.js"></script>
     </head>
     <body>
+
+	<!--<div class="container">
+	<div class="row">        
+	<h1>{{ @sitio.titulo }}</h1>
+	</div>
+	</div>-->
+
+	<div class="container">
         <!--[if lt IE 7]>
-            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+            <p class="warning alert">Tu navegador es <strong>muy viejo</strong>. <a href="http://browsehappy.com/">Actualizalo</a> o <a href="http://www.google.com/chromeframe/?redirect=true">activa Google Chrome Frame</a> para ver correctamente la página.</p>
         <![endif]-->
 
-        <h1>{{ @sitio.titulo }}</h1>
+        <include href="{{ @contenido }}" />
 
-        <include href="prueba.html" />
+<p>{{ @URI }}</p>
+<p>{{ @REALM }}</p>
+<p>{{ @VERB }}</p>
+<p>{{ isset(@prueba)?('prueba'):'nanai' }}</p>
+
+	</div>
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/lib/jquery-1.9.0.min.js"><\/script>')</script>
-        <script src="js/lib/main.js"></script>
+	<script src="js/lib/gumby.min.js"></script>
 
     </body>
 </html>
