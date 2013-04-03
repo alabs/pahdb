@@ -6,4 +6,5 @@ ssl/*
 sesiones/*
 log/*
 themes/pah/public_html/tmp/*
+*.bak
 
