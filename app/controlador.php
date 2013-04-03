@@ -9,10 +9,9 @@ class Controlador {
 	//! HTTP route pre-processor
 	function beforeroute() {
 		$f3=$this->framework;
-		//Aqui quizás autenticación? se la pasan por el forro las clases heredadas O_o
-		$autorizado=$f3->get('SESSION.autorizado');
-$f3->set('prueba', 'tikitiki');
-		if (!$autorizado && $f3->get('URI')!='/entrar') {
+		$autorizado=$f3->exists('SESSION.autorizado');
+		//$goto=
+		if (!$autorizado && $f3->get('URI') != $f3->get('BASE').'/entrar') {
 		//if (!$autorizado) {
 			//$f3->reroute('/entrar');
 			$this->autentificar();
@@ -42,11 +41,12 @@ $f3->set('prueba', 'tikitiki');
 		if ($passwd == 'pepe') {
 			$f3->set('SESSION.correo', $correo);
 			$f3->set('SESSION.autorizado', true);
-			$f3->reroute($f3->get('URI'));
+			$f3->reroute($f3->get('SESSION.goto'));
 			//$this->entrar();
 		} else {
 			$f3->set('aviso','Correo o contraseña incorrecta');
 			//$this->entrar();
+			$f3->set('SESSION.goto',$f3->get('BASE').$f3->get('URI'));
 			$f3->reroute('/entrar');
 		}
 	}

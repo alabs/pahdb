@@ -5,5 +5,5 @@ ssl/*
 .*
 sesiones/*
 log/*
-*/tmp/*
+themes/pah/public_html/tmp/*
 
