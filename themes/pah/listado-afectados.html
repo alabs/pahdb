@@ -1,0 +1,61 @@
+<div class="row">
+	<h2><i class="icon-home"></i>Expedientes</h2>
+</div>
+<div id="buscador" class="row">
+	<div class="prepend append field">
+		<span class="adjoined"><a href="/expediente/" title="Nuevo expediente"><i class="icon-user-add"></i></a> <a href="/salir" title="Salir"><i class="icon-logout"></i></a><i class="icon-search"></i></span>
+		<input class="wide input" type="text" placeholder="DNI/NIE o nombre..." />
+		<div class="medium primary btn"><a href="" id="buscar">Buscar</a></div>
+		<span id="cargando" class="adjoined"><i class="icon-hourglass"></i></span>
+	</div>
+</div>
+<div class="row">
+	<check if="{{ isset(@aviso) }}">
+	<p class="danger alert">{{ @aviso }}</p>
+	</check>
+	<p id="aviso" class="light alert"><span></span> encontrados. <a href="" id="vertodos">Mostrar todos</a></p>
+</div>
+<repeat group="{{ @afectados }}" value="{{ @afectado }}">
+<div class="row">
+	<div class="seven columns clearfix default alert afectado">
+		<div class="eleven columns">
+			<h4>{{ @afectado.nombre }}</h4>
+			<h5>DNI/NIE: {{ @afectado.idAfectado }}</h5>
+		</div>
+		<div class="one column">
+			<div class="success medium btn">
+				<a href="/expediente/{{ @afectado.idAfectado }}" title="Editar"><i class="icon-pencil"></i></a>
+			</div>
+			<div class="danger medium btn">
+				<a href="" title="Borrar" class="borrar"><i class="icon-trash"></i></a>
+			</div>
+		</div>
+	</div>
+</div>
+</repeat>
+<script>
+$(function() {
+var buscar = function(busqueda) {
+	$('.afectado').hide();
+	$('#cargando').show();
+	$('.afectado h4, .afectado h5').each(function() {
+		var nombre = $(this).text().toUpperCase()
+		  , busqueda = $('#buscador input').val().toUpperCase();
+		if (nombre.indexOf(busqueda) >= 0) $(this).parents('.afectado').fadeIn();
+	});
+	$('#cargando').fadeOut('slow');
+	$('#aviso>span').text($('.afectado:visible').length);
+}
+$('#buscar').on('click', function(e) {
+	e.preventDefault();
+	$('.afectado').hide();
+	buscar();
+});
+$('#vertodos').on('click', function(e) {
+	e.preventDefault();
+	$('.afectado').show();
+	$('#aviso>span').text($('.afectado').length);
+});
+buscar();
+});
+</script>
