@@ -14,5 +14,16 @@ DEBUG=2
 ; Where uploads will be saved
 ;UPLOADS=assets/
 
+; Parámetros de conexión a la base de datos
+; -----------------------------------------
+;BD.conector=mysql:host=localhost;port=3306;dbname=pahdb
+;BD.usuario=
+;BD.passwd=
+; Cualquier cadena alfanumérica es válida como SALT.
+; Sirve para aumentar la seguridad de las contraseñas almacenadas
+;SALT=
+
+; Título del sitio
 sitio.titulo="PAHBD"
+; Descripción del sitio
 sitio.descripcion="Gestión de expedientes de Afectados por la Hipoteca"
