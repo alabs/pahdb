@@ -33,7 +33,7 @@ class Expediente extends Controlador {
 		$afectado=new DB\SQL\Mapper($bd,'Afectados');
 		$hipoteca=new DB\SQL\Mapper($bd,'Hipotecas');
 		$afectado->load(array('idAfectado=?', $f3->get('POST.idAfectado')));
-		$hipoteca->load(array('idAfectado=?', $f3->get('PARAMS.idAfectado')));
+		//$hipoteca->load(array('idAfectado=?', $f3->get('PARAMS.idAfectado')));
 		$afectado->copyfrom('POST');
 		//$hipoteca->copyfrom('POST');
 		$f3->set('PARAMS.idAfectado', $f3->get('POST.idAfectado'));
