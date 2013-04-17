@@ -16,7 +16,7 @@
 	<p id="aviso" class="light alert"><span></span> encontrados. <a href="" id="vertodos">Mostrar todos</a></p>
 </div>
 <repeat group="{{ @afectados }}" value="{{ @afectado }}">
-<div class="row">
+<div id="afectado-{{ @afectado.idAfectado }}" class="row">
 	<div class="seven columns clearfix default alert afectado">
 		<div class="eleven columns">
 			<h4>{{ @afectado.nombre }}</h4>
@@ -27,7 +27,7 @@
 				<a href="/expediente/{{ @afectado.idAfectado }}" title="Editar"><i class="icon-pencil"></i></a>
 			</div>
 			<div class="danger medium btn">
-				<a href="" title="Borrar" class="borrar"><i class="icon-trash"></i></a>
+				<a href="/expediente/borrar/{{ @afectado.idAfectado }}" title="Borrar" class="borrar"><i class="icon-trash"></i></a>
 			</div>
 		</div>
 	</div>
@@ -57,5 +57,24 @@ $('#vertodos').on('click', function(e) {
 	$('#aviso>span').text($('.afectado').length);
 });
 buscar();
+$('.borrar').on('click', function(e) {
+	var accion=$(this).attr('href');
+	e.preventDefault();
+	if (confirm('¿Quiere borrar definitivamente este expediente?')) {
+		$.ajax ({
+		  type:'POST',
+		  dataType:'text',
+		  url:accion,
+		  error: function() {
+			alert('Error de conexión a la base de datos');
+		  },
+		  success: function(respuesta) {
+			$(respuesta).remove();
+			//Actualizamos conteo
+			$('#aviso>span').text($('#aviso>span').text()-1);
+		  }
+		});
+	}
+});
 });
 </script>

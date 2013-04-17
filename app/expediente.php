@@ -51,4 +51,14 @@ class Expediente extends Controlador {
 		//$afectado->copyto('AFECTADO');
 		//$f3->set('contenido','form-afectados.html');
 	}
+
+	function borrar() {
+		$f3=$this->framework;
+		$bd=$this->bd;
+		$id_afectado = $f3->get('PARAMS.idAfectado');
+		$afectado=new DB\SQL\Mapper($bd,'Afectados');
+		$afectado->load(array('idAfectado=?', $id_afectado));
+		$afectado->erase();
+		echo '#afectado-'.$id_afectado;
+	}
 }

@@ -16,7 +16,7 @@ class Controlador {
 	}
 
 	function afterroute() {
-		echo Template::instance()->render('layout.html');
+		if (!$this->framework->get('AJAX'))	echo Template::instance()->render('layout.html');
 	}
 
 	function __construct() {
