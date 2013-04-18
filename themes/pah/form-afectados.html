@@ -1,20 +1,6 @@
 <div class="row">
 	<h2><i class="icon-home"></i> Afectado</h2>
 </div>
-<!--<div id="buscador" class="row">
-	<div class="prepend append field">
-		<span class="adjoined"><a href="/expediente/" title="Nuevo expediente"><i class="icon-user-add"></i></a> <a href="/salir" title="Salir"><i class="icon-logout"></i></a><i class="icon-search"></i></span>
-		<input class="wide input" type="text" placeholder="DNI/NIE o nombre..." />
-		<div class="medium primary btn"><a href="" id="buscar">Buscar</a></div>
-		<span id="cargando" class="adjoined"><i class="icon-hourglass"></i></span>
-	</div>
-</div>
-<div class="row">
-	<check if="{{ isset(@aviso) }}">
-	<p class="danger alert">{{ @aviso }}</p>
-	</check>
-	<p id="aviso" class="light alert"><span></span> encontrados. <a href="" id="vertodos">Mostrar todos</a></p>
-</div>-->
 
 <form id="guardar_form" method="post" action="{{ @BASE }}/expediente/{{ @PARAMS.idAfectado }}">
 
@@ -539,15 +525,15 @@
 			</div>
 			<div class="field">
 			<label for="correo">Correo electrónico:</label>
-			<input class="input" placeholder="Ejemplo: usuario@dominio.es" id="correo" name="correo" type="email" value="{{ @AFECTADO.correo }}">
+			<input class="input email" placeholder="Ejemplo: usuario@dominio.es" id="correo" name="correo" type="email" value="{{ @AFECTADO.correo }}">
 			</div>
 			<div class="field">
 			<label for="tfMovil">Teléfono móvil:</label>
-			<input class="input" placeholder="Ejemplo: 666555444" id="tfMovil" name="tfMovil" type="tel" value="{{ @AFECTADO.tfMovil }}">
+			<input class="input phone" placeholder="Ejemplo: 666555444" id="tfMovil" name="tfMovil" type="tel" value="{{ @AFECTADO.tfMovil }}">
 			</div>
 			<div class="field">
 			<label for="tfFijo">Teléfono fijo:</label>
-			<input class="input" placeholder="Ejemplo: 916666666" id="tfFijo" name="tfFijo" type="tel" value="{{ @AFECTADO.tfFijo }}">
+			<input class="input phone" placeholder="Ejemplo: 916666666" id="tfFijo" name="tfFijo" type="tel" value="{{ @AFECTADO.tfFijo }}">
 			</div>
 			<div class="field">
 			<label for="direccion">Dirección actual donde vives:</label>
@@ -576,7 +562,7 @@
 			</div>
 			<div class="field">
 			<label>Observaciones:</label>
-			<textarea></textarea>
+			<textarea class="input textarea"></textarea>
 			</div>
 <pre>
 FALTA:
@@ -680,6 +666,79 @@ OBSERVACIONES
 
 		<!-- SECCIÓN: Ejecución hipotecaria -->
 		<div class="tab-content eight columns">
+			<h3>¿Está al corriente de pago de la hipoteca?</h3>
+			<div class="field desplegable">
+				<label><input value="0" type="checkbox" class="desplegador">
+					<spam></spam>No
+				</label>
+				<ul>
+				<li class="field">
+					<input class="input" placeholder="Fecha del impago" type="date" value="">
+				</li>
+				</ul>
+			</div>
+			<h3>¿Has recibido la demanda judicial de ejecución hipotecaria?</h3>
+			<div class="field desplegable">
+				<label>
+					<input value="0" type="checkbox" class="desplegador">
+					<span></span>Si
+				</label>
+				<ul>
+				<li class="field">
+					<input class="input" placeholder="Fecha demanda judicial" type="date" value="">
+				</li>
+				<li class="field">
+					<input class="input" placeholder="NUM EJECUCIÓN" type="text" value="">
+				</li>
+				<li class="field">
+					<input class="input" placeholder="Cantidad reclamada principal" type="text" value="">
+				</li>
+				<li class="field">
+					<input class="input" placeholder="Cantidad reclamada en intereses" type="text" value="">
+				</li>
+				<li class="field">
+					<input class="input" placeholder="Costas judiciales" type="text" value="">
+				</li>
+				</ul>
+			</div>
+			<h3>¿Te han subastado la vivienda?</h3>
+			<div class="field desplegable">
+				<label>
+					<input value="0" type="checkbox" class="desplegador">
+					<span></span>Si
+				</label>
+				<ul>
+				<li class="field">
+					<input class="input" placeholder="Fecha subasta" type="date" value="">
+				</li>
+				<li class="field">
+					<input class="input" placeholder="Importe adjudicacion" type="text" value="">
+				</li>
+				<li class="field">
+					<input class="input" placeholder="Deuda restante" type="text" value="">
+				</li>
+				</ul>
+			</div>
+			<h3>¿Te han desahuciado?</h3>
+			<div class="field desplegable">
+				<label>
+					<input value="0" type="checkbox" class="desplegador">
+					<span></span>Si
+				</label>
+				<ul>
+				<li class="field">
+					<input class="input" placeholder="Fecha desahucio" type="date" value="">
+				</li>
+				<li class="field">
+					<input class="input" placeholder="¿Dónde vives actualmente?" type="text" value="">
+				</li>
+				</ul>
+			</div>
+			<div class="field">
+				<label><h3>Observaciones:</h3></label>
+				<textarea class="input textarea"></textarea>
+			</div>
+<!--
 <pre>
 Estás al corriente de pago de la hipoteca?	
 	SI ES QUE NO FECHA IMPAGO
@@ -699,11 +758,93 @@ En caso te hayan desahuciado donde vives actualmente?
 OBSERVACIONES	
 
 </pre>
+-->
 		</div>
 
 		<!-- SECCIÓN: Acciones realizadas -->
 		<div class="tab-content eight columns">
-<pre>
+
+			<h3>¿Has intentado renegociar la hipoteca o buscar una solución con el banco?</h3>
+			<div class="field desplegable">
+				<label><input value="0" type="checkbox" class="desplegador">
+					<spam></spam>Sí
+				</label>
+				<ul>
+				<li class="field">
+					<input class="input" placeholder="¿Qué resultado has tenido?" type="text" value="">
+				</li>
+				</ul>
+			</div>
+			<h3>¿Has recibido algun tipo de trato denigrante por parte del banco?</h3>
+			<div class="field desplegable">
+				<label><input value="0" type="checkbox" class="desplegador">
+					<spam></spam>Sí
+				</label>
+				<ul>
+				<li class="field">
+					<input class="input" placeholder="Comentario" type="text" value="">
+				</li>
+				</ul>
+			</div>
+			<h3>¿Te has puesto en contacto con Servicios Sociales?</h3>
+			<div class="field desplegable">
+				<label><input value="0" type="checkbox" class="desplegador">
+					<spam></spam>Sí
+				</label>
+				<ul>
+				<li class="field">
+					<input class="input" placeholder="¿Te ha sido útil?" type="text" value="">
+				</li>
+				<li class="field">
+					<input class="input" placeholder="¿Qué te han dicho?" type="text" value="">
+				</li>
+				</ul>
+			</div>
+			<h3>¿Te has puesto en contacto con otros servicios de mediación de la Administración Pública?</h3>
+			<div class="field desplegable">
+				<label><input value="0" type="checkbox" class="desplegador">
+					<spam></spam>Sí
+				</label>
+				<ul>
+				<li class="field">
+					<input class="input" placeholder="¿Te ha sido útil?" type="text" value="">
+				</li>
+				<li class="field">
+					<input class="input" placeholder="¿Qué te han dicho?" type="text" value="">
+				</li>
+				</ul>
+			</div>
+			<h3>¿Te has puesto en contacto con otro tipo de asociaciones de apoyo?</h3>
+			<div class="field desplegable">
+				<label><input value="0" type="checkbox" class="desplegador">
+					<spam></spam>Sí
+				</label>
+				<ul>
+				<li class="field">
+					<input class="input" placeholder="¿Te ha sido útil?" type="text" value="">
+				</li>
+				<li class="field">
+					<input class="input" placeholder="¿Cual?" type="text" value="">
+				</li>
+				</ul>
+			</div>
+			<h3>¿Perteneces a alguna organización o asociación?</h3>
+			<div class="field desplegable">
+				<label><input value="0" type="checkbox" class="desplegador">
+					<spam></spam>Sí
+				</label>
+				<ul>
+				<li class="field">
+					<input class="input" placeholder="¿Cual?" type="text" value="">
+				</li>
+				</ul>
+			</div>
+
+			<div class="field">
+				<label><h3>Observaciones:</h3></label>
+				<textarea class="input textarea"></textarea>
+			</div>
+<!--<pre>
 ¿Has intentado renegociar la hipoteca o buscar una solución con el banco?	
 	¿Qué resultado has tenido?
 Has recibido algun tipo de trato denigrante por parte del banco?	
@@ -721,7 +862,7 @@ Perteneces a alguna organización o asociación?
 	CUAL?
 OBSERVACIONES	
 
-</pre>
+</pre>-->
 		</div>
 
 		<!-- SECCIÓN: Datos de seguimiento -->
@@ -773,10 +914,24 @@ OBSERVACIONES
 </div>
 <script>
 $(function() {
+
 	$('.guardar_accion').on('click', function(e) {
 		e.preventDefault();
 		$('#guardar_form').submit();
 	});
+
+	$('.desplegable>ul').hide();
+	$('.desplegador').on('change', function() {
+		var casilla = $(this)
+		  , desplegable = casilla.parents('.desplegable').find('ul').first();
+		if (casilla.is(':checked')) {
+			desplegable.slideDown();
+		} else {
+			desplegable.slideUp();
+		}
+
+	});
+
 });
 </script>
 
