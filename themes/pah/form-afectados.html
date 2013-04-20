@@ -634,6 +634,104 @@ OBSERVACIONES
 
 		<!-- SECCION: Datos sociales y laborales -->
 		<div class="tab-content eight columns">
+
+
+			<label>¿Cuántas personas conforman la unidad familiar?</label>
+			<div class="append field">
+			<input class="input" placeholder="" type="numeric" value="">
+			<a id="boton_familiares" href="" class="adjoined btn">Dale</a>
+			</div>
+			<div id="familiares"></div>
+
+			<div class="field">
+			<label>¿En qué situación laboral te encuentras?</label>
+			<input class="input" placeholder="" type="text" value="">
+			</div>
+			<div class="field">
+			<label>Ingresos unidad familiar mensual</label>
+			<input class="input" placeholder="" type="text" value="">
+			</div>
+			<div class="field">
+			<label>Ingresos netos titulares mensual</label>
+			<input class="input" placeholder="" type="text" value="">
+			</div>
+			<h4>¿Cuáles consideras que son los principales motivos de sus dificultades para pagar la hipoteca?</h4>
+			<label><input value="0" type="checkbox">
+				<spam></spam>Separación/Divorcio
+			</label>
+			<label><input value="0" type="checkbox">
+				<spam></spam>Subida cuota hipoteca
+			</label>
+			<label><input value="0" type="checkbox">
+				<spam></spam>Muchas deudas contraídas
+			</label>
+			<div class="desplegable">
+				<label><input value="0" type="checkbox" class="desplegador">
+					<spam></spam>Otros
+				</label>
+				<ul>
+				<li class="field">
+					<input class="input" placeholder="Explica" type="text" value="">
+				</li>
+				</ul>
+			</div>
+			<h4>¿Las dificultades para pagar la hipoteca están causando un impacto negativo en su salud?</h4>
+			<div class="field desplegable">
+				<label><input value="0" type="checkbox" class="desplegador">
+					<spam></spam>Sí
+				</label>
+				<ul>
+				<li class="field">
+					<input class="input" placeholder="Explica" type="text" value="">
+				</li>
+				</ul>
+			</div>
+			<h4>¿Tienen dificultades para cubrir alguna necesidad básica?</h4>
+			<label><input value="0" type="checkbox">
+				<spam></spam>Vestido
+			</label>
+			<label><input value="0" type="checkbox">
+				<spam></spam>Agua/Luz/Teléfono
+			</label>
+			<div class="desplegable">
+				<label><input value="0" type="checkbox" class="desplegador">
+					<spam></spam>Otras
+				</label>
+				<ul>
+				<li class="field">
+					<input class="input" placeholder="Explica" type="text" value="">
+				</li>
+				</ul>
+			</div>
+
+			<h4>¿Percibes ayudas de la Administración?</h4>
+			<div class="field desplegable">
+				<label><input value="0" type="checkbox" class="desplegador">
+					<spam></spam>Sí
+				</label>
+				<ul>
+				<li class="field">
+					<input class="input" placeholder="Explica" type="text" value="">
+				</li>
+				</ul>
+			</div>
+			<h4>¿Tienes vivienda donde ir en caso de desahucio?</h4>
+			<div class="field desplegable">
+				<label><input value="0" type="checkbox" class="desplegador">
+					<spam></spam>Sí
+				</label>
+				<ul>
+				<li class="field">
+					<input class="input" placeholder="Explica" type="text" value="">
+				</li>
+				</ul>
+			</div>
+
+			<div class="field">
+				<label><h3>Observaciones:</h3></label>
+				<textarea class="input textarea"></textarea>
+			</div>
+<!--
 <pre>
 Cuantas personas conforman la unidad familiar?	
 Hay menores? (0,1,2,3 o más) 	
@@ -662,6 +760,7 @@ Tienes vivienda donde ir en caso de desahucio?
 	SI ES QUE SÍ, EXPLICA?
 OBSERVACIONES	
 </pre>
+-->
 		</div>
 
 		<!-- SECCIÓN: Ejecución hipotecaria -->
@@ -764,7 +863,7 @@ OBSERVACIONES
 		<!-- SECCIÓN: Acciones realizadas -->
 		<div class="tab-content eight columns">
 
-			<h3>¿Has intentado renegociar la hipoteca o buscar una solución con el banco?</h3>
+			<h4>¿Has intentado renegociar la hipoteca o buscar una solución con el banco?</h4>
 			<div class="field desplegable">
 				<label><input value="0" type="checkbox" class="desplegador">
 					<spam></spam>Sí
@@ -775,7 +874,7 @@ OBSERVACIONES
 				</li>
 				</ul>
 			</div>
-			<h3>¿Has recibido algun tipo de trato denigrante por parte del banco?</h3>
+			<h4>¿Has recibido algun tipo de trato denigrante por parte del banco?</h4>
 			<div class="field desplegable">
 				<label><input value="0" type="checkbox" class="desplegador">
 					<spam></spam>Sí
@@ -786,7 +885,7 @@ OBSERVACIONES
 				</li>
 				</ul>
 			</div>
-			<h3>¿Te has puesto en contacto con Servicios Sociales?</h3>
+			<h4>¿Te has puesto en contacto con Servicios Sociales?</h4>
 			<div class="field desplegable">
 				<label><input value="0" type="checkbox" class="desplegador">
 					<spam></spam>Sí
@@ -800,7 +899,7 @@ OBSERVACIONES
 				</li>
 				</ul>
 			</div>
-			<h3>¿Te has puesto en contacto con otros servicios de mediación de la Administración Pública?</h3>
+			<h4>¿Te has puesto en contacto con otros servicios de mediación de la Administración Pública?</h4>
 			<div class="field desplegable">
 				<label><input value="0" type="checkbox" class="desplegador">
 					<spam></spam>Sí
@@ -814,7 +913,7 @@ OBSERVACIONES
 				</li>
 				</ul>
 			</div>
-			<h3>¿Te has puesto en contacto con otro tipo de asociaciones de apoyo?</h3>
+			<h4>¿Te has puesto en contacto con otro tipo de asociaciones de apoyo?</h4>
 			<div class="field desplegable">
 				<label><input value="0" type="checkbox" class="desplegador">
 					<spam></spam>Sí
@@ -841,7 +940,7 @@ OBSERVACIONES
 			</div>
 
 			<div class="field">
-				<label><h3>Observaciones:</h3></label>
+				<label><h4>Observaciones:</h4></label>
 				<textarea class="input textarea"></textarea>
 			</div>
 <!--<pre>
@@ -867,6 +966,141 @@ OBSERVACIONES
 
 		<!-- SECCIÓN: Datos de seguimiento -->
 		<div class="tab-content eight columns">
+
+			<h4>¿Ha solicitado justicia gratuita?</h4>
+			<label><input value="0" type="checkbox">
+				<spam></spam>Sí
+			</label>
+			<h4>¿Ha ido a servicios sociales?</h4>
+			<label><input value="0" type="checkbox">
+				<spam></spam>Sí
+			</label>
+			<h4>¿Ha ido a la oficina de mediación?</h4>
+			<label><input value="0" type="checkbox">
+				<spam></spam>Sí
+			</label>
+			<h4>¿Estaría dispuesto a hablar con los medios de comunicación?</h4>
+			<label><input value="0" type="checkbox">
+				<spam></spam>Sí
+			</label>
+
+			<h4>¿Ha presentado solicitud de la dación en pago?</h4>
+			<div class="field desplegable">
+				<label><input value="0" type="checkbox" class="desplegador">
+					<spam></spam>Sí
+				</label>
+				<ul>
+				<li class="field">
+					<input class="input" placeholder="Fecha solicitud" type="date" value="">
+				</li>
+				</ul>
+			</div>
+			<h4>¿Qué quiere conseguir?</h4>
+			<label><input value="0" type="checkbox">
+				<spam></spam>Renegociación
+			</label>
+			<label><input value="0" type="checkbox">
+				<spam></spam>Condonación
+			</label>
+			<label><input value="0" type="checkbox">
+				<spam></spam>Alquiler social
+			</label>
+			<div class="desplegable">
+				<label><input value="0" type="checkbox" class="desplegador">
+					<spam></spam>Otras
+				</label>
+				<ul>
+				<li class="field">
+					<input class="input" placeholder="Explica" type="text" value="">
+				</li>
+				</ul>
+			</div>
+			<h4>Documentos aportados</h4>
+			<label><input value="0" type="checkbox">
+				<spam></spam>Solicitud dación/condonación
+			</label>
+			<label><input value="0" type="checkbox">
+				<spam></spam>Recibo IBI
+			</label>
+			<label><input value="0" type="checkbox">
+				<spam></spam>Historial Laboral
+			</label>
+			<label><input value="0" type="checkbox">
+				<spam></spam>Comunidad de vecinos
+			</label>
+			<label><input value="0" type="checkbox">
+				<spam></spam>Cédula de habitabilidad
+			</label>
+			<label><input value="0" type="checkbox">
+				<spam></spam>Servicios agua/luz
+			</label>
+			<label><input value="0" type="checkbox">
+				<spam></spam>Informe Seguridad Social
+			</label>
+			<div class="field">
+			<input class="input" placeholder="Fecha de entrega de la documentación a través de la PAH" type="date" value="">
+			</div>
+			<h4>Tipo negociación:</h4>
+			<div class="field">
+			<div class="picker">
+			<select>
+				<option value="individual">individual</option>
+				<option value="colectiva">colectiva</option>
+			</select>
+			</div>
+			</div>
+			<h4>Fase negociación:</h4>
+			<div class="field">
+			<div class="picker">
+			<select>
+				<option value="pendiente">Pendiente de entrega</option>
+				<option value="esperando">Esperando respuesta</option>
+				<option value="insatisfactoria">Respuesta no satisfactoria</option>
+				<option value="cerrada">Cerrada</option>
+			</select>
+			</div>
+			</div>
+			<h4>Acciones de apoyo:</h4>
+			<div class="field">
+			<input class="input" placeholder="Acciones de apoyo" type="text" value="">
+			</div>
+			<h4>Resolución caso:</h4>
+			<label><input value="0" type="checkbox">
+				<spam></spam>Dación total
+			</label>
+			<label><input value="0" type="checkbox">
+				<spam></spam>Dación parcial
+			</label>
+			<label><input value="0" type="checkbox">
+				<spam></spam>Renegociación
+			</label>
+			<label><input value="0" type="checkbox">
+				<spam></spam>Condonación
+			</label>
+			<label><input value="0" type="checkbox">
+				<spam></spam>Alquiler social
+			</label>
+			<label><input value="0" type="checkbox">
+				<spam></spam>Realojo vivienda pública
+			</label>
+			<div class="desplegable">
+				<label><input value="0" type="checkbox" class="desplegador">
+					<spam></spam>Otras
+				</label>
+				<ul>
+				<li class="field">
+					<input class="input" placeholder="Explica" type="text" value="">
+				</li>
+				</ul>
+			</div>
+			<div class="field">
+			<input class="input" placeholder="Fecha de resolución" type="date" value="">
+			</div>
+			<div class="field">
+				<label><h4>Observaciones:</h4></label>
+				<textarea class="input textarea"></textarea>
+			</div>
+<!--
 <pre>
 Ha solicitado justicia gratuïta	
 Ha ido a servicios sociales	
@@ -908,6 +1142,7 @@ OBSERVACIONES
 
 
 </pre>
+-->
 		</div>
 	</section>
 </div>
