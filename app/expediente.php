@@ -25,7 +25,7 @@ class Expediente extends Controlador {
 			$afectado->copyto('AFECTADO');
 			//$hipoteca->copyto('HIPOTECA');
 		//}
-		$f3->set('contenido','form-afectados.html');
+		$f3->set('contenido','form-afectado.html');
 	}
 	function guardar() {
 		$f3=$this->framework;

@@ -1,0 +1,98 @@
+<div class="row">
+	<h2><i class="icon-home"></i> Afectado</h2>
+</div>
+
+<form id="guardar_form" method="post" action="{{ @BASE }}/expediente/{{ @PARAMS.idAfectado }}">
+
+<div id="buscador" class="row">
+	<div class="prepend append field">
+		<span class="adjoined">
+			<a href="{{ @BASE }}/expediente/" title="Nuevo expediente"><i class="icon-user-add"></i></a>
+			<a href="{{ @BASE }}/expedientes/" title="Buscar por nombre o DNI/CIF"><i class="icon-search"></i></a>
+		</span>
+		<div class="medium info btn"><a class="guardar_accion" href="" title="Guardar"><i class="icon-floppy"></i>Guardado el {{ @AFECTADO.modificadoEn, 'time' | format }}</a></div>
+		<!--<div class="medium danger btn"><a class="borrar_accion" href="" title="Borrar"><i class="icon-trash"></i>Borrar</a></div>-->
+		<span class="adjoined"><a href="{{ @BASE }}/salir" title="Salir"><i class="icon-logout"></i></a><i id="cargando" class="icon-hourglass"></i></span>
+	</div>
+</div>
+
+<div class="row">
+<div class="twelve columns">
+	<section class="vertical tabs">
+		<ul class="tab-nav four columns">
+			<li class="active"><a href="#">Datos personales</a></li>
+			<li><a href="#">Vivienda hipotecada</a></li>
+			<li><a href="#">Familia y trabajo</a></li>
+			<li><a href="#">Acciones previas a la PAH</a></li>
+			<li><a href="#">Seguimiento judicial</a></li>
+			<li><a href="#">Seguimiento negociación</a></li>
+		</ul>
+		<!-- SECCION: Datos personales -->
+		<div class="tab-content eight columns active">
+			<include href="form-afectado-personal.html" />
+		</div>
+		<!-- SECCIÓN: Vivienda hipotecada -->
+		<div class="tab-content eight columns">
+			<include href="form-afectado-hipoteca.html" />
+		</div>
+		<!-- SECCIÓN: Familia y trabajo -->
+		<div class="tab-content eight columns">
+			<include href="form-afectado-familia.html" />
+		</div>
+		<!-- SECCIÓN: Acciones previas a la PAH -->
+		<div class="tab-content eight columns">
+			<include href="form-afectado-prepah.html" />
+		</div>
+		<!-- SECCIÓN: Seguimiento judicial -->
+		<div class="tab-content eight columns">
+			<include href="form-afectado-seguimiento.html" />
+		</div>
+		<!-- SECCIÓN: Seguimiento negociación -->
+		<div class="tab-content eight columns">
+			<include href="form-afectado-negociacion.html" />
+		</div>
+	</section>
+</div>
+</div>
+<script>
+$(function() {
+
+	$('.guardar_accion').on('click', function(e) {
+		e.preventDefault();
+		$('#guardar_form').submit();
+	});
+
+	$('input,select,option').on('change', function(e) {
+		$('.guardar_accion').html('<i class="icon-floppy"></i>Guardar').parent().addClass('success');
+	});
+
+	$('.desplegable>ul').hide();
+	$('.desplegador').on('change', function() {
+		var casilla = $(this)
+		  , desplegable = casilla.parents('.desplegable').find('ul').first();
+		if (casilla.is(':checked') || casilla.hasClass ('ckecked') || casilla.val() == 'SI') {
+			desplegable.slideDown();
+		} else {
+			desplegable.slideUp();
+		}
+	});
+
+	$('#boton_unidad_familiar').on('click', function(e) {
+		e.preventDefault();
+		var num = parseInt($('#numUnidadFamiliar').val())
+		  , desplegados = parseInt($('#unidadfamiliar tr').size())
+		  , num_nuevos = num - desplegados;
+		alert("num: "+num+"\ndesplegados: "+desplegados+"\nnum_nuevos: "+num_nuevos);
+		for (i=0; i<num_nuevos; i++) {
+			var fila = '<tr><td class="field"><input class="text input" type="text" placeholder="Nacido año" /></td>'+
+			  '<td class="field"><select><option value="" selected>Sexo</option><option value="H">Hombre</option><option value="M">Mujer</option></select></td>'+
+			  '<td class="field"><select><option value="">Situación laboral</option><option value="TRABAJO_CON_CONTRATO">Trabajo con contrato</option><option value="TRABAJO_SIN_CONTRATO">Trabajo sin contrato</option><option value="PARADO">Parado</option><option value="AYUDAS_PUBLICAS">Otras ayudas públicas</option><option value="PENSIONISTA">Pensionista</option><option value="ESTUDIANTE">Estudiante</option></select></td>'+
+			  '<td class="field"><select><option value="" selected>Discapacidad</option><option value="SI">Sí</option><option value="NO">No</option></select></td>'+
+			  '<td class="field"><select><option value="" selected>Relación hipoteca</option><option value="TITULAR">Titular</option><option value="AVALISTA">Avalista</option><option value="NADA">Nada</option></select></td></tr>';
+			$('#unidadfamiliar').append(fila);
+		}
+	});
+
+});
+</script>
+

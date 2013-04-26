@@ -1,0 +1,261 @@
+<!-- Sección "Vivienda hipotecada" -->
+
+<ul class="row">
+
+<li class="field">
+<label class="narrow inline" for="direccionHipoteca">Dirección vivienda hipotecada</label>
+<input class="normal input" placeholder="Ejemplo: Calle Afectados nº10, 2ºB" id="direccionHipoteca" name="direccionHipoteca" type="text" value="" />
+</li>
+
+<li class="field">
+<label class="narrow inline" for="CPHipoteca">Código Postal</label>
+<input class="normal input" placeholder="Ejemplo: Calle Afectados nº10, 2ºB" id="CPHipoteca" name="CPHipoteca" type="text" value="" />
+</li>
+
+<li class="field">
+<label class="narrow inline" for="provinciaHipoteca">Provincia</label>
+<div class="picker normal">
+<select id="provinciaHipoteca" name="provinciaHipoteca">
+    <option value='0'>(Seleccionar)</option>
+    <option value='2'>Álava</option>
+    <option value='3'>Albacete</option>
+    <option value='4'>Alicante/Alacant</option>
+    <option value='5'>Almería</option>
+    <option value='6'>Asturias</option>
+    <option value='7'>Ávila</option>
+    <option value='8'>Badajoz</option>
+    <option value='9'>Barcelona</option>
+    <option value='10'>Burgos</option>
+    <option value='11'>Cáceres</option>
+    <option value='12'>Cádiz</option>
+    <option value='13'>Cantabria</option>
+    <option value='14'>Castellón/Castelló</option>
+    <option value='15'>Ceuta</option>
+    <option value='16'>Ciudad Real</option>
+    <option value='17'>Córdoba</option>
+    <option value='18'>Cuenca</option>
+    <option value='19'>Girona</option>
+    <option value='20'>Las Palmas</option>
+    <option value='21'>Granada</option>
+    <option value='22'>Guadalajara</option>
+    <option value='23'>Guipúzcoa</option>
+    <option value='24'>Huelva</option>
+    <option value='25'>Huesca</option>
+    <option value='26'>Illes Balears</option>
+    <option value='27'>Jaén</option>
+    <option value='28'>A Coruña</option>
+    <option value='29'>La Rioja</option>
+    <option value='30'>León</option>
+    <option value='31'>Lleida</option>
+    <option value='32'>Lugo</option>
+    <option value='33'>Madrid</option>
+    <option value='34'>Málaga</option>
+    <option value='35'>Melilla</option>
+    <option value='36'>Murcia</option>
+    <option value='37'>Navarra</option>
+    <option value='38'>Ourense</option>
+    <option value='39'>Palencia</option>
+    <option value='40'>Pontevedra</option>
+    <option value='41'>Salamanca</option>
+    <option value='42'>Segovia</option>
+    <option value='43'>Sevilla</option>
+    <option value='44'>Soria</option>
+    <option value='45'>Tarragona</option>
+    <option value='46'>Santa Cruz de Tenerife</option>
+    <option value='47'>Teruel</option>
+    <option value='48'>Toledo</option>
+    <option value='49'>Valencia/Valéncia</option>
+    <option value='50'>Valladolid</option>
+    <option value='51'>Vizcaya</option>
+    <option value='52'>Zamora</option>
+    <option value='53'>Zaragoza</option>
+</select>
+</div>
+</li>
+
+<li class="field">
+<label class="narrow inline" for="ciudadHipoteca">Ciudad</label>
+<div class="picker normal">
+<select id="ciudadHipoteca" name="ciudadHipoteca">
+    <option value='0'>(Seleccionar)</option>
+</select>
+</div>
+</li>
+
+<li class="field">
+<label class="narrow inline" for="comoHasContactado">¿Resides en ella?</label>
+<div class="picker normal">
+<select id="comoHasContactado" name="comoHasContactado">
+    <option value='SI' selected>Sí</option>
+	<option value='ALQUILADA'>No, la tengo alquilada</option>
+	<option value='DESAHUCIADO'>No, estoy desahuciado</option>
+	<option value='ABANDONADA'>No, he abandonado la vivienda</option>
+</select>
+</div>
+</li>
+
+</ul>
+
+<fieldset>
+<legend><h3>Contrato hipoteca</h3></legend>
+<ul>
+<li class="field">
+<label class="normal inline" for="bancoHipoteca">Entidad bancaria</label>
+<div class="picker narrow">
+<select id="bancoHipoteca" name="bancoHipoteca">
+</select>
+</div>
+</li>
+
+<li class="field">
+<label class="normal inline" for="bancoOrigen">Entidad bancaria de origen</label>
+<input class="narrow input" placeholder="Sólo completar si es distinta" id="bancoOrigen" name="bancoOrigen" type="text" value="" />
+</li>
+
+<li class="field">
+<label class="normal inline" for="anyoFirmaHipoteca">Año firma</label>
+<input class="narrow input" placeholder="Ejemplo: 1999" id="anyoFirmaHipoteca" name="anyoFirmaHipoteca" type="text" value="" />
+</li>
+
+<li class="field">
+<label class="normal inline" for="importeHipoteca">Importe préstamo inicial</label>
+<input class="narrow input" placeholder="Ejemplo: 120000" id="importeHipoteca" name="importeHipoteca" type="text" value="" />
+</li>
+
+<li class="field">
+<label class="normal inline" for="anyosHipoteca">Plazo hipoteca (en años)</label>
+<input class="narrow input" placeholder="Ejemplo: 20" id="anyosHipoteca" name="anyosHipoteca" type="text" value="" />
+</li>
+
+<li class="field">
+<label class="normal inline" for="tasacionHipoteca">Valor tasación subasta</label>
+<input class="narrow input" placeholder="Ejemplo: 120000" id="tasacionHipoteca" name="tasacionHipoteca" type="text" value="" />
+</li>
+
+<li class="field">
+<label class="normal inline" for="numTitularesHipoteca">Número de titulares</label>
+<input class="narrow input" placeholder="Ejemplo: 3" id="numTitularesHipoteca" name="numTitularesHipoteca" type="text" value="" />
+</li>
+
+<li class="field">
+<label class="normal inline" for="avalistasHipoteca">¿Tiene avalistas?</label>
+<div class="picker narrow">
+<select id="avalistasHipoteca" name="avalistasHipoteca">
+    <option value='NO' selected>No</option>
+	<option value='PADRES'>Sí, mis padres</option>
+	<option value='FAMILIARES'>Sí, otros familiares</option>
+	<option value='AMIGOS'>Sí, amigos</option>
+	<option value='DESCONOCIDOS'>Sí, desconocidos</option>
+</select>
+</div>
+</li>
+
+<li class="field">
+<label class="normal inline" for="numAvalistasHipoteca">Número de avalistas</label>
+<input class="narrow input" placeholder="Ejemplo: 3" id="numAvalistasHipoteca" name="numAvalistasHipoteca" type="text" value="" />
+</li>
+
+<li class="field">
+<label class="normal inline" for="si_clausula_abusiva">¿Contiene cláusula abusiva?</label>
+<div class="picker narrow">
+<select id="si_clausula_abusiva" name="si_clausula_abusiva">
+    <option value=''></option>
+	<option value='SI'>Sí</option>
+	<option value='NO'>No</option>
+	<option value='NC'>Lo ignoro</option>
+</select>
+</div>
+<!--
+<input type="radio" name="si_clausula_abusiva" />Si
+<input type="radio" name="si_clausula_abusiva" />No
+<input type="radio" name="si_clausula_abusiva" />No contesta
+-->
+</li>
+
+</ul>
+</fieldset>
+
+<fieldset>
+<legend><h3>Otros datos</h3></legend>
+<ul>
+<li class="field">
+<label class="normal inline" for="pendienteAmortizar">Capital pendiente de amortizar</label>
+<input class="narrow input" placeholder="Ejemplo: 30000" id="pendienteAmortizar" name="pendienteAmortizar" type="text" value="" />
+</li>
+
+<li class="field">
+<label class="normal inline" for="cuotaMensual">Cuota mensual actual</label>
+<input class="narrow input" placeholder="Ejemplo: 500" id="cuotaMensual" name="cuotaMensual" type="text" value="" />
+</li>
+
+<li class="field">
+<label class="normal inline" for="importeRefinanciacion">Importe refinanciación</label>
+<input class="narrow input" placeholder="Ejemplo: 25000" id="importeRefinanciacion" name="importeRefinanciacion" type="text" value="" />
+</li>
+
+<li class="field">
+<label class="normal inline" for="precioCompraVenta">Precio compra-venta escriturado</label>
+<input class="narrow input" placeholder="Ejemplo: 55000" id="precioCompraVenta" name="precioCompraVenta" type="text" value="" />
+</li>
+
+<li class="field">
+<label class="normal inline" for="avalistaOtrasHipotecas">¿Eres avalistas de otras hipotecas?</label>
+<div class="picker narrow">
+<select id="avalistaOtrasHipotecas" name="avalistaOtrasHipotecas">
+    <option value=''></option>
+	<option value='SI'>Sí</option>
+	<option value='NO'>No</option>
+</select>
+</div>
+</li>
+
+<li class="field">
+<label class="normal inline" for="importeOtrosPrestamos">Importe otros préstamos</label>
+<input class="narrow input" placeholder="Ejemplo: 15000" id="importeOtrosPrestamos" name="importeOtrosPrestamos" type="text" value="" />
+</li>
+
+<li class="field">
+<label class="normal inline" for="numViviendasEnPropiedad">Nº viviendas en propiedad adicionales</label>
+<input class="narrow input" placeholder="Ejemplo: 1" id="importeOtrosPrestamos" name="importeOtrosPrestamos" type="text" value="" />
+</li>
+
+</ul>
+</fieldset>
+
+<!--
+<pre>
+DIRECCIÓN VIVIENDA HIPOTECADA	
+CÓDIGO POSTAL	
+PROVINCIA	
+CIUDAD	
+RESIDES EN LA VIVIENDA HIPOTECADA	SI|NO, LA TIENE ALQUILADA|NO, ESTÁ DESAHUCIADO|NO, HA ABANDONADO PISO
+	
+  CONTRATO HIPOTECA	
+	
+ CON QUE ENTIDAD BANCARIA TIENES HIPOTECA?	
+ENTIDAD BANCARIA DE ORIGEN	
+AÑO FIRMA HIPOTECA	
+IMPORTE PRESTAMO HIPOTECA INICIAL	
+PLAZO HIPOTECA (EN AÑOS)	
+VALOR TASACIÓN SUBASTA	
+Nº DE TITULARES HIPOTECA	
+TIENES AVALISTAS?	NO /PADRES / AMIGOS/ OTROS FAMILIARES/ DESCONOCIDOS
+NUMERO AVALISTAS	
+CONTIENE  CLAUSULAS ABUSIVAS?	SI / No /Nc
+	relación chekpoint cláusula abusiva CARLOS
+	
+   OTROS DATOS 	
+	
+CAPITAL PENDIENTE AMORTIZAR	
+CUOTA MENSUAL ACTUAL	
+IMPORTE REFINANCIACIÓN	
+PRECIO COMPRAVENTA ESCRITURADO	
+ERES AVALISTA DE LA HIPOTECA DE OTRAS PERSONAS	
+IMPORTE OTROS PRESTAMOS	
+NUM VIVIENDAS EN PROPIEDAD ADICIONALES	
+
+
+OBSERVACIONES	
+
+</pre>
+-->

@@ -1,0 +1,170 @@
+<!-- Sección "Familia y Trabajo" "DATOS SOCIALES Y LABORALES"-->
+
+<ul>
+<li class="append field">
+<input class="wide input" type="text" id="numUnidadFamiliar" placeholder="Número personas unidad familiar" />
+<div class="medium primary btn"><a href="#" id="boton_unidad_familiar">Añadir</a></div>
+</li>
+</ul>
+
+<table id="unidadfamiliar">
+<!--
+<tr>
+<td class="field"><input class="text input" type="text" placeholder="Año nacimiento" /></td>
+<td class="field">
+<select>
+	<option value='' selected>Sexo</option>
+    <option value='H'>Hombre</option>
+	<option value='M'>Mujer</option>
+</select>
+</td>
+<td class="field">
+<select>
+	<option value=''>Situación laboral</option>
+    <option value='TRABAJO_CON_CONTRATO'>Trabajo con contrato</option>
+    <option value='TRABAJO_SIN_CONTRATO'>Trabajo sin contrato</option>
+    <option value='PARADO'>Parado</option>
+    <option value='AYUDAS_PUBLICAS'>Otras ayudas públicas</option>
+    <option value='PENSIONISTA'>Pensionista</option>
+    <option value='ESTUDIANTE'>Estudiante</option>
+</select>
+</td>
+<td class="field">
+<select>
+	<option value='' selected>Discapacidad</option>
+    <option value='SI'>Sí</option>
+	<option value='NO'>No</option>
+</select>
+</td>
+<td class="field">
+<select>
+	<option value='' selected>Relación hipoteca</option>
+    <option value='TITULAR'>Titular</option>
+	<option value='AVALISTA'>Avalista</option>
+	<option value='NADA'>Nada</option>
+</select>
+</td>
+</tr>
+-->
+</table>
+
+<h4>Ingresos Unidad Familiar</h4>
+<ul>
+<li class="field">
+<label class="normal inline" for="brutoAnualTitulares">Ingreso bruto anual titulares</label>
+<input class="narrow input" placeholder="Ejemplo: 25000" id="brutoAnualTitulares" name="brutoAnualTitulares" type="text" value="" />
+</li>
+<li class="field">
+<label class="normal inline" for="netoMesTitulares">Ingreso neto mensual titulares</label>
+<input class="narrow input" placeholder="Ejemplo: 1500" id="netoMesTitulares" name="netoMesTitulares" type="text" value="" />
+</li>
+<li class="field">
+<label class="normal inline" for="netoMesFamilia">Ingreso neto mensual familia</label>
+<input class="narrow input" placeholder="Ejemplo: 1500" id="netoMesFamilia" name="netoMesFamilia" type="text" value="" />
+</li>
+</ul>
+<h4>Principales motivos de impago</h4>
+<label><input value="0" type="checkbox">
+	<spam></spam>Paro
+</label>
+<label><input value="0" type="checkbox">
+	<spam></spam>Separación/Divorcio
+</label>
+<label><input value="0" type="checkbox">
+	<spam></spam>Enfermedad/Baja
+</label>
+<label><input value="0" type="checkbox">
+	<spam></spam>Subida cuota de hipoteca
+</label>
+<label><input value="0" type="checkbox">
+	<spam></spam>Muchas deudas contraidas
+</label>
+
+<h4>¿Cómo está afectando a su vida/salud?</h4>
+<label><input value="0" type="checkbox">
+	<spam></spam>Insomnio
+</label>
+<label><input value="0" type="checkbox">
+	<spam></spam>Aumento del consumo de alcohol/drogas
+</label>
+<label><input value="0" type="checkbox">
+	<spam></spam>Ansiedad
+</label>
+<label><input value="0" type="checkbox">
+	<spam></spam>Depresión
+</label>
+<label><input value="0" type="checkbox">
+	<spam></spam>Tensión familiar
+</label>
+<label><input value="0" type="checkbox">
+	<spam></spam>Desatención hijos
+</label>
+
+<h4>¿Recibe ayuda de alguna entidad social para alimentar a su familia?</h4>
+<div class="desplegable">
+	<label><input value="0" type="checkbox" class="desplegador">
+		<spam></spam>Sí, de:
+	</label>
+	<ul>
+		<li>
+		<label><input value="0" type="checkbox">
+			<spam></spam>Caritas
+		</label>
+		</li>
+		<li>
+		<label><input value="0" type="checkbox">
+			<spam></spam>Cruz Roja
+		</label>
+		</li>
+		<li>
+		<label><input value="0" type="checkbox">
+			<spam></spam>Banco de alimentos
+		</label>
+		</li>
+		<li>
+		<label><input value="0" type="checkbox">
+			<spam></spam>PAH
+		</label>
+		</li>
+		<li>
+		<label><input value="0" type="checkbox">
+			<spam></spam>Familiares
+		</label>
+		</li>
+	</ul>
+</div>
+
+
+<h4>¿Tiene dificultades para cubrir las siguientes necesidades básicas?</h4>
+<label><input value="0" type="checkbox">
+	<spam></spam>Vestimenta
+</label>
+<label><input value="0" type="checkbox">
+	<spam></spam>Agua, luz, teléfono, etc.
+</label>
+
+
+<!--
+<pre>
+NUM PERSONAS UNIDAD FAMILIAR TOTAL	
+AÑO NACIMIENTO	
+SEXO	
+SITUACIÓN LABORAL	TRABAJO CONTRATO/ TRABAJO SIN CONTRATO/PARO / OTRAS AYUDAS PUBLICAS/PENSIONISTA/ ESTUDIANTE
+DISCAPACIDAD	
+RELACIÓN HIPOTECA	TITULAR/AVALISTA/NADA
+	
+INGRESOS BRUTOS ANUAL TITULARES	
+INGRESOS NETOS TITULARES MENSUAL	
+INGRESOS NETOS UNIDAD FAMILIAR MENSUAL	
+PRINCIPALES MOTIVOS IMPAGO	PARO
+	SEPARACIÓN/DIVORCIO
+	ENFERMEDAD/ BAJA
+	SUBIDA CUOTA HIPOTECA
+	MUCHAS DEUDAS CONTRAÍDAS
+CÓMO ESTÁ AFECTANDO A TU VIDA/SALUD	Insomnio, Alcohol, Ansiedad, Depresión, Tensión Familiar, Desatención hijos
+RECIBES AYUDA DE ENTIDAD SOCIAL PARA ALIMENTAR FAMILIA?	SI/NO
+	   CARITAS/CRUZ ROJA/BANCO ALIMENTOS/PAH/FAMILIARES
+TENÉIS DIFICULTADES PARA CUBRIR LAS SIGUIENTES NECESIDADES BÁSICAS? PUEDES MARCAR VARIAS OPCIONES	VESTIMENTA
+	AGUA,LUZ, TELF
+</pre>
+-->

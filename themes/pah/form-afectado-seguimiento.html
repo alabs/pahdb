@@ -1,0 +1,140 @@
+<!-- Sección "Seguimiento Judicial" -->
+
+<h4>¿Ha dejado de pagar la hipoteca?</h4>
+<div class="desplegable">
+	<div class="picker narrow">
+	<select class="desplegador">
+		<option value=''>No contesta</option>
+		<option value='SI'>Sí</option>
+		<option value='NO'>No</option>
+	</select>
+	</div>
+	<ul>
+	<li class="field">
+		<input class="input xwide" placeholder="Fecha del impago" type="date" value="">
+	</li>
+	</ul>
+</div>
+<h4>¿Has recibido la demanda de ejecución hipotecaria?</h4>
+<div class="desplegable">
+	<div class="picker narrow">
+	<select class="desplegador">
+		<option value=''>No contesta</option>
+		<option value='SI'>Sí</option>
+		<option value='NO'>No</option>
+	</select>
+	</div>
+	<ul>
+	<li class="field">
+		<input class="input xwide" placeholder="Fecha demanda judicial" type="date" value="">
+	</li>
+	<li class="field">
+		<input class="input xwide" placeholder="NUM EJECUCIÓN" type="text" value="">
+	</li>
+	<li class="field">
+		<input class="input xwide" placeholder="Cantidad reclamada principal" type="text" value="">
+	</li>
+	<li class="field">
+		<input class="input xwide" placeholder="Cantidad reclamada en intereses" type="text" value="">
+	</li>
+	<li class="field">
+		<input class="input xwide" placeholder="Costas judiciales" type="text" value="">
+	</li>
+	<li class="field">
+	<div class="picker xwide">
+	<select>
+		<option value='' selected>¿Ha solicitado justicia gratuita? (Seleccione)</option>
+		<option value='NO'>No solicitada</option>
+		<option value='EN_TRAMITE'>En trámite</option>
+		<option value='ACEPTADA'>Aceptada</option>
+		<option value='DENEGADA'>Denegada</option>
+	</select>
+	</div>
+	</li>
+	<li class="field">
+	<div class="picker xwide">
+	<select>
+		<option value='' selected>¿Ha recibido demanda extrajudicial? (Seleccione)</option>
+		<option value='NO'>No</option>
+		<option value='SI'>Sí</option>
+	</select>
+	</div>
+	</li>
+	</ul>
+</div>
+
+<fieldset>
+<legend><h4>Subastas</h4></legend>
+<div class="medium secondary btn"><a href="" id="boton_subasta">Añadir fecha de subasta</a></div>
+<table id="subastas">
+</table>
+</fieldset>
+
+<fieldset>
+<legend><h4>Desahucios</h4></legend>
+<div class="medium secondary btn"><a href="" id="boton_desahucio">Añadir fecha de desahucio</a></div>
+<table id="desahucios">
+</table>
+<h5>Si te han desahuciado o has dejado el piso, ¿dónde vives?</h5>
+<div class="picker narrow">
+<select>
+	<option value=''>No contesta</option>
+	<option value='PISO_ALQUILER'>Piso alquiler</option>
+	<option value='PISO_SOCIAL'>Piso social</option>
+	<option value='PISO_ONG'>Piso ONG</option>
+	<option value='PISO_FAMILIA'>Piso familiares</option>
+	<option value='PISO_AMIGOS'>Piso amigos</option>
+	<option value='HABITACION'>Habitación alquiler</option>
+	<option value='OKUPACION'>Okupación</option>
+	<option value='OKUPACION_PAH'>Okupación PAH</option>
+	<option value='COCHE'>Coche</option>
+	<option value='CALLE'>Calle</option>
+</select>
+</div>
+<h5>¿Ha presentado recurso TJUE?</h5>
+<div class="desplegable">
+	<div class="picker narrow">
+	<select class="desplegador">
+		<option value=''>No contesta</option>
+		<option value='SI'>Sí</option>
+		<option value='NO'>No</option>
+	</select>
+	</div>
+	<ul>
+	<li class="field">
+		<input class="input xwide" placeholder="Fecha" type="date" value="">
+	</li>
+	</ul>
+</div>
+</fieldset>
+<!--
+<pre>
+HAS DEJADO DE PAGAR 	SI/NO
+SI ES QUE SÍ, FECHA IMPAGO	
+HAS RECIBIDO LA DEMANDA DE EJECUCIÓN HIPOTECARIA	SI/NO
+FECHA  DEMANDA	
+NUM. EJECUCIÓN	
+CANTIDAD PRINCIPAL	
+CANTIDAD  INTERESES	
+COSTAS JUDICIALES	
+ JUSTICIA GRATUITA	NO SOLICITADA/EN TRAMITE/ACEPTADA/DENEGADA
+HAS RECIBIDO DEMANDA EXTRAJUDICIAL	SI/NO
+	
+	
+AÑADIR FECHA DE SUBASTA	
+FECHA	
+RESULTADO	PENDIENTE/EJECUTADO/SUSPENDIDO/SUSPENDIDO PAH
+IMPORTE ADJUDICACIÓN	
+DEUDA RESTANTE	
+	
+AÑADIR FECHA DE DESAHUCIO	
+FECHA	
+RESULTADO	PENDIENTE/EJECUTADO/SUSPENDIDO/SUSPENDIDO PAH/PARALIZADO PAH
+	
+SI TE HAN DESAHUCIADO O HAS DEJADO PISO,DONDE VIVES?	PISO ALQUILER / PISO SOCIA L/ PISO ONG / PISO FAMILIARES / PISO AMIGOS / HABITACIÓN ALQUILER / OCUPACIÓN/ OCUPACIÓN PAH / COCHE / CALLE
+	
+HAS PRESENTADO RECURSO TJUE CLAUSULAS	SI/NO
+SI ES QUE SÍ, FECHA	
+
+</pre>
+-->
