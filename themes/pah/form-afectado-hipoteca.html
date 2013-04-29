@@ -9,14 +9,14 @@
 
 <li class="field">
 <label class="narrow inline" for="CPHipoteca">Código Postal</label>
-<input class="normal input" placeholder="Ejemplo: Calle Afectados nº10, 2ºB" id="CPHipoteca" name="CPHipoteca" type="text" value="" />
+<input class="normal input" placeholder="Ejemplo: 28080" id="CPHipoteca" name="CPHipoteca" type="text" value="" />
 </li>
 
 <li class="field">
 <label class="narrow inline" for="provinciaHipoteca">Provincia</label>
 <div class="picker normal">
 <select id="provinciaHipoteca" name="provinciaHipoteca">
-    <option value='0'>(Seleccionar)</option>
+    <option value='0'>(Seleccione)</option>
     <option value='2'>Álava</option>
     <option value='3'>Albacete</option>
     <option value='4'>Alicante/Alacant</option>
@@ -155,21 +155,43 @@
 <input class="narrow input" placeholder="Ejemplo: 3" id="numAvalistasHipoteca" name="numAvalistasHipoteca" type="text" value="" />
 </li>
 
-<li class="field">
-<label class="normal inline" for="si_clausula_abusiva">¿Contiene cláusula abusiva?</label>
+<li class="field desplegable">
+<label class="normal inline" for="si_clausula_abusiva">¿Contiene cláusulas abusivas?</label>
 <div class="picker narrow">
-<select id="si_clausula_abusiva" name="si_clausula_abusiva">
+<select id="si_clausula_abusiva" name="si_clausula_abusiva" class="desplegador">
     <option value=''></option>
 	<option value='SI'>Sí</option>
 	<option value='NO'>No</option>
 	<option value='NC'>Lo ignoro</option>
 </select>
 </div>
-<!--
-<input type="radio" name="si_clausula_abusiva" />Si
-<input type="radio" name="si_clausula_abusiva" />No
-<input type="radio" name="si_clausula_abusiva" />No contesta
--->
+<ul>
+	<li>
+	<label><input value="0" type="checkbox">
+		<spam></spam>Cláusula suelo
+	</label>
+	</li>
+	<li>
+	<label><input value="0" type="checkbox">
+		<spam></spam>Intereses mora 10%
+	</label>
+	</li>
+	<li>
+	<label><input value="0" type="checkbox">
+		<spam></spam>Costas judiciales
+	</label>
+	</li>
+	<li>
+	<label><input value="0" type="checkbox">
+		<spam></spam>Vencimiento anticipado
+	</label>
+	</li>
+	<li>
+	<label><input value="0" type="checkbox">
+		<spam></spam>Multidivisa
+	</label>
+	</li>
+</ul>
 </li>
 
 </ul>
@@ -203,7 +225,8 @@
 <div class="picker narrow">
 <select id="avalistaOtrasHipotecas" name="avalistaOtrasHipotecas">
     <option value=''></option>
-	<option value='SI'>Sí</option>
+	<option value='SI_SIN_DIFICULTAD'>Sí, pero no tienen dificultades para pagarla</option>
+	<option value='SI_CON_DIFICULTAD'>Sí y tienen dificultades para pagarla</option>
 	<option value='NO'>No</option>
 </select>
 </div>
