@@ -54,6 +54,7 @@
 	</section>
 </div>
 </div>
+<script src="/js/ciudades.js"></script>
 <script>
 $(function() {
 
@@ -93,6 +94,21 @@ $(function() {
 		}
 	});
 
+	var provincias = ciudades.dameProvincias();
+	var opciones_prov = '';
+	for (var i=0; i<provincias.length; i++) {
+		opciones_prov += '<option value="'+(i+1)+'">'+provincias[i]+'</option>';
+	}
+	$('.provincia').append(opciones_prov);
+	$('.provincia').on('change', function () {
+		var idProvincia = $(this).val();
+		var pueblos = ciudades.dameCiudades(idProvincia);
+		var html = '<option value="0">(Seleccione)</option>';
+		for (var i=0; i<pueblos.length; i++) {
+			html += '<option value="'+pueblos[i].id+'">'+pueblos[i].nombre+'</option>';
+		}
+		$('.ciudad').html(html);		
+	});
 });
 </script>
 
