@@ -24,60 +24,8 @@
 <li class="field">
 <label class="narrow inline" for="direccion">Provincia</label>
 <div class="picker normal">
-<select id="provincia" name="provincia" class="provincia">
+<select id="provincia" name="provincia" class="provincia" data-rel="ciudad">
     <option value='0'>(Seleccione)</option>
-<!--    <option value='2'>Álava</option>
-    <option value='3'>Albacete</option>
-    <option value='4'>Alicante/Alacant</option>
-    <option value='5'>Almería</option>
-    <option value='6'>Asturias</option>
-    <option value='7'>Ávila</option>
-    <option value='8'>Badajoz</option>
-    <option value='9'>Barcelona</option>
-    <option value='10'>Burgos</option>
-    <option value='11'>Cáceres</option>
-    <option value='12'>Cádiz</option>
-    <option value='13'>Cantabria</option>
-    <option value='14'>Castellón/Castelló</option>
-    <option value='15'>Ceuta</option>
-    <option value='16'>Ciudad Real</option>
-    <option value='17'>Córdoba</option>
-    <option value='18'>Cuenca</option>
-    <option value='19'>Girona</option>
-    <option value='20'>Las Palmas</option>
-    <option value='21'>Granada</option>
-    <option value='22'>Guadalajara</option>
-    <option value='23'>Guipúzcoa</option>
-    <option value='24'>Huelva</option>
-    <option value='25'>Huesca</option>
-    <option value='26'>Illes Balears</option>
-    <option value='27'>Jaén</option>
-    <option value='28'>A Coruña</option>
-    <option value='29'>La Rioja</option>
-    <option value='30'>León</option>
-    <option value='31'>Lleida</option>
-    <option value='32'>Lugo</option>
-    <option value='33'>Madrid</option>
-    <option value='34'>Málaga</option>
-    <option value='35'>Melilla</option>
-    <option value='36'>Murcia</option>
-    <option value='37'>Navarra</option>
-    <option value='38'>Ourense</option>
-    <option value='39'>Palencia</option>
-    <option value='40'>Pontevedra</option>
-    <option value='41'>Salamanca</option>
-    <option value='42'>Segovia</option>
-    <option value='43'>Sevilla</option>
-    <option value='44'>Soria</option>
-    <option value='45'>Tarragona</option>
-    <option value='46'>Santa Cruz de Tenerife</option>
-    <option value='47'>Teruel</option>
-    <option value='48'>Toledo</option>
-    <option value='49'>Valencia/Valéncia</option>
-    <option value='50'>Valladolid</option>
-    <option value='51'>Vizcaya</option>
-    <option value='52'>Zamora</option>
-    <option value='53'>Zaragoza</option>-->
 </select>
 </div>
 </li>
@@ -86,7 +34,7 @@
 <label class="narrow inline" for="ciudad">Ciudad</label>
 <div class="picker normal">
 <select id="ciudad" name="ciudad" class="ciudad">
-    <option value='0'>(Seleccionar)</option>
+    <option value='0'>(Seleccione)</option>
 </select>
 </div>
 </li>
@@ -95,6 +43,7 @@
 <label class="narrow inline" for="nacionalidad1">Nacionalidad</label>
 <div class="picker normal">
 <select name="nacionalidad1">
+	<option value=''>No contesta</option>
 	<option value="AF">Afganistán</option>
 	<option value="AL">Albania</option>
 	<option value="DE">Alemania</option>
@@ -337,6 +286,7 @@
 <label class="narrow inline" for="nacionalidad2">2ª nacionalidad</label>
 <div class="picker normal">
 <select name="nacionalidad2">
+	<option value=''>No contesta</option>
 	<option value="AF">Afganistán</option>
 	<option value="AL">Albania</option>
 	<option value="DE">Alemania</option>
@@ -579,7 +529,8 @@
 <label class="narrow inline" for="relacionHipoteca">Relación con hipoteca</label>
 <div class="picker normal">
 <select id="relacionHipoteca" name="relacionHipoteca">
-    <option value='TITULAR' selected>Titular</option>
+	<option value=''>No contesta</option>
+    <option value='TITULAR'>Titular</option>
 	<option value='AVALISTA'>Avalista</option>
 </select>
 </div>
@@ -589,7 +540,8 @@
 <label class="narrow inline" for="comoHasContactado">¿Cómo has contactado?</label>
 <div class="picker normal">
 <select id="comoHasContactado" name="comoHasContactado">
-    <option value='BOCA_OREJA' selected>Boca a oreja</option>
+	<option value=''>No contesta</option>
+    <option value='BOCA_OREJA'>Boca a oreja</option>
 	<option value='MEDIOS'>Medios de comunicación tradicionales</option>
 	<option value='INTERNET'>A través de Internet</option>
 	<option value='ADMINISTRACION_PUBLICA'>A través de la Administración Pública</option>
@@ -610,19 +562,19 @@
 
 <li class="field">
 <label class="narrow inline" for="tfMovil">Teléfono móvil</label>
-<input class="normal input" placeholder="Ejemplo: 666555444" id="tfMovil" name="tfMovil" type="tel" value="{{ @AFECTADO.tfMovil }}" />
+<input class="normal input numero" placeholder="Ejemplo: 666555444" id="tfMovil" name="tfMovil" type="tel" value="{{ @AFECTADO.tfMovil }}" />
 </li>
 
 <li class="field">
 <label class="narrow inline" for="tfFijo">Teléfono fijo</label>
-<input class="normal input" placeholder="Ejemplo: 916665544" id="tfFijo" name="tfFijo" type="tel" value="{{ @AFECTADO.tfFijo }}" />
+<input class="normal input numero" placeholder="Ejemplo: 916665544" id="tfFijo" name="tfFijo" type="tel" value="{{ @AFECTADO.tfFijo }}" />
 </li>
 
 <li class="field">
 	<label class="normal inline">¿Hablaría con medios?</label>
 	<div class="picker narrow">
 	<select>
-		<option value=''>No responde</option>
+		<option value=''>No contesta</option>
 		<option value='SI'>Sí</option>
 		<option value='NO'>No</option>
 	</select>
