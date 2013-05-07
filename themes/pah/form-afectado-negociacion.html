@@ -22,7 +22,7 @@
 </fieldset>
 
 <fieldset>
-<legend><h4>Medios</h4></legend>
+<legend><h4>Proceso negociador</h4></legend>
 <ul>
 <li class="field">
 	<label class="normal inline">Tipo negociación</label>
@@ -50,6 +50,18 @@
 	</ul>
 </li>
 <li class="field">
+	<label class="normal inline">Fase negociación</label>
+	<div class="picker narrow">
+	<select>
+		<option value=''>No responde</option>
+		<option value='DOC_PENDIENTE'>Documentación pendiente de entrega</option>
+		<option value='DOC_ENTREGADA'>Documentación entregada, en espera de respuesta</option>
+		<option value='NO_SATISFACTORIA'>Respuesta no satisfactoria</option>
+		<option value='CERRADA'>Negociación cerrada</option>
+	</select>
+	</div>
+</li>
+<li class="field">
 	<label class="normal inline">¿Ha ido a la oficina de mediación?</label>
 	<div class="picker narrow">
 	<select>
@@ -69,29 +81,54 @@
 	</select>
 	</div>
 </li>
+<li class="field">
+	<label class="normal inline">¿Cumple código De Guindos?</label>
+	<div class="picker narrow">
+	<select>
+		<option value=''>No responde</option>
+		<option value='SI'>Sí</option>
+		<option value='NO'>No</option>
+	</select>
+	</div>
+</li>
 </ul>
 </fieldset>
 
 <fieldset>
 <legend><h4>Resolución</h4></legend>
 <ul>
-	<li>
-		<label><input type="checkbox" value="DACION_TOTAL"><span></span> Dación total</label>
-	</li>
-	<li>
-		<label><input type="checkbox" value="DACION_PARCIAL"><span></span> Dación parcial</label>
-	</li>
-	<li>
-		<label><input type="checkbox" value="RENEGOCIACION"><span></span> Renegociación</label>
-	</li>
-	<li>
-		<label><input type="checkbox" value="CONDONACION"><span></span> Condonación</label>
-	</li>
-	<li>
-		<label><input type="checkbox" value="ALQUILER_SOCIAL"><span></span> Alquiler social</label>
-	</li>
-	<li>
-		<label><input type="checkbox" value="REALOJO_PUBLICA"><span></span> Realojo vivienda pública</label>
+<li class="field">
+	<label class="normal inline">Resolución deuda</label>
+	<div class="picker narrow">
+	<select>
+		<option value=''>No responde</option>
+		<option value='DACION_TOTAL'>Dación total</option>
+		<option value='DACION_PARCIAL'>Dación parcial</option>
+		<option value='CONDONACION'>Condonación</option>
+		<option value='RENEGOCIACION'>Renegociación</option>
+		<option value='MORATORIA'>Moratoria</option>
+	</select>
+	</div>
+</li>
+<li class="field">
+	<label class="normal inline">Resolución vivienda</label>
+	<div class="picker narrow">
+	<select>
+		<option value=''>No responde</option>
+		<option value='ALQUILER_SOCIAL_BANCO'>Alquiler social banco</option>
+		<option value='REALOJO_VIVIENDA_PUBLICA'>Realojo vivienda pública</option>
+		<option value='ALQUILER_MERCADO_LIBRE'>Alquiler mercado libre</option>
+		<option value='VIVIENDA_ONG'>Vivienda ONG</option>
+		<option value='HABITACION_ONG'>Habitación ONG</option>
+		<option value='VIVIENDA_FAMILIARES'>Vivienda familiares</option>
+		<option value='OCUPACION_SILENCIOSA'>Ocupación silenciosa</option>
+		<option value='OBRA_SOCIAL_PAH'>Obra social PAH</option>
+		<option value='EMIGRA'>Emigra</option>
+	</select>
+	</div>
+</li>
+	<li class="field">
+		<input class="input xwide numero" placeholder="Precio alquiler" type="text" value="">
 	</li>
 	<li class="field">
 		<input class="input xwide" placeholder="Fecha resolución" type="date" value="">
@@ -102,28 +139,3 @@
 </ul>
 </fieldset>
 
-<!--
-<pre>
-QUE QUIERE CONSEGUIR	DACIÓN EN PAGO
-	RENEGOCIACION 
-	CONDONACIÓN
-	ALQUILER SOCIAL
-	QUITA
-	
-TIPO NEGOCIACION	
-SE HA PRESENTADO DOCUMENTACIÓN (SOLICITUD DACIÓN, IBI, VIDA LABORAL ETC) ?	
-	FECHA
-FASE NEGOCIACIÓN	
-HA IDO A OFICINA MEDIACIÓN	
-HAS IDO A SERVICIOS SOCIALES	SI/NO
-	
-RESOLUCIÓN	DACIÓN TOTAL
-	DACIÓN PARCIAL
-	RENEGOCIACION 
-	CONDONACIÓN
-	ALQUILER SOCIAL
-	REALOJO VIVIENDA PÚBLICA
-	FECHA
-	EXPLICA :
-</pre>
--->
