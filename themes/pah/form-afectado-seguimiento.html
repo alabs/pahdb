@@ -11,7 +11,7 @@
 	</div>
 	<ul>
 	<li class="field">
-		<input class="input xwide" placeholder="Fecha del impago" type="date" value="">
+		<input class="input xwide" name="fechaImpago" placeholder="Fecha del impago" type="date" value="{{ @AFECTADO.fechaImpago }}">
 	</li>
 	</ul>
 </div>
@@ -26,22 +26,23 @@
 	</div>
 	<ul>
 	<li class="field">
-		<input class="input xwide" placeholder="Fecha demanda judicial" type="date" value="">
+		<input class="input xwide" name="fechaDemandaJudicial" placeholder="Fecha demanda judicial" type="date" value="{{ @AFECTADO.fechaDemandaJudicial }}">
 	</li>
 	<li class="field">
-		<input class="input xwide" placeholder="NUM EJECUCIÓN" type="text" value="">
+		<input class="input xwide" name="numEjecucion" placeholder="NUM EJECUCIÓN" type="text" value="{{ @AFECTADO.numEjecucion }}">
 	</li>
 	<li class="field">
-		<input class="input xwide" placeholder="Cantidad reclamada principal" type="text" value="">
+		<input class="input xwide" name="cantidadReclamadaPrincipal" placeholder="Cantidad reclamada principal" type="text" value="{{ @AFECTADO.cantidadReclamadaPrincipal }}">
 	</li>
 	<li class="field">
-		<input class="input xwide" placeholder="Cantidad reclamada en intereses" type="text" value="">
+		<input class="input xwide" name="cantidadReclamadaIntereses" placeholder="Cantidad reclamada en intereses" type="text" value="{{ @AFECTADO.cantidadReclamadaIntereses }}">
 	</li>
 	<li class="field">
-		<input class="input xwide" placeholder="Costas judiciales" type="text" value="">
+		<input class="input xwide" name="costasJudiciales" placeholder="Costas judiciales" type="text" value="{{ @AFECTADO.costasJudiciales }}">
 	</li>
+	<input type="hidden" id="justiciaGratuita" name="justiciaGratuita" data-rel="select-justiciaGratuita" value="{{ @AFECTADO.justiciaGratuita }}" />
 	<li class="field">
-	<div class="picker xwide">
+	<div class="picker xwide" id="select-justiciaGratuita" data-rel="justiciaGratuita">
 	<select>
 		<option value='' selected>¿Ha solicitado justicia gratuita? (Seleccione)</option>
 		<option value='NO'>No solicitada</option>
@@ -54,11 +55,12 @@
 	</ul>
 </div>
 
+<input type="hidden" id="demandaExtrajudicial" name="demandaExtrajudicial" data-rel="select-demandaExtrajudicial" value="{{ @AFECTADO.demandaExtrajudicial }}" />
 <h4>¿Ha recibido demanda extrajudicial?</h4>
 <ul>
 	<li class="field">
 	<div class="picker narrow">
-	<select>
+	<select id="select-demandaExtrajudicial" data-rel="demandaExtrajudicial">
 		<option value=''>(Seleccione)</option>
 		<option value='SI'>Sí</option>
 		<option value='NO'>No</option>
@@ -79,9 +81,11 @@
 <div class="medium secondary btn"><a href="" id="boton_desahucio">Añadir fecha de desahucio</a></div>
 <table id="desahucios">
 </table>
+
+<input type="hidden" id="viviendaSiDesahucio" name="viviendaSiDesahucio" data-rel="select-viviendaSiDesahucio" value="{{ @AFECTADO.viviendaSiDesahucio }}" />
 <h5>Si te han desahuciado o has dejado el piso, ¿dónde vives?</h5>
 <div class="picker narrow">
-<select>
+<select id="select-viviendaSiDesahucio" data-rel="viviendaSiDesahucio">
 	<option value=''>No contesta</option>
 	<option value='PISO_ALQUILER'>Piso alquiler</option>
 	<option value='PISO_SOCIAL'>Piso social</option>
@@ -106,39 +110,9 @@
 	</div>
 	<ul>
 	<li class="field">
-		<input class="input xwide" placeholder="Fecha" type="date" value="">
+		<input class="input xwide" name="fechaRecursoTJUE" placeholder="Fecha" type="date" value="{{ @AFECTADO.fechaRecursoTJUE }}">
 	</li>
 	</ul>
 </div>
 </fieldset>
-<!--
-<pre>
-HAS DEJADO DE PAGAR 	SI/NO
-SI ES QUE SÍ, FECHA IMPAGO	
-HAS RECIBIDO LA DEMANDA DE EJECUCIÓN HIPOTECARIA	SI/NO
-FECHA  DEMANDA	
-NUM. EJECUCIÓN	
-CANTIDAD PRINCIPAL	
-CANTIDAD  INTERESES	
-COSTAS JUDICIALES	
- JUSTICIA GRATUITA	NO SOLICITADA/EN TRAMITE/ACEPTADA/DENEGADA
-HAS RECIBIDO DEMANDA EXTRAJUDICIAL	SI/NO
-	
-	
-AÑADIR FECHA DE SUBASTA	
-FECHA	
-RESULTADO	PENDIENTE/EJECUTADO/SUSPENDIDO/SUSPENDIDO PAH
-IMPORTE ADJUDICACIÓN	
-DEUDA RESTANTE	
-	
-AÑADIR FECHA DE DESAHUCIO	
-FECHA	
-RESULTADO	PENDIENTE/EJECUTADO/SUSPENDIDO/SUSPENDIDO PAH/PARALIZADO PAH
-	
-SI TE HAN DESAHUCIADO O HAS DEJADO PISO,DONDE VIVES?	PISO ALQUILER / PISO SOCIA L/ PISO ONG / PISO FAMILIARES / PISO AMIGOS / HABITACIÓN ALQUILER / OCUPACIÓN/ OCUPACIÓN PAH / COCHE / CALLE
-	
-HAS PRESENTADO RECURSO TJUE CLAUSULAS	SI/NO
-SI ES QUE SÍ, FECHA	
 
-</pre>
--->

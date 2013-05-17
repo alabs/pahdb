@@ -52,17 +52,18 @@
 <ul>
 <li class="field">
 <label class="normal inline" for="brutoAnualTitulares">Ingreso bruto anual titulares</label>
-<input class="narrow input numero" placeholder="Ejemplo: 25000" id="brutoAnualTitulares" name="brutoAnualTitulares" type="text" value="" />
+<input class="narrow input numero" placeholder="Ejemplo: 25000" id="brutoAnualTitulares" name="brutoAnualTitulares" type="text" value="{{ @AFECTADO.brutoAnualTitulares }}" />
 </li>
 <li class="field">
 <label class="normal inline" for="netoMesTitulares">Ingreso neto mensual titulares</label>
-<input class="narrow input numero" placeholder="Ejemplo: 1500" id="netoMesTitulares" name="netoMesTitulares" type="text" value="" />
+<input class="narrow input numero" placeholder="Ejemplo: 1500" id="netoMesTitulares" name="netoMesTitulares" type="text" value="{{ @AFECTADO.netoMesTitulares }}" />
 </li>
 <li class="field">
 <label class="normal inline" for="netoMesFamilia">Ingreso neto mensual familia</label>
-<input class="narrow input numero" placeholder="Ejemplo: 1500" id="netoMesFamilia" name="netoMesFamilia" type="text" value="" />
+<input class="narrow input numero" placeholder="Ejemplo: 1500" id="netoMesFamilia" name="netoMesFamilia" type="text" value="{{ @AFECTADO.netoMesFamilia }}" />
 </li>
 </ul>
+<!-- FIX ME -->
 <h4>Principales motivos de impago</h4>
 <label><input value="0" type="checkbox">
 	<spam></spam>Paro
@@ -147,27 +148,3 @@
 	<spam></spam>Desatención hijos
 </label>
 
-<!--
-<pre>
-NUM PERSONAS UNIDAD FAMILIAR TOTAL	
-AÑO NACIMIENTO	
-SEXO	
-SITUACIÓN LABORAL	TRABAJO CONTRATO/ TRABAJO SIN CONTRATO/PARO / OTRAS AYUDAS PUBLICAS/PENSIONISTA/ ESTUDIANTE
-DISCAPACIDAD	
-RELACIÓN HIPOTECA	TITULAR/AVALISTA/NADA
-	
-INGRESOS BRUTOS ANUAL TITULARES	
-INGRESOS NETOS TITULARES MENSUAL	
-INGRESOS NETOS UNIDAD FAMILIAR MENSUAL	
-PRINCIPALES MOTIVOS IMPAGO	PARO
-	SEPARACIÓN/DIVORCIO
-	ENFERMEDAD/ BAJA
-	SUBIDA CUOTA HIPOTECA
-	MUCHAS DEUDAS CONTRAÍDAS
-CÓMO ESTÁ AFECTANDO A TU VIDA/SALUD	Insomnio, Alcohol, Ansiedad, Depresión, Tensión Familiar, Desatención hijos
-RECIBES AYUDA DE ENTIDAD SOCIAL PARA ALIMENTAR FAMILIA?	SI/NO
-	   CARITAS/CRUZ ROJA/BANCO ALIMENTOS/PAH/FAMILIARES
-TENÉIS DIFICULTADES PARA CUBRIR LAS SIGUIENTES NECESIDADES BÁSICAS? PUEDES MARCAR VARIAS OPCIONES	VESTIMENTA
-	AGUA,LUZ, TELF
-</pre>
--->

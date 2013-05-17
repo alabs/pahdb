@@ -1,3 +1,6 @@
+<check if="{{ @AFECTADO.idAfectado }}">
+	<!--<input type="hidden" id="idAfectado" name="idAfectado" value="{{ @AFECTADO.idAfectado }}" />-->
+</check>
 
 <ul class="row">
 
@@ -12,8 +15,8 @@
 </li>
 
 <li class="field">
-<label class="narrow inline" for="idAfectado">DNI/NIE</label>
-<input class="normal input" placeholder="Ejemplo: 12345678Z" id="idAfectado" name="idAfectado" type="text" value="{{ @AFECTADO.idAfectado }}" required />
+<label class="narrow inline" for="dni">DNI/NIE</label>
+<input class="normal input" placeholder="Ejemplo: 12345678Z" id="dni" name="dni" type="text" value="{{ @AFECTADO.dni }}" required />
 </li>
 
 <li class="field">
@@ -22,27 +25,29 @@
 </li>
 
 <li class="field">
-<label class="narrow inline" for="direccion">Provincia</label>
+<label class="narrow inline" for="provincia">Provincia</label>
 <div class="picker normal">
-<select id="provincia" name="provincia" class="provincia" data-rel="ciudad">
+<select id="provincia" class="provincia" data-rel="select-idCiudad">
     <option value='0'>(Seleccione)</option>
 </select>
 </div>
 </li>
 
+<input type="hidden" id="idCiudad" name="idCiudad" data-rel="select-idCiudad" value="{{ @AFECTADO.idCiudad }}" />
 <li class="field">
-<label class="narrow inline" for="ciudad">Ciudad</label>
+<label class="narrow inline" for="select-idCiudad">Ciudad</label>
 <div class="picker normal">
-<select id="ciudad" name="ciudad" class="ciudad">
+<select id="select-idCiudad" data-rel="idCiudad">
     <option value='0'>(Seleccione)</option>
 </select>
 </div>
 </li>
 
+<input type="hidden" id="nacionalidad1" name="nacionalidad1" data-rel="select-nacionalidad1" value="{{ @AFECTADO.nacionalidad1 }}" />
 <li class="field">
-<label class="narrow inline" for="nacionalidad1">Nacionalidad</label>
+<label class="narrow inline" for="select-nacionalidad1">Nacionalidad</label>
 <div class="picker normal">
-<select name="nacionalidad1">
+<select id="select-nacionalidad1" data-rel="nacionalidad1">
 	<option value=''>No contesta</option>
 	<option value="AF">Afganistán</option>
 	<option value="AL">Albania</option>
@@ -108,7 +113,7 @@
 	<option value="AE">Emiratos Árabes Unidos</option>
 	<option value="ER">Eritrea</option>
 	<option value="SI">Eslovenia</option>
-	<option value="ES" selected>España</option>
+	<option value="ES">España</option>
 	<option value="US">Estados Unidos</option>
 	<option value="EE">Estonia</option>
 	<option value="ET">Etiopía</option>
@@ -281,11 +286,11 @@
 </select>
 </div>
 </li>
-
+<input type="hidden" id="nacionalidad2" name="nacionalidad2" data-rel="select-nacionalidad2" value="{{ @AFECTADO.nacionalidad2 }}" />
 <li class="field">
 <label class="narrow inline" for="nacionalidad2">2ª nacionalidad</label>
 <div class="picker normal">
-<select name="nacionalidad2">
+<select id="select-nacionalidad2" data-rel="nacionalidad2">
 	<option value=''>No contesta</option>
 	<option value="AF">Afganistán</option>
 	<option value="AL">Albania</option>
@@ -351,7 +356,7 @@
 	<option value="AE">Emiratos Árabes Unidos</option>
 	<option value="ER">Eritrea</option>
 	<option value="SI">Eslovenia</option>
-	<option value="ES" selected>España</option>
+	<option value="ES">España</option>
 	<option value="US">Estados Unidos</option>
 	<option value="EE">Estonia</option>
 	<option value="ET">Etiopía</option>
@@ -525,10 +530,11 @@
 </div>
 </li>
 
+<input type="hidden" id="relacionHipoteca" name="relacionHipoteca" data-rel="select-relacionHipoteca" value="{{ @AFECTADO.relacionHipoteca }}" />
 <li class="field">
-<label class="narrow inline" for="relacionHipoteca">Relación con hipoteca</label>
+<label class="narrow inline" for="select-relacionHipoteca">Relación con hipoteca</label>
 <div class="picker normal">
-<select id="relacionHipoteca" name="relacionHipoteca">
+<select id="select-relacionHipoteca" data-rel="relacionHipoteca">
 	<option value=''>No contesta</option>
     <option value='TITULAR'>Titular</option>
 	<option value='AVALISTA'>Avalista</option>
@@ -536,10 +542,11 @@
 </div>
 </li>
 
+<input type="hidden" id="comoHasContactado" name="comoHasContactado" data-rel="select-comoHasContactado" value="{{ @AFECTADO.comoHasContactado }}" />
 <li class="field">
-<label class="narrow inline" for="comoHasContactado">¿Cómo has contactado?</label>
+<label class="narrow inline" for="select-comoHasContactado">¿Cómo has contactado?</label>
 <div class="picker normal">
-<select id="comoHasContactado" name="comoHasContactado">
+<select id="select-comoHasContactado" data-rel="comoHasContactado">
 	<option value=''>No contesta</option>
     <option value='BOCA_OREJA'>Boca a oreja</option>
 	<option value='MEDIOS'>Medios de comunicación tradicionales</option>
@@ -570,10 +577,11 @@
 <input class="normal input numero" placeholder="Ejemplo: 916665544" id="tfFijo" name="tfFijo" type="tel" value="{{ @AFECTADO.tfFijo }}" />
 </li>
 
+<input type="hidden" id="dispuestoPrensa" name="dispuestoPrensa" data-rel="select-dispuestoPrensa" value="{{ @AFECTADO.dispuestoPrensa }}" />
 <li class="field">
 	<label class="normal inline">¿Hablaría con medios?</label>
 	<div class="picker narrow">
-	<select>
+	<select id="select-dispuestoPrensa" data-rel="dispuestoPrensa">
 		<option value=''>No contesta</option>
 		<option value='SI'>Sí</option>
 		<option value='NO'>No</option>
@@ -583,28 +591,3 @@
 </ul>
 </fieldset>
 
-<!--
-<pre>
-PERSONA QUE RELLENA FICHA	
-FECHA FICHA	
-	
-NOMBRE Y APELLIDO	
-DNI/NIE	
-NACIONALIDAD	
-2NDA NACIONALIDAD	
-DIRECCIÓN ACTUAL 	
-PROVINCIA 	
-CIUDAD	
-RELACIÓN CON HIPOTECA: 			TITULAR|AVALISTA
-COMO HAS CONTACTADO:			BOCA OREJA|MEDIOS|INTERNET|ADMINISTRACION PUBLICA|BANCO
-DISPUESTO HABLAR CON MEDIOS		SI|NO
-
-   DATOS CONTACTO
-
-EMAIL
-TELF MOBIL
-TELF FIJO
-
-OBSERVACIONES
-</pre>
--->

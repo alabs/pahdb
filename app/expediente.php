@@ -6,7 +6,7 @@ class Expediente extends Controlador {
 		$f3=$this->framework;
 		$bd=$this->bd;
 		$f3->set('afectados',
-			$bd->exec('SELECT idAfectado, nombre FROM Afectados')
+			$bd->exec('SELECT idAfectado, nombre, dni FROM Afectados')
 		);
 		$f3->set('contenido', 'listado-afectados.html');
 	}
@@ -15,12 +15,11 @@ class Expediente extends Controlador {
 		$f3=$this->framework;
 		$bd=$this->bd;
 		$afectado=new DB\SQL\Mapper($bd,'Afectados');
-		//$hipoteca=new DB\SQL\Mapper($bd,'Hipotecas');
-		if (!$f3->exists('PARAMS.idAfectado')) $f3->set('PARAMS.idAfectado','');
+		if (!$f3->exists('PARAMS.idAfectado')) $f3->set('PARAMS.idAfectado',0);
 		$afectado->load(array('idAfectado=?', $f3->get('PARAMS.idAfectado')));
 		//$hipoteca->load(array('idAfectado=?', $f3->get('PARAMS.idAfectado')));
-		$f3->set('HIPOTECAS', 
-			$bd->exec('SELECT * FROM Hipotecas WHERE idAfectado=?',$f3->get('PARAMS.idAfectado')));
+		//$f3->set('HIPOTECAS', 
+		//	$bd->exec('SELECT * FROM Hipotecas WHERE idAfectado=?',$f3->get('PARAMS.idAfectado')));
 		//if (!$afectado->dry()) {
 			$afectado->copyto('AFECTADO');
 			//$hipoteca->copyto('HIPOTECA');
@@ -31,12 +30,9 @@ class Expediente extends Controlador {
 		$f3=$this->framework;
 		$bd=$this->bd;
 		$afectado=new DB\SQL\Mapper($bd,'Afectados');
-		$hipoteca=new DB\SQL\Mapper($bd,'Hipotecas');
-		$afectado->load(array('idAfectado=?', $f3->get('POST.idAfectado')));
-		//$hipoteca->load(array('idAfectado=?', $f3->get('PARAMS.idAfectado')));
+		$afectado->load(array('dni=?', $f3->get('POST.dni')));
 		$afectado->copyfrom('POST');
-		//$hipoteca->copyfrom('POST');
-		$f3->set('PARAMS.idAfectado', $f3->get('POST.idAfectado'));
+		////$f3->set('PARAMS.idAfectado', $f3->get('POST.idAfectado'));
 		if ($afectado->dry()) {
 			// Nuevo afectado
 			//$hipoteca->save();

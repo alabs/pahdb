@@ -4,36 +4,38 @@
 
 <li class="field">
 <label class="narrow inline" for="direccionHipoteca">Dirección vivienda hipotecada</label>
-<input class="normal input" placeholder="Ejemplo: Calle Afectados nº10, 2ºB" id="direccionHipoteca" name="direccionHipoteca" type="text" value="" />
+<input class="normal input" placeholder="Ejemplo: Calle Afectados nº10, 2ºB" id="direccionHipoteca" name="direccionHipoteca" type="text" value="{{ @AFECTADO.direccionHipoteca }}" />
 </li>
 
 <li class="field">
 <label class="narrow inline" for="CPHipoteca">Código Postal</label>
-<input class="normal input numero" placeholder="Ejemplo: 28080" id="CPHipoteca" name="CPHipoteca" type="text" value="" />
+<input class="normal input numero" placeholder="Ejemplo: 28080" id="CPHipoteca" name="CPHipoteca" type="text" value="{{ @AFECTADO.CPHipoteca }}" />
 </li>
 
 <li class="field">
 <label class="narrow inline" for="provinciaHipoteca">Provincia</label>
 <div class="picker normal">
-<select id="provinciaHipoteca" name="provinciaHipoteca" class="provincia" data-rel="ciudadHipoteca">
+<select class="provincia" data-rel="select-idCiudadHipoteca">
     <option value='0'>(Seleccione)</option>
 </select>
 </div>
 </li>
 
+<input type="hidden" id="idCiudadHipoteca" name="idCiudadHipoteca" data-rel="select-idCiudadHipoteca" value="{{ @AFECTADO.idCiudadHipoteca }}" />
 <li class="field">
-<label class="narrow inline" for="ciudadHipoteca">Ciudad</label>
+<label class="narrow inline" for="select-idCiudadHipoteca">Ciudad</label>
 <div class="picker normal">
-<select id="ciudadHipoteca" name="ciudadHipoteca">
+<select id="select-idCiudadHipoteca" data-rel="idCiudadHipoteca">
     <option value='0'>(Seleccione)</option>
 </select>
 </div>
 </li>
 
+<input type="hidden" id="residesEnHipoteca" name="residesEnHipoteca" data-rel="select-residesEnHipoteca" value="{{ @AFECTADO.residesEnHipoteca }}" />
 <li class="field">
-<label class="narrow inline" for="resides">¿Resides en ella?</label>
+<label class="narrow inline" for="select-residesEnHipoteca">¿Resides en ella?</label>
 <div class="picker normal">
-<select id="resides" name="resides">
+<select id="select-residesEnHipoteca" data-rel="residesEnHipoteca">
 	<option value=''>No contesta</option>
     <option value='SI'>Sí</option>
 	<option value='ALQUILADA'>No, la tengo alquilada</option>
@@ -48,10 +50,11 @@
 <fieldset>
 <legend><h3>Contrato hipoteca</h3></legend>
 <ul>
+<input type="hidden" id="bancoHipoteca" name="bancoHipoteca" data-rel="select-bancoHipoteca" value="{{ @AFECTADO.bancoHipoteca }}" />
 <li class="field">
-<label class="normal inline" for="bancoHipoteca">Entidad bancaria</label>
+<label class="normal inline" for="select-bancoHipoteca">Entidad bancaria</label>
 <div class="picker narrow">
-<select id="bancoHipoteca" name="bancoHipoteca">
+<select id="select-bancoHipoteca" data-rel="bancoHipoteca">
     <option value="">(Seleccione)</option>
 	<option value="0011">ALLFUNDS BANK, S.A.</option>
 	<option value="0136">ARESBANK</option>
@@ -153,39 +156,40 @@
 </li>
 
 <li class="field">
-<label class="normal inline" for="bancoOrigen">Entidad bancaria de origen</label>
-<input class="narrow input" placeholder="Sólo si es distinta" id="bancoOrigen" name="bancoOrigen" type="text" value="" />
+<label class="normal inline" for="bancoOrigenHipoteca">Entidad bancaria de origen</label>
+<input class="narrow input" placeholder="Sólo si es distinta" id="bancoOrigen" name="bancoOrigenHipoteca" type="text" value="{{ @AFECTADO.bancoOrigenHipoteca }}" />
 </li>
 
 <li class="field">
 <label class="normal inline" for="anyoFirmaHipoteca">Año firma</label>
-<input class="narrow input numero" placeholder="Ejemplo: 1999" id="anyoFirmaHipoteca" name="anyoFirmaHipoteca" type="text" value="" />
+<input class="narrow input numero" placeholder="Ejemplo: 1999" id="anyoFirmaHipoteca" name="anyoFirmaHipoteca" type="text" value="{{ @AFECTADO.anyoFirmaHipoteca }}" />
 </li>
 
 <li class="field">
 <label class="normal inline" for="importeHipoteca">Importe préstamo inicial</label>
-<input class="narrow input numero" placeholder="Ejemplo: 120000" id="importeHipoteca" name="importeHipoteca" type="text" value="" />
+<input class="narrow input numero" placeholder="Ejemplo: 120000" id="importeHipoteca" name="importeHipoteca" type="text" value="{{ @AFECTADO.importeHipoteca }}" />
 </li>
 
 <li class="field">
 <label class="normal inline" for="anyosHipoteca">Plazo hipoteca (en años)</label>
-<input class="narrow input numero" placeholder="Ejemplo: 20" id="anyosHipoteca" name="anyosHipoteca" type="text" value="" />
+<input class="narrow input numero" placeholder="Ejemplo: 20" id="anyosHipoteca" name="anyosHipoteca" type="text" value="{{ @AFECTADO.anyosHipoteca }}" />
 </li>
 
 <li class="field">
 <label class="normal inline" for="tasacionHipoteca">Valor tasación subasta</label>
-<input class="narrow input numero" placeholder="Ejemplo: 120000" id="tasacionHipoteca" name="tasacionHipoteca" type="text" value="" />
+<input class="narrow input numero" placeholder="Ejemplo: 120000" id="tasacionHipoteca" name="tasacionHipoteca" type="text" value="{{ @AFECTADO.tasacionHipoteca }}" />
 </li>
 
 <li class="field">
 <label class="normal inline" for="numTitularesHipoteca">Número de titulares</label>
-<input class="narrow input numero" placeholder="Ejemplo: 3" id="numTitularesHipoteca" name="numTitularesHipoteca" type="text" value="" />
+<input class="narrow input numero" placeholder="Ejemplo: 3" id="numTitularesHipoteca" name="numTitularesHipoteca" type="text" value="{{ @AFECTADO.numTitularesHipoteca }}" />
 </li>
 
+<input type="hidden" id="avalistasHipoteca" name="avalistasHipoteca" data-rel="select-avalistasHipoteca" value="{{ @AFECTADO.avalistasHipoteca }}" />
 <li class="field">
-<label class="normal inline" for="avalistasHipoteca">¿Tiene avalistas?</label>
+<label class="normal inline" for="select-avalistasHipoteca">¿Tiene avalistas?</label>
 <div class="picker narrow">
-<select id="avalistasHipoteca" name="avalistasHipoteca">
+<select id="select-avalistasHipoteca">
     <option value=''>No contesta</option>
     <option value='NO'>No</option>
 	<option value='PADRES'>Sí, mis padres</option>
@@ -198,9 +202,11 @@
 
 <li class="field">
 <label class="normal inline" for="numAvalistasHipoteca">Número de avalistas</label>
-<input class="narrow input numero" placeholder="Ejemplo: 3" id="numAvalistasHipoteca" name="numAvalistasHipoteca" type="text" value="" />
+<input class="narrow input numero" placeholder="Ejemplo: 3" id="numAvalistasHipoteca" name="numAvalistasHipoteca" type="text" value="{{ @AFECTADO.numAvalistasHipoteca }}" />
 </li>
 
+<!-- FIX ME -->
+<input type="hidden" id="clausulasAbusivasHipoteca" name="clausulasAbusivasHipoteca" value="{{ @AFECTADO.clausulasAbusivasHipoteca }}" />
 <li class="field desplegable">
 <label class="normal inline" for="si_clausula_abusiva">¿Contiene cláusulas abusivas?</label>
 <div class="picker narrow">
@@ -247,29 +253,30 @@
 <legend><h3>Otros datos</h3></legend>
 <ul>
 <li class="field">
-<label class="normal inline" for="pendienteAmortizar">Capital pendiente de amortizar</label>
-<input class="narrow input numero" placeholder="Ejemplo: 30000" id="pendienteAmortizar" name="pendienteAmortizar" type="text" value="" />
+<label class="normal inline" for="pendienteAmortizarHipoteca">Capital pendiente de amortizar</label>
+<input class="narrow input numero" placeholder="Ejemplo: 30000" id="pendienteAmortizarHipoteca" name="pendienteAmortizarHipoteca" type="text" value="{{ @AFECTADO.pendienteAmortizarHipoteca }}" />
 </li>
 
 <li class="field">
-<label class="normal inline" for="cuotaMensual">Cuota mensual actual</label>
-<input class="narrow input numero" placeholder="Ejemplo: 500" id="cuotaMensual" name="cuotaMensual" type="text" value="" />
+<label class="normal inline" for="cuotaMensualHipoteca">Cuota mensual actual</label>
+<input class="narrow input numero" placeholder="Ejemplo: 500" id="cuotaMensualHipoteca" name="cuotaMensualHipoteca" type="text" value="{{ @AFECTADO.cuotaMensualHipoteca }}" />
 </li>
 
 <li class="field">
-<label class="normal inline" for="importeRefinanciacion">Importe refinanciación</label>
-<input class="narrow input numero" placeholder="Ejemplo: 25000" id="importeRefinanciacion" name="importeRefinanciacion" type="text" value="" />
+<label class="normal inline" for="importeRefinanciacionHipoteca">Importe refinanciación</label>
+<input class="narrow input numero" placeholder="Ejemplo: 25000" id="importeRefinanciacionHipoteca" name="importeRefinanciacionHipoteca" type="text" value="{{ @AFECTADO.importeRefinanciacionHipoteca }}" />
 </li>
 
 <li class="field">
-<label class="normal inline" for="precioCompraVenta">Precio compra-venta escriturado</label>
-<input class="narrow input numero" placeholder="Ejemplo: 55000" id="precioCompraVenta" name="precioCompraVenta" type="text" value="" />
+<label class="normal inline" for="precioCompraVentaHipoteca">Precio compra-venta escriturado</label>
+<input class="narrow input numero" placeholder="Ejemplo: 55000" id="precioCompraVentaHipoteca" name="precioCompraVentaHipoteca" type="text" value="{{ @AFECTADO.precioCompraVentaHipoteca }}" />
 </li>
 
+<input type="hidden" id="avalistaOtraHipoteca" name="avalistaOtraHipoteca" data-rel="select-avalistaOtraHipoteca" value="{{ @AFECTADO.avalistaOtraHipoteca }}" />
 <li class="field">
-<label class="normal inline" for="avalistaOtrasHipotecas">¿Eres avalistas de otras hipotecas?</label>
+<label class="normal inline" for="select-avalistaOtraHipoteca">¿Eres avalistas de otras hipotecas?</label>
 <div class="picker narrow">
-<select id="avalistaOtrasHipotecas" name="avalistaOtrasHipotecas">
+<select id="select-avalistaOtraHipoteca" data-rel="avalistaOtraHipoteca">
     <option value=''>No contesta</option>
 	<option value='SI_SIN_DIFICULTAD'>Sí, pero no tienen dificultades para pagarla</option>
 	<option value='SI_CON_DIFICULTAD'>Sí y tienen dificultades para pagarla</option>
@@ -280,51 +287,14 @@
 
 <li class="field">
 <label class="normal inline" for="importeOtrosPrestamos">Importe otros préstamos</label>
-<input class="narrow input numero" placeholder="Ejemplo: 15000" id="importeOtrosPrestamos" name="importeOtrosPrestamos" type="text" value="" />
+<input class="narrow input numero" placeholder="Ejemplo: 15000" id="importeOtrosPrestamos" name="importeOtrosPrestamos" type="text" value="{{ @AFECTADO.importeOtrosPrestamos }}" />
 </li>
 
 <li class="field">
 <label class="normal inline" for="numViviendasEnPropiedad">Nº viviendas en propiedad adicionales</label>
-<input class="narrow input numero" placeholder="Ejemplo: 1" id="importeOtrosPrestamos" name="importeOtrosPrestamos" type="text" value="" />
+<input class="narrow input numero" placeholder="Ejemplo: 1" id="importeOtrosPrestamos" name="importeOtrosPrestamos" type="text" value="{{ @AFECTADO.numViviendasEnPropiedad }}" />
 </li>
 
 </ul>
 </fieldset>
 
-<!--
-<pre>
-DIRECCIÓN VIVIENDA HIPOTECADA	
-CÓDIGO POSTAL	
-PROVINCIA	
-CIUDAD	
-RESIDES EN LA VIVIENDA HIPOTECADA	SI|NO, LA TIENE ALQUILADA|NO, ESTÁ DESAHUCIADO|NO, HA ABANDONADO PISO
-	
-  CONTRATO HIPOTECA	
-	
- CON QUE ENTIDAD BANCARIA TIENES HIPOTECA?	
-ENTIDAD BANCARIA DE ORIGEN	
-AÑO FIRMA HIPOTECA	
-IMPORTE PRESTAMO HIPOTECA INICIAL	
-PLAZO HIPOTECA (EN AÑOS)	
-VALOR TASACIÓN SUBASTA	
-Nº DE TITULARES HIPOTECA	
-TIENES AVALISTAS?	NO /PADRES / AMIGOS/ OTROS FAMILIARES/ DESCONOCIDOS
-NUMERO AVALISTAS	
-CONTIENE  CLAUSULAS ABUSIVAS?	SI / No /Nc
-	relación chekpoint cláusula abusiva CARLOS
-	
-   OTROS DATOS 	
-	
-CAPITAL PENDIENTE AMORTIZAR	
-CUOTA MENSUAL ACTUAL	
-IMPORTE REFINANCIACIÓN	
-PRECIO COMPRAVENTA ESCRITURADO	
-ERES AVALISTA DE LA HIPOTECA DE OTRAS PERSONAS	
-IMPORTE OTROS PRESTAMOS	
-NUM VIVIENDAS EN PROPIEDAD ADICIONALES	
-
-
-OBSERVACIONES	
-
-</pre>
--->

@@ -1,5 +1,6 @@
 <!-- Sección "Seguimiento negociación" -->
 
+<!-- FIX ME -->
 <fieldset>
 <legend><h4>¿Qué quiere conseguir?</h4></legend>
 <ul>
@@ -24,10 +25,11 @@
 <fieldset>
 <legend><h4>Proceso negociador</h4></legend>
 <ul>
+<input type="hidden" id="tipoNegociacion" name="tipoNegociacion" data-rel="select-tipoNegociacion" value="{{ @AFECTADO.tipoNegociacion }}" />
 <li class="field">
 	<label class="normal inline">Tipo negociación</label>
 	<div class="picker narrow">
-	<select>
+	<select id="select-tipoNegociacion" data-rel="tipoNegociacion">
 		<option value=''>No responde</option>
 		<option value='INDIVIDUAL'>Individual</option>
 		<option value='COLECTIVA'>Colectiva</option>
@@ -45,14 +47,15 @@
 	</div>
 	<ul>
 	<li class="field">
-		<input class="input xwide" placeholder="Fecha" type="date" value="">
+		<input class="input xwide" name="fechaDocumentacion" placeholder="Fecha" type="date" value="{{ @AFECTADO.fechaDocumentacion }}">
 	</li>
 	</ul>
 </li>
+<input type="hidden" id="faseNegociacion" name="faseNegociacion" data-rel="select-faseNegociacion" value="{{ @AFECTADO.faseNegociacion }}" />
 <li class="field">
 	<label class="normal inline">Fase negociación</label>
 	<div class="picker narrow">
-	<select>
+	<select id="select-faseNegociacion" data-rel="faseNegociacion">
 		<option value=''>No responde</option>
 		<option value='DOC_PENDIENTE'>Documentación pendiente de entrega</option>
 		<option value='DOC_ENTREGADA'>Documentación entregada, en espera de respuesta</option>
@@ -61,30 +64,33 @@
 	</select>
 	</div>
 </li>
+<input type="hidden" id="oficinaMediacion" name="oficinaMediacion" data-rel="select-oficinaMediacion" value="{{ @AFECTADO.oficinaMediacion }}" />
 <li class="field">
 	<label class="normal inline">¿Ha ido a la oficina de mediación?</label>
 	<div class="picker narrow">
-	<select>
+	<select id="select-oficinaMediacion" data-rel="oficinaMediacion">
 		<option value=''>No responde</option>
 		<option value='SI'>Sí</option>
 		<option value='NO'>No</option>
 	</select>
 	</div>
 </li>
+<input type="hidden" id="servSociales" name="servSociales" data-rel="select-servSociales" value="{{ @AFECTADO.servSociales }}" />
 <li class="field">
 	<label class="normal inline">¿Ha ido a servicios sociales?</label>
 	<div class="picker narrow">
-	<select>
+	<select id="select-servSociales" data-rel="servSociales">
 		<option value=''>No responde</option>
 		<option value='SI'>Sí</option>
 		<option value='NO'>No</option>
 	</select>
 	</div>
 </li>
+<input type="hidden" id="deGuindos" name="deGuindos" data-rel="select-deGuindos" value="{{ @AFECTADO.deGuindos }}" />
 <li class="field">
 	<label class="normal inline">¿Cumple código De Guindos?</label>
 	<div class="picker narrow">
-	<select>
+	<select id="select-deGuindos" data-rel="deGuindos">
 		<option value=''>No responde</option>
 		<option value='SI'>Sí</option>
 		<option value='NO'>No</option>
@@ -97,10 +103,11 @@
 <fieldset>
 <legend><h4>Resolución</h4></legend>
 <ul>
+<input type="hidden" id="resolucionDeuda" name="resolucionDeuda" data-rel="select-resolucionDeuda" value="{{ @AFECTADO.resolucionDeuda }}" />
 <li class="field">
 	<label class="normal inline">Resolución deuda</label>
 	<div class="picker narrow">
-	<select>
+	<select id="select-resolucionDeuda" data-rel="resolucionDeuda">
 		<option value=''>No responde</option>
 		<option value='DACION_TOTAL'>Dación total</option>
 		<option value='DACION_PARCIAL'>Dación parcial</option>
@@ -110,10 +117,11 @@
 	</select>
 	</div>
 </li>
+<input type="hidden" id="resolucionVivienda" name="resolucionVivienda" data-rel="select-resolucionVivienda" value="{{ @AFECTADO.resolucionVivienda }}" />
 <li class="field">
 	<label class="normal inline">Resolución vivienda</label>
 	<div class="picker narrow">
-	<select>
+	<select id="select-resolucionVivienda" data-rel="resolucionVivienda">
 		<option value=''>No responde</option>
 		<option value='ALQUILER_SOCIAL_BANCO'>Alquiler social banco</option>
 		<option value='REALOJO_VIVIENDA_PUBLICA'>Realojo vivienda pública</option>
@@ -128,13 +136,14 @@
 	</div>
 </li>
 	<li class="field">
-		<input class="input xwide numero" placeholder="Precio alquiler" type="text" value="">
+		<input class="input xwide numero" name="precioAlquiler" placeholder="Precio alquiler" type="text" value="{{ @AFECTADO.precioAlquiler }}">
 	</li>
 	<li class="field">
-		<input class="input xwide" placeholder="Fecha resolución" type="date" value="">
+		<input class="input xwide" name="fechaResolucion" placeholder="Fecha resolución" type="date" value="{{ @AFECTADO.fechaResolucion }}">
 	</li>
 	<li class="field">
-		<input class="input xwide" placeholder="Explica" type="text" value="">
+		<!--<input class="input xwide" placeholder="Explica" type="text" value="">-->
+		<textarea name="observacionesResolucion" class="xwide" placeholder="Explica">{{ @AFECTADO.observacionesResolucion }}</textarea>
 	</li>
 </ul>
 </fieldset>

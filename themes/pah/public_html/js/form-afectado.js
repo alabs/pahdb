@@ -1,19 +1,20 @@
 $(function() {
+	// Enviamos el formulario al pulsar el botón guardar
+	$('.guardar_accion').on('click', function(e) {
+		e.preventDefault();
+		if ($('.guardar_accion').parent().hasClass('success')) $('#guardar_form').submit();
+	});
+	// Si cambia cualquier campo activamos el botón guardar
+	$('input,select').on('change', function(e) {
+		$('.guardar_accion').html('<i class="icon-floppy"></i>Guardar').parent().addClass('success');
+	});
 
 	// Sólo permite la escritura de números en los input con clase numero
 	$('input.numero').on('keydown', function(e) {
 		if ((e.which < 48 && e.which != 8 && e.which != 9) || e.which > 57) e.preventDefault();
 	});
 
-	$('.guardar_accion').on('click', function(e) {
-		e.preventDefault();
-		$('#guardar_form').submit();
-	});
-
-	$('input,select').on('change', function(e) {
-		$('.guardar_accion').html('<i class="icon-floppy"></i>Guardar').parent().addClass('success');
-	});
-
+	// Activamos desplegables
 	$('.desplegable>ul').hide();
 	$('.desplegador').on('change', function() {
 		var casilla = $(this)
@@ -24,7 +25,22 @@ $(function() {
 			desplegable.slideUp();
 		}
 	});
+	//$('.desplegador').trigger('change');
 
+	// Reflejamos los datos del expediente guardados en campo oculto en su select relacionado
+	$('input[type=hidden]').each(function(i, el) {
+		var valor = $(el).val()
+		  , rel = $(el).data('rel');
+		if ((valor != '') && (rel != '')) $('#'+rel).val(valor);
+	});
+	// Actualizamos el valor del input oculto cuando cambie un select
+	$('select').on('change', function() {
+		var valor = $(this).val()
+		  , rel = $(this).data('rel');
+		$('#'+rel).val(valor);
+	});
+
+	// UNIDAD FAMILIAR
 	$('#boton_unidad_familiar').on('click', function(e) {
 		e.preventDefault();
 		var num = parseInt($('#numUnidadFamiliar').val())
@@ -40,6 +56,7 @@ $(function() {
 		}
 	});
 
+	// Construimos PROVINCIAS y CIUDADES: Requiere ciudades.js
 	var provincias = ciudades.dameProvincias();
 	var opciones_prov = '';
 	for (var i=0; i<provincias.length; i++) {
@@ -57,8 +74,7 @@ $(function() {
 		$(select_ciudad).html(html);		
 	});
 
-	//alert("left: " + $('.anclado').position().left + ", top: " + $('.anclado').position().top);
-
+	// Mantiene fijo la barra y menú
 	var anclados = [];
 	$('.anclado').each(function() {
 		var position = $(this).offset()
@@ -69,10 +85,6 @@ $(function() {
 		anclado.left = position.left;
 		anclado.width = ancho;
 		anclados.push(anclado);
-		/*$(this).css('position', 'fixed');
-		$(this).css('top', position.top);
-		$(this).css('left', position.left);
-		$(this).css('width', ancho+'px');*/
 	});
 	for (var i=0; i<anclados.length; i++) {
 		$(anclados[i].obj).css('position', 'fixed');
@@ -81,5 +93,4 @@ $(function() {
 		$(anclados[i].obj).css('width', anclados[i].width+'px');
 	}
 	$('.tab-content').css('margin-left', $('.tab-nav').width()).css('margin-top', $('#cabecera').height());
-
 });
