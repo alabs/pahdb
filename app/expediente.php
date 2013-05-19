@@ -15,7 +15,7 @@ class Expediente extends Controlador {
 		$f3=$this->framework;
 		$bd=$this->bd;
 		$afectado=new DB\SQL\Mapper($bd,'Afectados');
-		if (!$f3->exists('PARAMS.idAfectado')) $f3->set('PARAMS.idAfectado',0);
+		//if (!$f3->exists('PARAMS.idAfectado')) $f3->set('PARAMS.idAfectado',0);
 		$afectado->load(array('idAfectado=?', $f3->get('PARAMS.idAfectado')));
 		//$hipoteca->load(array('idAfectado=?', $f3->get('PARAMS.idAfectado')));
 		//$f3->set('HIPOTECAS', 
