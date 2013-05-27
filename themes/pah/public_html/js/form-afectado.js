@@ -5,7 +5,7 @@ $(function() {
 		if ($('.guardar_accion').parent().hasClass('success')) $('#guardar_form').submit();
 	});
 	// Si cambia cualquier campo activamos el botón guardar
-	$('input,select').on('change', function(e) {
+	$('input,select,textarea').on('change', function(e) {
 		$('.guardar_accion').html('<i class="icon-floppy"></i>Guardar').parent().addClass('success');
 	});
 
@@ -26,19 +26,6 @@ $(function() {
 		}
 	});
 	//$('.desplegador').trigger('change');
-
-	// Reflejamos los datos del expediente guardados en campo oculto en su select relacionado
-	$('input[type=hidden]').each(function(i, el) {
-		var valor = $(el).val()
-		  , rel = $(el).data('rel');
-		if ((valor != '') && (rel != '')) $('#'+rel).val(valor);
-	});
-	// Actualizamos el valor del input oculto cuando cambie un select
-	$('select').on('change', function() {
-		var valor = $(this).val()
-		  , rel = $(this).data('rel');
-		$('#'+rel).val(valor);
-	});
 
 	// UNIDAD FAMILIAR
 	$('#boton_unidad_familiar').on('click', function(e) {
@@ -72,6 +59,32 @@ $(function() {
 			html += '<option value="'+pueblos[i].id+'">'+pueblos[i].nombre+'</option>';
 		}
 		$(select_ciudad).html(html);		
+	});
+
+	// Reflejamos los datos del expediente guardados en campo oculto en su select relacionado
+	$('input[type=hidden]').each(function(i, el) {
+		var valor = $(el).val()
+		  , rel = $(el).data('rel');
+		if ((valor != '') && (rel != '')) $('#'+rel).val(valor);
+	});
+	// Actualizamos el valor del input oculto cuando cambie un select
+	$('select').on('change', function() {
+		var valor = $(this).val()
+		  , rel = $(this).data('rel');
+		$('#'+rel).val(valor);
+	});
+
+	//Observaciones
+	$('#observaciones').hide();
+	if ($('#observaciones').text().trim() == '') $('#despliega-observaciones').css('color', '#666');
+	$('#despliega-observaciones').on ('click', function(e) {
+		var obs = $('#observaciones');
+		e.preventDefault();
+		if ($(obs).is(':visible')) {
+			$(obs).slideUp();
+		} else {
+			$(obs).slideDown();
+		}
 	});
 
 	// Mantiene fijo la barra y menú

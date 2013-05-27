@@ -1,4 +1,5 @@
-<!--<div class="navbar fixed" style="background-color:#fff">-->
+<form id="guardar_form" method="post" action="{{ @BASE }}/expediente/{{ @PARAMS.idAfectado }}">
+
 <div id="cabecera" class="anclado" style="background-color:#fff;z-index:999;">
 
 <div class="row">
@@ -10,20 +11,25 @@
 		<span class="adjoined">
 			<a href="{{ @BASE }}/expediente/" title="Nuevo expediente"><i class="icon-user-add"></i></a>
 			<a href="{{ @BASE }}/expedientes/" title="Buscar por nombre o DNI/CIF"><i class="icon-search"></i></a>
+			<a href="{{ @BASE }}/informes/" title="Informes"><i class="icon-doc-text"></i></a>
+			<a href="" id="despliega-observaciones" title="Observaciones"><i class="icon-tag"></i></a>
 		</span>
 		<div class="medium info btn"><a class="guardar_accion" href="" title="Guardar"><i class="icon-floppy"></i>Guardado el {{  strftime('%d/%m/%Y a las %R', strtotime(@AFECTADO.modificadoEn)) }}</a></div>
-		<!--<div class="medium danger btn"><a class="borrar_accion" href="" title="Borrar"><i class="icon-trash"></i>Borrar</a></div>-->
-		<span class="adjoined"><a href="{{ @BASE }}/salir" title="Salir"><i class="icon-logout"></i></a><i id="cargando" class="icon-hourglass"></i></span>
+		<span class="adjoined">
+			<a href="{{ @BASE }}/admin/" title="Administrar PAHs"><i class="icon-tools"></i></a>
+			<a href="{{ @BASE }}/salir" title="Salir"><i class="icon-logout"></i></a><!--<i id="cargando" class="icon-hourglass"></i>-->
+		</span>
+	</div>
+	<div class="field" id="observaciones" style="display:none;">
+		<textarea name="observaciones" placeholder="Observaciones:">{{ @AFECTADO.observaciones }}</textarea>
 	</div>
 </div>
 </div>
-<!--</div>-->
 
 <div class="row">
 <div class="twelve columns">
-<form id="guardar_form" method="post" action="{{ @BASE }}/expediente/{{ @PARAMS.idAfectado }}">
 	<section class="vertical tabs">
-		<!--<div class="four columns">-->
+		<!-- Menú lateral -->
 		<ul class="tab-nav four columns anclado">
 			<li class="active"><a href="#">Datos personales</a></li>
 			<li><a href="#">Vivienda hipotecada</a></li>
@@ -32,7 +38,6 @@
 			<li><a href="#">Seguimiento judicial</a></li>
 			<li><a href="#">Seguimiento negociación</a></li>
 		</ul>
-		<!--</div>-->
 		<!-- SECCION: Datos personales -->
 		<div class="tab-content eight columns active">
 			<include href="form-afectado-personal.html" />
@@ -58,9 +63,10 @@
 			<include href="form-afectado-negociacion.html" />
 		</div>
 	</section>
+</div>
+</div>
+
 </form>
-</div>
-</div>
 
 <script src="/js/ciudades.js"></script>
 <script src="/js/form-afectado.js"></script>
