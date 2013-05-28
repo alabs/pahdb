@@ -1,23 +1,23 @@
 <!-- Sección "Seguimiento negociación" -->
 
-<!-- FIX ME -->
 <fieldset>
+<input type="hidden" id="objetivosNegociacion" name="objetivosNegociacion" class="casillas" value="{{ @AFECTADO.objetivosNegociacion }}" />
 <legend><h4>¿Qué quiere conseguir?</h4></legend>
 <ul>
 	<li>
-		<label><input type="checkbox" value="DACION"><span></span> Dación en pago</label>
+		<label><input type="checkbox" value="DACION" data-rel="objetivosNegociacion"><span></span> Dación en pago</label>
 	</li>
 	<li>
-		<label><input type="checkbox" value="RENEGOCIACION"><span></span> Renegociación</label>
+		<label><input type="checkbox" value="RENEGOCIACION" data-rel="objetivosNegociacion"><span></span> Renegociación</label>
 	</li>
 	<li>
-		<label><input type="checkbox" value="CONDONACION"><span></span> Condonación</label>
+		<label><input type="checkbox" value="CONDONACION" data-rel="objetivosNegociacion"><span></span> Condonación</label>
 	</li>
 	<li>
-		<label><input type="checkbox" value="ALQUILER_SOCIAL"><span></span> Alquiler social</label>
+		<label><input type="checkbox" value="ALQUILER_SOCIAL" data-rel="objetivosNegociacion"><span></span> Alquiler social</label>
 	</li>
 	<li>
-		<label><input type="checkbox" value="QUITA"><span></span> Quita</label>
+		<label><input type="checkbox" value="QUITA" data-rel="objetivosNegociacion"><span></span> Quita</label>
 	</li>
 </ul>
 </fieldset>

@@ -5,7 +5,7 @@
 <label class="inline"><h4>Fase en la que se encuentra</h4></label>
 <div class="picker xwide">
 <select id="select-fasePrePAH" data-rel="fasePrePAH">
-	<option value='' selected>(Seleccione)</option>
+	<option value=''>(Seleccione)</option>
     <option value='PAGADO'>Al día con dificultades</option>
 	<option value='NO_PAGADO'>He dejado de pagar, pero no tengo demanda</option>
 	<option value='DEMANDA'>He recibido demanda</option>
@@ -43,6 +43,7 @@
 </li>
 </ul>
 </div>
+<input type="hidden" id="tratoDenigratePrePAH" name="tratoDenigratePrePAH" class="casillas" value="{{ @AFECTADO.tratoDenigratePrePAH }}" />
 <h4>¿Ha recibido algun tipo de trato denigrante por parte del banco?</h4>
 <div class="desplegable">
 <div class="field">
@@ -56,40 +57,40 @@
 </div>
 <ul>
 	<li>
-		<label><input type="checkbox" value="TF_CASA"><span></span> Llamadas telefónicas a casa</label>
+		<label><input type="checkbox" value="TF_CASA" data-rel="tratoDenigratePrePAH"><span></span> Llamadas telefónicas a casa</label>
 	</li>
 	<li>
-		<label><input type="checkbox" value="TF_FAMILIA"><span></span> Llamadas telefónicas a familiares</label>
+		<label><input type="checkbox" value="TF_FAMILIA" data-rel="tratoDenigratePrePAH"><span></span> Llamadas telefónicas a familiares</label>
 	</li>
 	<li>
-		<label><input type="checkbox" value="TF_TRABAJO"><span></span> Llamadas telefónicas al trabajo</label>
+		<label><input type="checkbox" value="TF_TRABAJO" data-rel="tratoDenigratePrePAH"><span></span> Llamadas telefónicas al trabajo</label>
 	</li>
 	<li>
-		<label><input type="checkbox" value="ACOSO_AVALISTAS"><span></span> Acoso a avalistas</label>
+		<label><input type="checkbox" value="ACOSO_AVALISTAS" data-rel="tratoDenigratePrePAH"><span></span> Acoso a avalistas</label>
 	</li>
 	<li>
-		<label><input type="checkbox" value="ACOSO_MENORES"><span></span> Acoso a niños menores</label>
+		<label><input type="checkbox" value="ACOSO_MENORES" data-rel="tratoDenigratePrePAH"><span></span> Acoso a niños menores</label>
 	</li>
 	<li>
-		<label><input type="checkbox" value="CUSTODIA_MENORES"><span></span> Amenazas con perder la custodia de sus hijos</label>
+		<label><input type="checkbox" value="CUSTODIA_MENORES" data-rel="tratoDenigratePrePAH"><span></span> Amenazas con perder la custodia de sus hijos</label>
 	</li>
 	<li>
-		<label><input type="checkbox" value="POLICIA"><span></span> Amenazas con enviar a la policía</label>
+		<label><input type="checkbox" value="POLICIA" data-rel="tratoDenigratePrePAH"><span></span> Amenazas con enviar a la policía</label>
 	</li>
 	<li>
-		<label><input type="checkbox" value="COBRADORES"><span></span> Envío de cobradores</label>
+		<label><input type="checkbox" value="COBRADORES" data-rel="tratoDenigratePrePAH"><span></span> Envío de cobradores</label>
 	</li>
 	<li>
-		<label><input type="checkbox" value="INSULTOS"><span></span> Insultos y desprecio</label>
+		<label><input type="checkbox" value="INSULTOS" data-rel="tratoDenigratePrePAH"><span></span> Insultos y desprecio</label>
 	</li>
 	<li>
-		<label><input type="checkbox" value="ESPERA"><span></span> Largas horas de espera</label>
+		<label><input type="checkbox" value="ESPERA" data-rel="tratoDenigratePrePAH"><span></span> Largas horas de espera</label>
 	</li>
 	<li>
-		<label><input type="checkbox" value="HERENCIA"><span></span> Presión psicológica por la herencia de la deuda a los hijos</label>
+		<label><input type="checkbox" value="HERENCIA" data-rel="tratoDenigratePrePAH"><span></span> Presión psicológica por la herencia de la deuda a los hijos</label>
 	</li>
 	<li class="field">
-		<input class="input xwide" placeholder="Explica" type="text" value="">
+		<input class="input xwide" placeholder="Explica" type="text" value="" data-rel="tratoDenigratePrePAH">
 	</li>
 </ul>
 </div>
@@ -109,7 +110,7 @@
 	<li class="field">
 		<div class="picker xwide">
 		<select id="select-valoracionServSocialesPrePAH" data-rel="valoracionServSocialesPrePAH">
-			<option value=''>Valoración (del 0 al 10)</option>
+			<option value='' selected>Valoración (del 0 al 10)</option>
 			<option value='0'>0</option>
 			<option value='1'>1</option>
 			<option value='2'>2</option>

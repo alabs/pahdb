@@ -1,4 +1,4 @@
-<!-- Sección "Familia y Trabajo" "DATOS SOCIALES Y LABORALES"-->
+<!-- Sección "Familia y Trabajo" -->
 
 <ul>
 <li class="append field">
@@ -63,21 +63,22 @@
 <input class="narrow input numero" placeholder="Ejemplo: 1500" id="netoMesFamilia" name="netoMesFamilia" type="text" value="{{ @AFECTADO.netoMesFamilia }}" />
 </li>
 </ul>
-<!-- FIX ME -->
+
 <h4>Principales motivos de impago</h4>
-<label><input value="0" type="checkbox">
+<input type="hidden" id="motivosImpago" name="motivosImpago" class="casillas" value="{{ @AFECTADO.motivosImpago }}" />
+<label><input value="PARO" type="checkbox" data-rel="motivosImpago">
 	<spam></spam>Paro
 </label>
-<label><input value="0" type="checkbox">
+<label><input value="DIVORCIO" type="checkbox" data-rel="motivosImpago">
 	<spam></spam>Separación/Divorcio
 </label>
-<label><input value="0" type="checkbox">
+<label><input value="ENFERMEDAD" type="checkbox" data-rel="motivosImpago">
 	<spam></spam>Enfermedad/Baja
 </label>
-<label><input value="0" type="checkbox">
+<label><input value="CUOTA" type="checkbox" data-rel="motivosImpago">
 	<spam></spam>Subida cuota de hipoteca
 </label>
-<label><input value="0" type="checkbox">
+<label><input value="DEUDAS" type="checkbox" data-rel="motivosImpago">
 	<spam></spam>Muchas deudas contraidas
 </label>
 
@@ -119,32 +120,31 @@
 	</ul>
 </div>
 
-
-<h4>¿Tiene dificultades para cubrir las siguientes necesidades básicas?</h4>
-<label><input value="0" type="checkbox">
-	<spam></spam>Vestimenta
-</label>
-<label><input value="0" type="checkbox">
-	<spam></spam>Agua, luz, teléfono, etc.
-</label>
+<h4>¿Tiene dificultades para cubrir alguna necesidad básica (agua, luz, teléfono, vestimenta, internet, transporte, escuela, etc)?</h4>
+<ul>
+<li class="field">
+<input class="xwide input" placeholder="Explica" id="dificultadesNecesidadesBasicas" name="dificultadesNecesidadesBasicas" type="text" value="{{ @AFECTADO.dificultadesNecesidadesBasicas }}" />
+</li>
+</ul>
 
 <h4>¿Cómo está afectando a su vida/salud?</h4>
-<label><input value="0" type="checkbox">
+<input type="hidden" id="impactoSalud" name="impactoSalud" class="casillas" value="{{ @AFECTADO.impactoSalud }}" />
+<label><input value="INSOMNIO" type="checkbox" data-rel="impactoSalud">
 	<spam></spam>Insomnio
 </label>
-<label><input value="0" type="checkbox">
+<label><input value="DROGAS" type="checkbox" data-rel="impactoSalud">
 	<spam></spam>Aumento del consumo de alcohol/drogas
 </label>
-<label><input value="0" type="checkbox">
+<label><input value="ANSIEDAD" type="checkbox" data-rel="impactoSalud">
 	<spam></spam>Ansiedad
 </label>
-<label><input value="0" type="checkbox">
+<label><input value="DEPRESION" type="checkbox" data-rel="impactoSalud">
 	<spam></spam>Depresión
 </label>
-<label><input value="0" type="checkbox">
+<label><input value="TENSION_FAMILIAR" type="checkbox" data-rel="impactoSalud">
 	<spam></spam>Tensión familiar
 </label>
-<label><input value="0" type="checkbox">
+<label><input value="DESATENCION_HIJOS" type="checkbox" data-rel="impactoSalud">
 	<spam></spam>Desatención hijos
 </label>
 

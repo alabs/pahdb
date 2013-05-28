@@ -74,6 +74,34 @@ $(function() {
 		$('#'+rel).val(valor);
 	});
 
+	// Checkboxs
+	$('input[type="checkbox"]').on('change', function() {
+		var valor = $(this).val()
+		  , rel = $(this).data('rel')
+		  , cjto = $('#'+rel).val().split('|');
+		if ($(this).is(':checked')) {
+			// Añadimos el valor
+			cjto.push(valor);
+		} else {
+			// Borramos el valor
+			var pos = $.inArray(valor, cjto);
+			if (pos > -1) cjto.splice(pos, 1);
+		}
+		cjto.sort();
+		cjto = cjto.join('|');
+		// Si el primer caracter es | lo borramos
+		if (cjto.length > 0 && cjto[0] == '|') cjto = cjto.substring(1);
+		$('#'+rel).val(cjto);
+	});
+	// marcamos las casillas
+	$('.casillas').each(function() {
+		var id = $(this).attr('id')
+		  , cjto = $(this).val().split('|');
+		$('input[type="checkbox"][data-rel="'+id+'"]').each(function() {
+			if ($.inArray($(this).val(), cjto) > -1) $(this).prop('checked', 'checked');
+		});
+	});
+
 	//Observaciones
 	$('#observaciones').hide();
 	if ($('#observaciones').text().trim() == '') $('#despliega-observaciones').css('color', '#666');
@@ -87,7 +115,7 @@ $(function() {
 		}
 	});
 
-	// Mantiene fijo la barra y menú
+	// Mantiene fijo barra y menú
 	var anclados = [];
 	$('.anclado').each(function() {
 		var position = $(this).offset()
