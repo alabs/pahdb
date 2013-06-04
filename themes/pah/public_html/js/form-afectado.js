@@ -34,11 +34,11 @@ $(function() {
 		  , desplegados = parseInt($('#unidadfamiliar tr').size())
 		  , num_nuevos = num - desplegados;
 		for (i=0; i<num_nuevos; i++) {
-			var fila = '<tr><td class="field"><input class="text input numero" type="text" placeholder="Nacido año" /></td>'+
-			  '<td class="field"><select><option value="" selected>Sexo</option><option value="H">Hombre</option><option value="M">Mujer</option></select></td>'+
-			  '<td class="field"><select><option value="">Situación laboral</option><option value="TRABAJO_CON_CONTRATO">Trabajo con contrato</option><option value="TRABAJO_SIN_CONTRATO">Trabajo sin contrato</option><option value="PARADO">Parado</option><option value="AYUDAS_PUBLICAS">Otras ayudas públicas</option><option value="PENSIONISTA">Pensionista</option><option value="ESTUDIANTE">Estudiante</option></select></td>'+
-			  '<td class="field"><select><option value="" selected>Discapacidad</option><option value="SI">Sí</option><option value="NO">No</option></select></td>'+
-			  '<td class="field"><select><option value="" selected>Relación hipoteca</option><option value="TITULAR">Titular</option><option value="AVALISTA">Avalista</option><option value="NADA">Nada</option></select></td></tr>';
+			var fila = '<tr><td class="field"><input name="familiar['+i+'][nacidoEnAnyo]" class="text input numero" type="text" placeholder="Nacido año" /></td>'+
+			  '<td class="field"><select name="familiar['+i+'][sexo]"><option value="" selected>Sexo</option><option value="H">Hombre</option><option value="M">Mujer</option></select></td>'+
+			  '<td class="field"><select name="familiar['+i+'][situacionLaboral]"><option value="">Situación laboral</option><option value="TRABAJO_CON_CONTRATO">Trabajo con contrato</option><option value="TRABAJO_SIN_CONTRATO">Trabajo sin contrato</option><option value="PARADO">Parado</option><option value="AYUDAS_PUBLICAS">Otras ayudas públicas</option><option value="PENSIONISTA">Pensionista</option><option value="ESTUDIANTE">Estudiante</option></select></td>'+
+			  '<td class="field"><select name="familiar['+i+'][discapacidad]"><option value="" selected>Discapacidad</option><option value="SI">Sí</option><option value="NO">No</option></select></td>'+
+			  '<td class="field"><select name="familiar['+i+'][relacionHipoteca]"><option value="" selected>Relación hipoteca</option><option value="TITULAR">Titular</option><option value="AVALISTA">Avalista</option><option value="NADA">Nada</option></select></td></tr>';
 			$('#unidadfamiliar').append(fila);
 		}
 	});

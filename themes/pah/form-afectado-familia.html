@@ -2,50 +2,42 @@
 
 <ul>
 <li class="append field">
-<input class="wide input numero" type="text" id="numUnidadFamiliar" placeholder="Número personas unidad familiar" />
+<input class="wide input numero" type="text" id="numUnidadFamiliar" placeholder="Número personas unidad familiar" <check if="{{ count(@FAMILIARES) > 0 }}">value="{{ count(@FAMILIARES) }}"</check> />
 <div class="medium primary btn"><a href="#" id="boton_unidad_familiar">Añadir</a></div>
 </li>
 </ul>
 
 <table id="unidadfamiliar">
-<!--
+<repeat group="{{ @FAMILIARES }}" value="{{ @FAMILIAR }}" counter="{{ @i }}">
 <tr>
-<td class="field"><input class="text input" type="text" placeholder="Año nacimiento" /></td>
-<td class="field">
-<select>
-	<option value='' selected>Sexo</option>
-    <option value='H'>Hombre</option>
-	<option value='M'>Mujer</option>
-</select>
-</td>
-<td class="field">
-<select>
-	<option value=''>Situación laboral</option>
-    <option value='TRABAJO_CON_CONTRATO'>Trabajo con contrato</option>
-    <option value='TRABAJO_SIN_CONTRATO'>Trabajo sin contrato</option>
-    <option value='PARADO'>Parado</option>
-    <option value='AYUDAS_PUBLICAS'>Otras ayudas públicas</option>
-    <option value='PENSIONISTA'>Pensionista</option>
-    <option value='ESTUDIANTE'>Estudiante</option>
-</select>
-</td>
-<td class="field">
-<select>
-	<option value='' selected>Discapacidad</option>
-    <option value='SI'>Sí</option>
-	<option value='NO'>No</option>
-</select>
-</td>
-<td class="field">
-<select>
-	<option value='' selected>Relación hipoteca</option>
-    <option value='TITULAR'>Titular</option>
-	<option value='AVALISTA'>Avalista</option>
-	<option value='NADA'>Nada</option>
-</select>
-</td>
+	<td class="field"><input name="familiar[{{ @i-1 }}][nacidoEnAnyo]" class="text input numero" type="text" placeholder="Nacido año" value="{{ @FAMILIAR.nacidoEnAnyo }}" /></td>
+	<td class="field"><select name="familiar[{{ @i-1 }}][sexo]" value="{{ @FAMILIAR.sexo }}">
+		<option value="">Sexo</option>
+		<option value="H" <check if="{{ @FAMILIAR.sexo == 'H' }}">selected</check>>Hombre</option>
+		<option value="M" <check if="{{ @FAMILIAR.sexo == 'M' }}">selected</check>>Mujer</option>
+	</select></td>
+	<td class="field"><select name="familiar[{{ @i-1 }}][situacionLaboral]" value="{{ @FAMILIAR.situacionLaboral }}">
+		<option value="">Situación laboral</option>
+		<option value="TRABAJO_CON_CONTRATO" <check if="{{ @FAMILIAR.situacionLaboral == 'TRABAJO_CON_CONTRATO' }}">selected</check>>Trabajo con contrato</option>
+		<option value="TRABAJO_SIN_CONTRATO" <check if="{{ @FAMILIAR.situacionLaboral == 'TRABAJO_SIN_CONTRATO' }}">selected</check>>Trabajo sin contrato</option>
+		<option value="PARADO" <check if="{{ @FAMILIAR.situacionLaboral == 'PARADO' }}">selected</check>>Parado</option>
+		<option value="AYUDAS_PUBLICAS" <check if="{{ @FAMILIAR.situacionLaboral == 'AYUDAS_PUBLICAS' }}">selected</check>>Otras ayudas públicas</option>
+		<option value="PENSIONISTA" <check if="{{ @FAMILIAR.situacionLaboral == 'PENSIONISTA' }}">selected</check>>Pensionista</option>
+		<option value="ESTUDIANTE" <check if="{{ @FAMILIAR.situacionLaboral == 'ESTUDIANTE' }}">selected</check>>Estudiante</option>
+	</select></td>
+	<td class="field"><select name="familiar[{{ @i-1 }}][discapacidad]" value="{{ @FAMILIAR.discapacidad }}">
+		<option value="">Discapacidad</option>
+		<option value="SI" <check if="{{ @FAMILIAR.discapacidad == 'SI' }}">selected</check>>Sí</option>
+		<option value="NO" <check if="{{ @FAMILIAR.discapacidad == 'NO' }}">selected</check>>No</option>
+	</select></td>
+	<td class="field"><select name="familiar[{{ @i-1 }}][relacionHipoteca]" value="{{ @FAMILIAR.relacionHipoteca }}">
+		<option value="">Relación hipoteca</option>
+		<option value="TITULAR" <check if="{{ @FAMILIAR.relacionHipoteca == 'TITULAR' }}">selected</check>>Titular</option>
+		<option value="AVALISTA" <check if="{{ @FAMILIAR.relacionHipoteca == 'AVALISTA' }}">selected</check>>Avalista</option>
+		<option value="NADA" <check if="{{ @FAMILIAR.relacionHipoteca == 'NADA' }}">selected</check>>Nada</option>
+	</select></td>
 </tr>
--->
+</repeat>
 </table>
 
 <h4>Ingresos Unidad Familiar</h4>
