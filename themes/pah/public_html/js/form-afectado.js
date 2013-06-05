@@ -1,4 +1,7 @@
 $(function() {
+
+	var listo=false;
+
 	// Enviamos el formulario al pulsar el botón guardar
 	$('.guardar_accion').on('click', function(e) {
 		e.preventDefault();
@@ -6,7 +9,7 @@ $(function() {
 	});
 	// Si cambia cualquier campo activamos el botón guardar
 	$('input,select,textarea').on('change', function(e) {
-		$('.guardar_accion').html('<i class="icon-floppy"></i>Guardar').parent().addClass('success');
+		if (listo) $('.guardar_accion').html('<i class="icon-floppy"></i>Guardar').parent().addClass('success');
 	});
 
 	// Sólo permite la escritura de números en los input con clase numero
@@ -25,7 +28,6 @@ $(function() {
 			desplegable.slideUp();
 		}
 	});
-	//$('.desplegador').trigger('change');
 
 	// UNIDAD FAMILIAR
 	$('#boton_unidad_familiar').on('click', function(e) {
@@ -114,6 +116,10 @@ $(function() {
 			$(obs).slideDown();
 		}
 	});
+
+	// Mostramos los campos rellenos que se encuentren contraidos
+	$('.desplegador').trigger('change');
+	listo=true;
 
 	// Mantiene fijo barra y menú
 	var anclados = [];
