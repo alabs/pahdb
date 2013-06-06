@@ -72,14 +72,45 @@
 <fieldset>
 <legend><h4>Subastas</h4></legend>
 <div class="medium secondary btn"><a href="" id="boton_subasta">Añadir fecha de subasta</a></div>
+<div class="medium danger btn"><a href="" id="boton_borrar_subastas">Borrar todas las subastas</a></div>
+<hr>
 <table id="subastas">
+<repeat group="{{ @SUBASTAS }}" value="{{ @SUBASTA }}" counter="{{ @i }}">
+<tr>
+	<td class="field"><input name="subasta[{{ @i-1 }}][fecha]" class="text input date" type="text" placeholder="Fecha" value="{{ @SUBASTA.fecha }}" /></td>
+	<td class="field"><select name="subasta[{{ @i-1 }}][resultado]" value="{{ @SUBASTA.resultado }}">
+		<option value="">Resultado</option>
+		<option value="PENDIENTE" <check if="{{ @SUBASTA.resultado == 'PENDIENTE' }}">selected</check>>Pendiente</option>
+		<option value="EJECUTADO" <check if="{{ @SUBASTA.resultado == 'EJECUTADO' }}">selected</check>>Ejecutado</option>
+		<option value="SUSPENDIDO" <check if="{{ @SUBASTA.resultado == 'SUSPENDIDO' }}">selected</check>>Suspendido</option>
+		<option value="SUSPENDIDO_PAH" <check if="{{ @SUBASTA.resultado == 'SUSPENDIDO_PAH' }}">selected</check>>Suspendido PAH</option>
+	</select></td>
+	<td class="field"><input name="subasta[{{ @i-1 }}][importeAdjudicacion]" class="text input numero" type="text" placeholder="Importe adjudicación" value="{{ @SUBASTA.importeAdjudicacion }}" /></td>
+	<td class="field"><input name="subasta[{{ @i-1 }}][deudaRestante]" class="text input numero" type="text" placeholder="Deuda restante" value="{{ @SUBASTA.deudaRestante }}" /></td>
+</tr>
+</repeat>
 </table>
 </fieldset>
 
 <fieldset>
 <legend><h4>Desahucios</h4></legend>
 <div class="medium secondary btn"><a href="" id="boton_desahucio">Añadir fecha de desahucio</a></div>
+<div class="medium danger btn"><a href="" id="boton_borrar_desahucios">Borrar todos los desahucios</a></div>
+<hr>
 <table id="desahucios">
+<repeat group="{{ @DESAHUCIOS }}" value="{{ @DESAHUCIO }}" counter="{{ @i }}">
+<tr>
+	<td class="field"><input name="desahucio[{{ @i-1 }}][fecha]" class="text input date" type="text" placeholder="Fecha" value="{{ @DESAHUCIO.fecha }}" /></td>
+	<td class="field"><select name="desahucio[{{ @i-1 }}][resultado]" value="{{ @DESAHUCIO.resultado }}">
+		<option value="">Resultado</option>
+		<option value="PENDIENTE" <check if="{{ @DESAHUCIO.resultado == 'PENDIENTE' }}">selected</check>>Pendiente</option>
+		<option value="EJECUTADO" <check if="{{ @DESAHUCIO.resultado == 'EJECUTADO' }}">selected</check>>Ejecutado</option>
+		<option value="SUSPENDIDO" <check if="{{ @DESAHUCIO.resultado == 'SUSPENDIDO' }}">selected</check>>Suspendido</option>
+		<option value="SUSPENDIDO_PAH" <check if="{{ @DESAHUCIO.resultado == 'SUSPENDIDO_PAH' }}">selected</check>>Suspendido PAH</option>
+		<option value="PARALIZADO_PAH" <check if="{{ @DESAHUCIO.resultado == 'PARALIZADO_PAH' }}">selected</check>>Paralizado PAH</option>
+	</select></td>
+</tr>
+</repeat>
 </table>
 
 <input type="hidden" id="viviendaSiDesahucio" name="viviendaSiDesahucio" data-rel="select-viviendaSiDesahucio" value="{{ @AFECTADO.viviendaSiDesahucio }}" />

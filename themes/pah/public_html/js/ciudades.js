@@ -8241,5 +8241,15 @@ exports.dameCiudades=function(idProvincia) {
 	}
 	return resultado;
 }
+/*
+exports.dameCiudad=function(idCiudad) {
+	var num_ciudades = ciudades.length
+	  , resultado = [];
+	idCiudad = parseInt(idCiudad) || 0;
+	idCiudad--;
+	if (idCiudad >= 0 && idCiudad < num_ciudades) resultado=ciudades[idCiudad];
+	return resultado;
+}
+*/
 
 })(typeof exports === 'undefined'? this['ciudades']={}: exports);

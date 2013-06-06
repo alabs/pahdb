@@ -14,51 +14,39 @@ class Expediente extends Controlador {
 	function editar() {
 		$f3=$this->framework;
 		$bd=$this->bd;
+		// Recuperamos los datos del expediente de la tabla Afectados
 		$afectado=new DB\SQL\Mapper($bd,'Afectados');
-		//$fam=new DB\SQL\Mapper($bd,'Familiares');
 		if (!$f3->exists('PARAMS.idAfectado')) $f3->set('PARAMS.idAfectado',NULL);
 		$afectado->load(array('idAfectado=?', $f3->get('PARAMS.idAfectado')));
-		//$hipoteca->load(array('idAfectado=?', $f3->get('PARAMS.idAfectado')));
-		//$f3->set('HIPOTECAS', 
-		//	$bd->exec('SELECT * FROM Hipotecas WHERE idAfectado=?',$f3->get('PARAMS.idAfectado')));
-		//if (!$afectado->dry()) {
-			//$afectado->copyto('AFECTADO');
-			//$hipoteca->copyto('HIPOTECA');
-		//}
-		//$f3->set('FAMILIARES', isset($f3->get('FAMILIARES'))?$f3->get('FAMILIARES'):'no definido');
-		//if ($afectado->dry()) {
-		//	$f3->set('FAMILIARES', '');
-		//} else {
-			$f3->set('FAMILIARES', 
-				$bd->exec('SELECT * FROM Familiares WHERE idAfectado=?;', $afectado->idAfectado)
-			);
-			//$fam->load('idAfectado=8');
-			//$fam->copyto('FAMILIARES');
-		//}
 		$afectado->copyto('AFECTADO');
+		// Recuperamos los datos de los familiares de la tabla Familiares
+		$f3->set('FAMILIARES', 
+			$bd->exec('SELECT * FROM Familiares WHERE idAfectado=?;', $afectado->idAfectado)
+		);
+		// Recuperamos los datos de las subastas y desahucios
+		$f3->set('SUBASTAS', 
+			$bd->exec('SELECT * FROM Subastas WHERE idAfectado=?;', $afectado->idAfectado)
+		);
+		$f3->set('DESAHUCIOS', 
+			$bd->exec('SELECT * FROM Desahucios WHERE idAfectado=?;', $afectado->idAfectado)
+		);
 		$f3->set('contenido','form-afectado.html');
 	}
 	function guardar() {
 		$f3=$this->framework;
 		$bd=$this->bd;
+		// AFECTADOS
 		$afectado=new DB\SQL\Mapper($bd,'Afectados');
 		$afectado->load(array('dni=?', $f3->get('POST.dni')));
 		$afectado->copyfrom('POST');
-		//$f3->set('FAMILIARES', print_r($f3->get('POST.familiar'), true).'<br> total: '.count($f3->get('POST.familiar')));
-		////$f3->set('PARAMS.idAfectado', $f3->get('POST.idAfectado'));
 		if ($afectado->dry()) {
 			// Nuevo afectado
-			//$hipoteca->save();
-			//$afectado->reset();
-			//$afectado->copyfrom('POST');
 			$afectado->save();
-			////$f3->set('PARAMS.idAfectado', $afectado->idAfectado);
 		} else {
 			// Modificar afectado
-			//$hipoteca->update();
 			$afectado->update();
 		}
-
+		// FAMILIARES
 		$bd->begin();
 		$bd->exec('DELETE FROM Familiares WHERE idAfectado=?', $afectado->idAfectado);
 		$familiares=$f3->get('POST.familiar');
@@ -67,14 +55,32 @@ class Expediente extends Controlador {
 			$bd->exec('INSERT INTO Familiares (nacidoEnAnyo, sexo, situacionLaboral, discapacidad, relacionHipoteca, idAfectado) VALUES (:nacidoEnAnyo,:sexo,:situacionLaboral,:discapacidad,:relacionHipoteca,:idAfectado)',
 				array(':nacidoEnAnyo'=>intval($familiares[$i]['nacidoEnAnyo']),':sexo'=>$familiares[$i]['sexo'],':situacionLaboral'=>$familiares[$i]['situacionLaboral'],':discapacidad'=>$familiares[$i]['discapacidad'],':relacionHipoteca'=>$familiares[$i]['relacionHipoteca'],':idAfectado'=>$afectado->idAfectado)
 			);
-
-			//$bd->exec('INSERT INTO Familiares (nacidoEnAnyo) VALUES (?)',intval($familiares[$i]['nacidoEnAnyo']));
+		}
+		$bd->commit();
+		// SUBASTAS
+		$bd->begin();
+		$bd->exec('DELETE FROM Subastas WHERE idAfectado=?', $afectado->idAfectado);
+		$subastas=$f3->get('POST.subasta');
+		$num_subastas=count($subastas);
+		for ($i=0; $i<$num_subastas; $i++) {
+			$bd->exec('INSERT INTO Subastas (fecha, resultado, importeAdjudicacion, deudaRestante, idAfectado) VALUES (:fecha,:resultado,:importeAdjudicacion,:deudaRestante,:idAfectado)',
+				array(':fecha'=>$subastas[$i]['fecha'],':resultado'=>$subastas[$i]['resultado'],':importeAdjudicacion'=>intval($subastas[$i]['importeAdjudicacion']),':deudaRestante'=>intval($subastas[$i]['deudaRestante']),':idAfectado'=>$afectado->idAfectado)
+			);
+		}
+		$bd->commit();
+		// DESAHUCIOS
+		$bd->begin();
+		$bd->exec('DELETE FROM Desahucios WHERE idAfectado=?', $afectado->idAfectado);
+		$desahucios=$f3->get('POST.desahucio');
+		$num_desahucios=count($desahucios);
+		for ($i=0; $i<$num_desahucios; $i++) {
+			$bd->exec('INSERT INTO Desahucios (fecha, resultado, idAfectado) VALUES (:fecha,:resultado,:idAfectado)',
+				array(':fecha'=>$desahucios[$i]['fecha'],':resultado'=>$desahucios[$i]['resultado'],':idAfectado'=>$afectado->idAfectado)
+			);
 		}
 		$bd->commit();
 
 		$this->editar();
-		//$afectado->copyto('AFECTADO');
-		//$f3->set('contenido','form-afectados.html');
 	}
 
 	function borrar() {
@@ -83,7 +89,14 @@ class Expediente extends Controlador {
 		$id_afectado = $f3->get('PARAMS.idAfectado');
 		$afectado=new DB\SQL\Mapper($bd,'Afectados');
 		$afectado->load(array('idAfectado=?', $id_afectado));
-		$afectado->erase();
-		echo '#afectado-'.$id_afectado;
+		if ($afectado->dry()) {
+			echo 'ERROR';
+		} else {
+			$bd->exec('DELETE FROM Familiares WHERE idAfectado=?', $afectado->idAfectado);
+			$bd->exec('DELETE FROM Subastas WHERE idAfectado=?', $afectado->idAfectado);
+			$bd->exec('DELETE FROM Desahucios WHERE idAfectado=?', $afectado->idAfectado);
+			$afectado->erase();
+			echo '#afectado-'.$id_afectado;
+		}
 	}
 }

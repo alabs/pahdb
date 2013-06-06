@@ -8,7 +8,8 @@ $(function() {
 		if ($('.guardar_accion').parent().hasClass('success')) $('#guardar_form').submit();
 	});
 	// Si cambia cualquier campo activamos el botón guardar
-	$('input,select,textarea').on('change', function(e) {
+	// incluidos los campos que se generan desde javascript (sustituto de live)
+	$(document).on('change','input,select,textarea', function(e) {
 		if (listo) $('.guardar_accion').html('<i class="icon-floppy"></i>Guardar').parent().addClass('success');
 	});
 
@@ -36,12 +37,87 @@ $(function() {
 		  , desplegados = parseInt($('#unidadfamiliar tr').size())
 		  , num_nuevos = num - desplegados;
 		for (i=0; i<num_nuevos; i++) {
-			var fila = '<tr><td class="field"><input name="familiar['+i+'][nacidoEnAnyo]" class="text input numero" type="text" placeholder="Nacido año" /></td>'+
-			  '<td class="field"><select name="familiar['+i+'][sexo]"><option value="" selected>Sexo</option><option value="H">Hombre</option><option value="M">Mujer</option></select></td>'+
-			  '<td class="field"><select name="familiar['+i+'][situacionLaboral]"><option value="">Situación laboral</option><option value="TRABAJO_CON_CONTRATO">Trabajo con contrato</option><option value="TRABAJO_SIN_CONTRATO">Trabajo sin contrato</option><option value="PARADO">Parado</option><option value="AYUDAS_PUBLICAS">Otras ayudas públicas</option><option value="PENSIONISTA">Pensionista</option><option value="ESTUDIANTE">Estudiante</option></select></td>'+
-			  '<td class="field"><select name="familiar['+i+'][discapacidad]"><option value="" selected>Discapacidad</option><option value="SI">Sí</option><option value="NO">No</option></select></td>'+
-			  '<td class="field"><select name="familiar['+i+'][relacionHipoteca]"><option value="" selected>Relación hipoteca</option><option value="TITULAR">Titular</option><option value="AVALISTA">Avalista</option><option value="NADA">Nada</option></select></td></tr>';
+			var fila = "\n"+'<tr>'+"\n"+
+			'	<td class="field"><input name="familiar['+i+'][nacidoEnAnyo]" class="text input numero" type="text" placeholder="Nacido año" /></td>'+"\n"+
+			'	<td class="field"><select name="familiar['+i+'][sexo]">'+"\n"+
+			'		<option value="" selected>Sexo</option>'+"\n"+
+			'		<option value="H">Hombre</option><option value="M">Mujer</option>'+"\n"+
+			'	</select></td>'+"\n"+
+			'	<td class="field"><select name="familiar['+i+'][situacionLaboral]">'+"\n"+
+			'		<option value="">Situación laboral</option>'+"\n"+
+			'		<option value="TRABAJO_CON_CONTRATO">Trabajo con contrato</option>'+"\n"+
+			'		<option value="TRABAJO_SIN_CONTRATO">Trabajo sin contrato</option>'+"\n"+
+			'		<option value="PARADO">Parado</option>'+"\n"+
+			'		<option value="AYUDAS_PUBLICAS">Otras ayudas públicas</option>'+"\n"+
+			'		<option value="PENSIONISTA">Pensionista</option>'+"\n"+
+			'		<option value="ESTUDIANTE">Estudiante</option>'+"\n"+
+			'	</select></td>'+
+			'	<td class="field"><select name="familiar['+i+'][discapacidad]">'+"\n"+
+			'		<option value="" selected>Discapacidad</option>'+"\n"+
+			'		<option value="SI">Sí</option>'+"\n"+
+			'		<option value="NO">No</option>'+"\n"+
+			'	</select></td>'+
+			'	<td class="field"><select name="familiar['+i+'][relacionHipoteca]">'+"\n"+
+			'		<option value="" selected>Relación hipoteca</option>'+"\n"+
+			'		<option value="TITULAR">Titular</option>'+"\n"+
+			'		<option value="AVALISTA">Avalista</option>'+"\n"+
+			'		<option value="NADA">Nada</option>'+"\n"+
+			'	</select></td>'+"\n"+
+			'</tr>';
 			$('#unidadfamiliar').append(fila);
+		}
+	});
+
+	// SUBASTAS
+	$('#boton_subasta').on('click', function(e) {
+		e.preventDefault();
+		var i=$('#subastas tr').length
+		  , fila="\n"+'<tr>'+"\n"+
+		'	<td class="field"><input name="subasta['+i+'][fecha]" class="text input date" type="text" placeholder="Fecha" /></td>'+"\n"+
+		'	<td class="field"><select name="subasta['+i+'][resultado]">'+"\n"+
+		'		<option value="">Resultado</option>'+"\n"+
+		'		<option value="PENDIENTE">Pendiente</option>'+"\n"+
+		'		<option value="EJECUTADO">Ejecutado</option>'+"\n"+
+		'		<option value="SUSPENDIDO">Suspendido</option>'+"\n"+
+		'		<option value="SUSPENDIDO_PAH">Suspendido PAH</option>'+"\n"+
+		'	</select></td>'+"\n"+
+		'	<td class="field"><input name="subasta['+i+'][importeAdjudicacion]" class="text input numero" type="text" placeholder="Importe adjudicación" /></td>'+"\n"+
+		'	<td class="field"><input name="subasta['+i+'][deudaRestante]" class="text input numero" type="text" placeholder="Deuda restante" /></td>'+"\n"+
+		'</tr>';
+		$('#subastas').append(fila);
+	});
+	$('#boton_borrar_subastas').on('click', function(e) {
+		e.preventDefault();
+		var i=$('#subastas tr').length;
+		if (i>0) {
+			$('textarea').trigger('change');
+			$('#subastas').empty();
+		}
+	});
+
+	// DESAHUCIOS
+	$('#boton_desahucio').on('click', function(e) {
+		e.preventDefault();
+		var i=$('#desahucios tr').length
+		  , fila="\n"+'<tr>'+"\n"+
+		'	<td class="field"><input name="desahucio['+i+'][fecha]" class="text input date" type="text" placeholder="Fecha" /></td>'+"\n"+
+		'	<td class="field"><select name="desahucio['+i+'][resultado]">'+"\n"+
+		'		<option value="">Resultado</option>'+"\n"+
+		'		<option value="PENDIENTE">Pendiente</option>'+"\n"+
+		'		<option value="EJECUTADO">Ejecutado</option>'+"\n"+
+		'		<option value="SUSPENDIDO">Suspendido</option>'+"\n"+
+		'		<option value="SUSPENDIDO_PAH">Suspendido PAH</option>'+"\n"+
+		'		<option value="PARALIZADO_PAH">Paralizado PAH</option>'+"\n"+
+		'	</select></td>'+"\n"+
+		'</tr>';
+		$('#subastas').append(fila);
+	});
+	$('#boton_borrar_desahucios').on('click', function(e) {
+		e.preventDefault();
+		var i=$('#desahucios tr').length;
+		if (i>0) {
+			$('textarea').trigger('change');
+			$('#desahucios').empty();
 		}
 	});
 
