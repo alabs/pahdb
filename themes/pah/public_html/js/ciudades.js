@@ -8230,26 +8230,27 @@ exports.dameProvincias=function() {
 	return provincias;
 }
 
+exports.dameCiudad=function(idCiudad) {
+	var num_ciudades = ciudades.length
+	  , ciudad = false;
+	idCiudad = parseInt(idCiudad) || 0;
+	idCiudad--;
+	if (idCiudad >= 0 && idCiudad < num_ciudades)
+		ciudad={ 'id': idCiudad+1, 'nombre': ciudades[idCiudad][0], 'lat': ciudades[idCiudad][2], 'lon': ciudades[idCiudad][3], 'provincia': provincias[ciudades[idCiudad][1]], 'id_provincia':ciudades[idCiudad][1] };
+	return ciudad;
+}
+
 exports.dameCiudades=function(idProvincia) {
 	var num_ciudades = ciudades.length
 	  , resultado = [];
 	for (var i=0; i<num_ciudades; i++) {
 		if (ciudades[i][1] == idProvincia) {
-			var ciudad = { 'id': i+1, 'nombre': ciudades[i][0], 'lat': ciudades[i][2], 'lon': ciudades[i][3], 'provincia': provincias[idProvincia-1] };
-			resultado.push(ciudad);
+			//var ciudad = { 'id': i+1, 'nombre': ciudades[i][0], 'lat': ciudades[i][2], 'lon': ciudades[i][3], 'provincia': provincias[idProvincia-1] };
+			//resultado.push(ciudad);
+			resultado.push(this.dameCiudad(i));
 		}
 	}
 	return resultado;
 }
-/*
-exports.dameCiudad=function(idCiudad) {
-	var num_ciudades = ciudades.length
-	  , resultado = [];
-	idCiudad = parseInt(idCiudad) || 0;
-	idCiudad--;
-	if (idCiudad >= 0 && idCiudad < num_ciudades) resultado=ciudades[idCiudad];
-	return resultado;
-}
-*/
 
 })(typeof exports === 'undefined'? this['ciudades']={}: exports);

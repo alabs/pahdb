@@ -15,13 +15,13 @@
 <li class="field">
 <label class="narrow inline" for="provinciaHipoteca">Provincia</label>
 <div class="picker normal">
-<select class="provincia" data-rel="select-idCiudadHipoteca">
+<select id="provinciaHipoteca" class="provincia" data-rel="select-idCiudadHipoteca">
     <option value='0'>(Seleccione)</option>
 </select>
 </div>
 </li>
 
-<input type="hidden" id="idCiudadHipoteca" name="idCiudadHipoteca" data-rel="select-idCiudadHipoteca" value="{{ @AFECTADO.idCiudadHipoteca }}" />
+<input type="hidden" id="idCiudadHipoteca" name="idCiudadHipoteca" data-rel="select-idCiudadHipoteca" data-provincia="provinciaHipoteca" value="{{ @AFECTADO.idCiudadHipoteca }}" />
 <li class="field">
 <label class="narrow inline" for="select-idCiudadHipoteca">Ciudad</label>
 <div class="picker normal">

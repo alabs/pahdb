@@ -142,7 +142,9 @@ $(function() {
 	// Reflejamos los datos del expediente guardados en campo oculto en su select relacionado
 	$('input[type=hidden]').each(function(i, el) {
 		var valor = $(el).val()
-		  , rel = $(el).data('rel');
+		  , rel = $(el).data('rel')
+		  , provincia = $(el).data('provincia');
+		if ((valor != '') && (provincia != '')) $('#'+provincia).val(ciudades.dameCiudad(valor).id_provincia).trigger('change');
 		if ((valor != '') && (rel != '')) $('#'+rel).val(valor);
 	});
 	// Actualizamos el valor del input oculto cuando cambie un select
