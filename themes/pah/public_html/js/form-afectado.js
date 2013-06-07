@@ -5,7 +5,12 @@ $(function() {
 	// Enviamos el formulario al pulsar el botón guardar
 	$('.guardar_accion').on('click', function(e) {
 		e.preventDefault();
-		if ($('.guardar_accion').parent().hasClass('success')) $('#guardar_form').submit();
+		if ($('.guardar_accion').parent().hasClass('success')) {
+			// Los campos con la clase numero siempre contienen números positivos.
+			// Aquellos campos sin rellenar se almacenan con valor -1
+			if ($('.numero').val() == '') $('.numero').val(-1);
+			$('#guardar_form').submit();
+		}
 	});
 	// Si cambia cualquier campo activamos el botón guardar
 	// incluidos los campos que se generan desde javascript (sustituto de live)
@@ -193,6 +198,12 @@ $(function() {
 		} else {
 			$(obs).slideDown();
 		}
+	});
+
+	// Los campos con la clase numero siempre contienen números positivos.
+	// Aquellos campos sin rellenar se almacenan con valor -1
+	$('.numero').each(function() {
+		if ($(this).val() < 0) $(this).val('');
 	});
 
 	// Mostramos los campos rellenos que se encuentren contraidos

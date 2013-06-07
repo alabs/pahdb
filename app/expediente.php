@@ -80,6 +80,7 @@ class Expediente extends Controlador {
 		}
 		$bd->commit();
 
+		$f3->set('PARAMS.idAfectado', $afectado->idAfectado);
 		$this->editar();
 	}
 
