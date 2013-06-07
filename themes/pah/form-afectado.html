@@ -14,7 +14,12 @@
 			<a href="{{ @BASE }}/informes/" title="Informes"><i class="icon-doc-text"></i></a>
 			<a href="" id="despliega-observaciones" title="Observaciones"><i class="icon-tag"></i></a>
 		</span>
-		<div class="medium info btn"><a class="guardar_accion" href="" title="Guardar"><i class="icon-floppy"></i>Guardado el {{  strftime('%d/%m/%Y a las %R', strtotime(@AFECTADO.modificadoEn)) }}</a></div>
+		<div class="medium info btn"><a class="guardar_accion" href="" title="Guardar"><i class="icon-floppy"></i>	
+			<check if="{{ @AFECTADO.modificadoEn == '' }}">
+			<true>Guardar</true>
+			<false>Guardado el {{  strftime('%d/%m/%Y a las %R', strtotime(@AFECTADO.modificadoEn)) }}</false>
+			</check></a>
+		</div>
 		<span class="adjoined">
 			<a href="{{ @BASE }}/admin/" title="Administrar PAHs"><i class="icon-tools"></i></a>
 			<a href="{{ @BASE }}/salir" title="Salir"><i class="icon-logout"></i></a>
@@ -68,9 +73,6 @@
 
 </form>
 
-<!-- BORRAR DEBUG
-{{ print_r(@FAMILIARES,true) | raw }}
--->
 
 <script src="/js/ciudades.js"></script>
 <script src="/js/form-afectado.js"></script>
