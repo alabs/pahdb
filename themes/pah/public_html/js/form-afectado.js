@@ -6,10 +6,18 @@ $(function() {
 	$('.guardar_accion').on('click', function(e) {
 		e.preventDefault();
 		if ($('.guardar_accion').parent().hasClass('success')) {
-			// Los campos con la clase numero siempre contienen números positivos.
-			// Aquellos campos sin rellenar se almacenan con valor -1
-			if ($('.numero').val() == '') $('.numero').val(-1);
-			$('#guardar_form').submit();
+			// Validamos DNI/NIE
+			var dni=$('#dni').val().toUpperCase();
+			$('#dni').val(dni);
+			if ((/^[TXYZ]{1}[0-9]{7}[A-Z]{1}$/.test(dni)) || (/^[0-9]{8}[A-Z]{1}$/.test(dni))) {
+				// Los campos con la clase numero siempre contienen números positivos.
+				// Aquellos campos sin rellenar se almacenan con valor -1
+				if ($('.numero').val() == '') $('.numero').val(-1);
+				$('#guardar_form').submit();
+			} else {
+				alert('DNI/NIE incorrecto');
+				$('#dni').parents('li.field').addClass('danger');
+			}
 		}
 	});
 	// Si cambia cualquier campo activamos el botón guardar
