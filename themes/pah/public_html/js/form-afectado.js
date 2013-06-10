@@ -210,23 +210,26 @@ $(function() {
 	$('.desplegador').trigger('change');
 	listo=true;
 
-	// Mantiene fijo barra y menú
-	var anclados = [];
-	$('.anclado').each(function() {
-		var position = $(this).offset()
-		  , ancho = $(this).width()
-		  , anclado = {};
-		anclado.obj = $(this);
-		anclado.top = position.top;
-		anclado.left = position.left;
-		anclado.width = ancho;
-		anclados.push(anclado);
-	});
-	for (var i=0; i<anclados.length; i++) {
-		$(anclados[i].obj).css('position', 'fixed');
-		$(anclados[i].obj).css('top', anclados[i].top);
-		$(anclados[i].obj).css('left', anclados[i].left);
-		$(anclados[i].obj).css('width', anclados[i].width+'px');
+	// Mantiene fijo barra y menú si la ventana es mayor de 700x450
+	if (($('body').height() > 450) && ($('body').width() > 700))  {
+		var anclados = [];
+		$('.anclado').each(function() {
+			var position = $(this).offset()
+			  , ancho = $(this).width()
+			  , anclado = {};
+			anclado.obj = $(this);
+			anclado.top = position.top;
+			anclado.left = position.left;
+			anclado.width = ancho;
+			anclados.push(anclado);
+		});
+		for (var i=0; i<anclados.length; i++) {
+			$(anclados[i].obj).css('position', 'fixed');
+			$(anclados[i].obj).css('top', anclados[i].top);
+			$(anclados[i].obj).css('left', anclados[i].left);
+			$(anclados[i].obj).css('width', anclados[i].width+'px');
+		}
+		$('.tab-content').css('margin-left', $('.tab-nav').width()).css('margin-top', $('#cabecera').height());
 	}
-	$('.tab-content').css('margin-left', $('.tab-nav').width()).css('margin-top', $('#cabecera').height());
+
 });

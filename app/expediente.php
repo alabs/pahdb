@@ -100,4 +100,9 @@ class Expediente extends Controlador {
 			echo '#afectado-'.$id_afectado;
 		}
 	}
+
+	function gandalf() {
+		$f3=$this->framework;
+		$f3->set('contenido', 'no-puedes-pasar.html');
+	}
 }
