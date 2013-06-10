@@ -218,6 +218,12 @@ $(function() {
 	$('.desplegador').trigger('change');
 	listo=true;
 
+	// Navegador por secciones
+	$('#menu_lateral').on('gumby.onChange', function(e, i) {
+		$('#num_seccion').val(i);
+	});
+	$('.tab-nav').trigger('gumby.set', parseInt($('#num_seccion').val()));
+
 	// Mantiene fijo barra y menú si la ventana es mayor de 700x450
 	if (($('body').height() > 450) && ($('body').width() > 700))  {
 		var anclados = [];

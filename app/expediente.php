@@ -81,6 +81,7 @@ class Expediente extends Controlador {
 		$bd->commit();
 
 		$f3->set('PARAMS.idAfectado', $afectado->idAfectado);
+		$f3->set('num_seccion', $f3->get('POST.num_seccion'));
 		$this->editar();
 	}
 

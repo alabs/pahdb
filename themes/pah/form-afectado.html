@@ -33,10 +33,11 @@
 
 <div class="row">
 <div class="twelve columns">
-	<section class="vertical tabs">
+	<section id="menu_lateral" class="vertical tabs">
+		<input type="hidden" name="num_seccion" id="num_seccion" value="{{ isset(@num_seccion)?@num_seccion:0 }}" />
 		<!-- Menú lateral -->
 		<ul class="tab-nav four columns anclado">
-			<li class="active"><a href="#">Datos personales</a></li>
+			<li><a href="#">Datos personales</a></li>
 			<li><a href="#">Vivienda hipotecada</a></li>
 			<li><a href="#">Familia y trabajo</a></li>
 			<li><a href="#">Acciones previas a la PAH</a></li>
