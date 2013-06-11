@@ -12,7 +12,10 @@ $(function() {
 			if ((/^[TXYZ]{1}[0-9]{7}[A-Z]{1}$/.test(dni)) || (/^[0-9]{8}[A-Z]{1}$/.test(dni))) {
 				// Los campos con la clase numero siempre contienen números positivos.
 				// Aquellos campos sin rellenar se almacenan con valor -1
-				if ($('.numero').val() == '') $('.numero').val(-1);
+				//if ($('.numero').val() == '') $('.numero').val(-1);
+				$('.numero').each(function() {
+					if ($(this).val()=='') $(this).val(-1);
+				});
 				$('#guardar_form').submit();
 			} else {
 				alert('DNI/NIE incorrecto');
@@ -86,7 +89,8 @@ $(function() {
 		e.preventDefault();
 		var i=$('#subastas tr').length
 		  , fila="\n"+'<tr>'+"\n"+
-		'	<td class="field"><input name="subasta['+i+'][fecha]" class="text input date" type="text" placeholder="Fecha" /></td>'+"\n"+
+		'	<input id="fechasubasta'+i+'" name="subasta['+i+'][fecha]" data-rel="input-fechasubasta'+i+'" class="text input date fecha" type="hidden" />'+"\n"+
+		'	<td class="field"><input id="input-fechasubasta'+i+'" data-rel="fechasubasta'+i+'" class="text input date fecha" type="text" placeholder="Fecha" /></td>'+"\n"+
 		'	<td class="field"><select name="subasta['+i+'][resultado]">'+"\n"+
 		'		<option value="">Resultado</option>'+"\n"+
 		'		<option value="PENDIENTE">Pendiente</option>'+"\n"+
@@ -113,7 +117,8 @@ $(function() {
 		e.preventDefault();
 		var i=$('#desahucios tr').length
 		  , fila="\n"+'<tr>'+"\n"+
-		'	<td class="field"><input name="desahucio['+i+'][fecha]" class="text input date" type="text" placeholder="Fecha" /></td>'+"\n"+
+		'	<input id="fechadesahucio'+i+'" name="desahucio['+i+'][fecha]" data-rel="input-fechadesahucio'+i+'" class="text input date fecha" type="hidden" />'+"\n"+
+		'	<td class="field"><input id="input-fechadesahucio'+i+'" data-rel="fechadesahucio'+i+'" class="text input date fecha" type="text" placeholder="Fecha" /></td>'+"\n"+
 		'	<td class="field"><select name="desahucio['+i+'][resultado]">'+"\n"+
 		'		<option value="">Resultado</option>'+"\n"+
 		'		<option value="PENDIENTE">Pendiente</option>'+"\n"+
@@ -123,7 +128,7 @@ $(function() {
 		'		<option value="PARALIZADO_PAH">Paralizado PAH</option>'+"\n"+
 		'	</select></td>'+"\n"+
 		'</tr>';
-		$('#subastas').append(fila);
+		$('#desahucios').append(fila);
 	});
 	$('#boton_borrar_desahucios').on('click', function(e) {
 		e.preventDefault();
@@ -158,13 +163,33 @@ $(function() {
 		  , rel = $(el).data('rel')
 		  , provincia = $(el).data('provincia');
 		if ((valor != '') && (provincia != '')) $('#'+provincia).val(ciudades.dameCiudad(valor).id_provincia).trigger('change');
-		if ((valor != '') && (rel != '')) $('#'+rel).val(valor);
+		if ((valor != '') && (valor != '0000-00-00') && (rel != '')) {
+			if ($(el).hasClass('fecha')) {
+				valor=valor.split('-');
+				if (valor.length==3) $('#'+rel).val(valor[2]+'/'+valor[1]+'/'+valor[0]);
+			} else {
+				$('#'+rel).val(valor);
+			}
+		}
 	});
 	// Actualizamos el valor del input oculto cuando cambie un select
 	$('select').on('change', function() {
 		var valor = $(this).val()
 		  , rel = $(this).data('rel');
 		$('#'+rel).val(valor);
+	});
+	$(document).on('change', 'input[type!=hidden].fecha', function() {
+		var valor = $(this).val()
+		  , rel = $(this).data('rel');
+		if (valor=='') valor='00/00/0000';
+		valor=valor.split('/');
+		if (valor.length==3) {
+			$('#'+rel).val(valor[2]+'-'+valor[1]+'-'+valor[0]);
+			$(this).parents('li.field').removeClass('danger');
+		} else {
+			alert('Formato de fecha incorrecto: día/mes/año');
+			$(this).parents('li.field').addClass('danger');
+		}
 	});
 
 	// Checkboxs

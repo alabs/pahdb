@@ -138,11 +138,11 @@
 	<li class="field">
 		<input class="input xwide numero" name="precioAlquiler" placeholder="Precio alquiler" type="text" value="{{ @AFECTADO.precioAlquiler }}">
 	</li>
+	<input class="input xwide fecha" id="fechaResolucion" name="fechaResolucion" data-rel="input-fechaResolucion" type="hidden" value="{{ @AFECTADO.fechaResolucion }}">
 	<li class="field">
-		<input class="input xwide" name="fechaResolucion" placeholder="Fecha resolución" type="date" value="{{ @AFECTADO.fechaResolucion }}">
+		<input class="input xwide fecha" id="input-fechaResolucion" data-rel="fechaResolucion" placeholder="Fecha resolución. Ej: 20/02/2013" type="text">
 	</li>
 	<li class="field">
-		<!--<input class="input xwide" placeholder="Explica" type="text" value="">-->
 		<textarea name="observacionesResolucion" class="xwide" placeholder="Explica">{{ @AFECTADO.observacionesResolucion }}</textarea>
 	</li>
 </ul>

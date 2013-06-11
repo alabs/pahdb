@@ -10,8 +10,9 @@
 	</select>
 	</div>
 	<ul>
+	<input class="input xwide fecha" id="fechaImpago" name="fechaImpago" data-rel="input-fechaImpago" type="hidden" value="{{ @AFECTADO.fechaImpago }}">
 	<li class="field">
-		<input class="input xwide" name="fechaImpago" placeholder="Fecha del impago" type="date" value="{{ @AFECTADO.fechaImpago }}">
+		<input class="input xwide fecha" id="input-fechaImpago" data-rel="fechaImpago" placeholder="Fecha del impago. Ej: 30/04/2000" type="text">
 	</li>
 	</ul>
 </div>
@@ -25,8 +26,9 @@
 	</select>
 	</div>
 	<ul>
+	<input class="input xwide fecha" id="fechaDemandaJudicial" name="fechaDemandaJudicial" data-rel="input-fechaDemandaJudicial" type="hidden" value="{{ @AFECTADO.fechaDemandaJudicial }}">
 	<li class="field">
-		<input class="input xwide" name="fechaDemandaJudicial" placeholder="Fecha demanda judicial" type="date" value="{{ @AFECTADO.fechaDemandaJudicial }}">
+		<input class="input xwide fecha" id="input-fechaDemandaJudicial" data-rel="fechaDemandaJudicial" placeholder="Fecha demanda judicial. Ej: 30/04/2000" type="text"">
 	</li>
 	<li class="field">
 		<input class="input xwide" name="numEjecucion" placeholder="NUM EJECUCIÓN" type="text" value="{{ @AFECTADO.numEjecucion }}">
@@ -77,7 +79,8 @@
 <table id="subastas">
 <repeat group="{{ @SUBASTAS }}" value="{{ @SUBASTA }}" counter="{{ @i }}">
 <tr>
-	<td class="field"><input name="subasta[{{ @i-1 }}][fecha]" class="text input date" type="text" placeholder="Fecha" value="{{ @SUBASTA.fecha }}" /></td>
+	<input id="fechasubasta{{ @i-1 }}" name="subasta[{{ @i-1 }}][fecha]" data-rel="input-fechasubasta{{ @i-1 }}" class="text input date fecha" type="hidden" value="{{ @SUBASTA.fecha }}" />
+	<td class="field"><input id="input-fechasubasta{{ @i-1 }}" data-rel="fechasubasta{{ @i-1 }}" class="text input date fecha" type="text" placeholder="Fecha" /></td>
 	<td class="field"><select name="subasta[{{ @i-1 }}][resultado]" value="{{ @SUBASTA.resultado }}">
 		<option value="">Resultado</option>
 		<option value="PENDIENTE" <check if="{{ @SUBASTA.resultado == 'PENDIENTE' }}">selected</check>>Pendiente</option>
@@ -100,7 +103,8 @@
 <table id="desahucios">
 <repeat group="{{ @DESAHUCIOS }}" value="{{ @DESAHUCIO }}" counter="{{ @i }}">
 <tr>
-	<td class="field"><input name="desahucio[{{ @i-1 }}][fecha]" class="text input date" type="text" placeholder="Fecha" value="{{ @DESAHUCIO.fecha }}" /></td>
+	<input id="fechadesahucio{{ @i-1 }}" name="desahucio[{{ @i-1 }}][fecha]" data-rel="input-fechadesahucio{{ @i-1 }}" class="text input date fecha" type="hidden" value="{{ @SUBASTA.fecha }}" />
+	<td class="field"><input id="input-fechadesahucio{{ @i-1 }}" data-rel="fechadesahucio{{ @i-1 }}" class="text input date fecha" type="text" placeholder="Fecha" /></td>
 	<td class="field"><select name="desahucio[{{ @i-1 }}][resultado]" value="{{ @DESAHUCIO.resultado }}">
 		<option value="">Resultado</option>
 		<option value="PENDIENTE" <check if="{{ @DESAHUCIO.resultado == 'PENDIENTE' }}">selected</check>>Pendiente</option>
@@ -140,8 +144,9 @@
 	</select>
 	</div>
 	<ul>
+	<input class="input xwide fecha" id="fechaRecursoTJUE" name="fechaRecursoTJUE" data-rel="input-fechaRecursoTJUE" type="hidden" value="{{ @AFECTADO.fechaRecursoTJUE }}">
 	<li class="field">
-		<input class="input xwide" name="fechaRecursoTJUE" placeholder="Fecha" type="date" value="{{ @AFECTADO.fechaRecursoTJUE }}">
+		<input class="input xwide fecha" id="input-fechaRecursoTJUE" placeholder="Fecha. Ej: 13/01/2001" type="text">
 	</li>
 	</ul>
 </div>
