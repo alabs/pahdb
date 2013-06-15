@@ -1,0 +1,302 @@
+<!--<div class="fixed" style="background-color:#fff;z-index:999;width:100%;">-->
+
+<div class="row">
+	<h2><i class="icon-home"></i> Informe</h2>
+</div>
+
+<div class="row">
+	<div class="prepend append field">
+		<span class="adjoined">
+			<a href="{{ @BASE }}/expediente/" title="Nuevo expediente"><i class="icon-user-add"></i></a>
+			<a href="{{ @BASE }}/expedientes/" title="Buscar por nombre o DNI/CIF"><i class="icon-search"></i></a>
+			<i class="icon-doc-text"></i>
+		</span>
+		<input id="busqueda" class="narrow input" type="text" placeholder="Búsqueda general" />
+		<span class="adjoined">
+			<a href=""><i class="icon-down-open-big"></i></a>
+			<a href="{{ @BASE }}/admin/" title="Administrar PAHs"><i class="icon-tools"></i></a>
+			<a href="{{ @BASE }}/salir/" title="Salir"><i class="icon-logout"></i></a>
+		</span>
+	</div>
+</div>
+
+<!--</div>-->
+<!--<div class="row">
+	Filtros:
+	<div id="filtroEntidad" class="picker xwide"></div>
+	<div id="filtroTipoNegociacion" class="picker xwide"></div>
+	<div id="filtroFaseNegociacion" class="picker xwide"></div>
+</div>-->
+
+<!--<div class="row" style="padding-top:120px;">-->
+<div class='row'>Número total expedientes: <strong>{{ count(@TABLA) }}</strong></div>
+
+<div class="row">
+<table id="informe">
+<thead>
+<tr>
+	<th>Nombre</th>
+	<th>DNI</th>
+	<th>Fecha ficha</th>
+	<th>Nacionalidad</th>
+	<th>Teléfono</th>
+	<th>Correo</th>
+	<th>Ciudad</th>
+	<th>Relación Hipoteca</th>
+	<th>¿Resides?</th>
+	<th>Banco</th>
+	<th>Año</th>
+	<th>Importe</th>
+	<th>Tasación</th>
+	<th>Num. titulares</th>
+	<th>Num. avalistas</th>
+	<th>Clausulas abusivas</th>
+	<th>Pendiente amortizar</th>
+	<th>Neto mes familia</th>
+	<th>Fase</th>
+	<th>Fecha impago</th>
+	<th>Número ejecución</th>
+	<th>Justicia gratuita</th>
+	<th>Fecha subasta</th>
+	<th>Fecha desahucio</th>
+	<th>Fecha TJUE</th>
+	<th>Objetivos negociación</th>
+	<th>Fase negociación</th>
+	<th>Tipo negociación</th>
+	<th>Fecha documentación</th>
+	<th>Resolución deuda</th>
+	<th>Resolucion vivienda</th>
+</tr>
+</thead>
+<tbody>
+<repeat group="{{ @TABLA }}" value="{{ @FILA }}" counter="{{ @i }}">
+<tr data-id-afectado="{{ @FILA.idAfectado }}">
+	<!--<td><a href="{{ @BASE }}/expediente/{{ @FILA.idAfectado }}">{{ @FILA.nombre }}</a></td>-->
+	<td>{{ @FILA.nombre }}</td>
+	<td>{{ @FILA.dni }}</td>
+	<td class="fecha">{{ @mostrarFecha(@FILA.creadoEn) }}</td>
+	<td class="pais">{{ @FILA.nacionalidad1 }}</td>
+	<td>{{ @FILA.tfMovil }}</td>
+	<td>{{ @FILA.correo }}</td>
+	<td class="ciudad">{{ @FILA.idCiudad }}</td>
+	<td>{{ @FILA.relacionHipoteca }}</td>
+	<td>{{ @FILA.residesEnHipoteca }}</td>
+	<td class="banco">{{ @FILA.bancoHipoteca }}</td>
+	<td>{{ @FILA.anyoFirmaHipoteca }}</td>
+	<td>{{ @FILA.importeHipoteca }}</td>
+	<td>{{ @FILA.tasacionHipoteca }}</td>
+	<td>{{ @FILA.numTitularesHipoteca }}</td>
+	<td>{{ @FILA.numAvalistasHipoteca }}</td>
+	<td>{{ @FILA.clausulasAbusivasHipoteca }}</td>
+	<td>{{ @FILA.pendienteAmortizarHipoteca }}</td>
+	<td>{{ @FILA.netoMesFamilia }}</td>
+	<td>{{ @FILA.fasePrePAH }}</td>
+	<td class="fecha">{{ @mostrarFecha(@FILA.fechaImpago) }}</td>
+	<td>{{ @FILA.numEjecucion }}</td>
+	<td>{{ @FILA.justiciaGratuita }}</td>
+	<td class="fecha">{{ @mostrarFecha(@FILA.fechaSubasta) }}</td>
+	<td class="fecha">{{ @mostrarFecha(@FILA.fechaDesahucio) }}</td>
+	<td class="fecha">{{ @mostrarFecha(@FILA.fechaRecursoTJUE) }}</td>
+	<td class="multiple">{{ @FILA.objetivosNegociacion }}</td>
+	<td>{{ @FILA.faseNegociacion }}</td>
+	<td>{{ @FILA.tipoNegociacion }}</td>
+	<td class="fecha">{{ @mostrarFecha(@FILA.fechaDocumentacion) }}</td>
+	<td>{{ @FILA.resolucionDeuda }}</td>
+	<td>{{ @FILA.resolucionVivienda }}</td>
+</tr>
+</repeat>
+</tbody>
+<tfoot style="display:none;">
+<tr>
+	<th>Nombre</th>
+	<th>DNI</th>
+	<th>Fecha ficha</th>
+	<th>Nacionalidad</th>
+	<th>Teléfono</th>
+	<th>Correo</th>
+	<th>Ciudad</th>
+	<th>Relación Hipoteca</th>
+	<th>¿Resides?</th>
+	<th>Banco</th>
+	<th>Año</th>
+	<th>Importe</th>
+	<th>Tasación</th>
+	<th>Num. titulares</th>
+	<th>Num. avalistas</th>
+	<th>Clausulas abusivas</th>
+	<th>Pendiente amortizar</th>
+	<th>Neto mes familia</th>
+	<th>Fase</th>
+	<th>Fecha impago</th>
+	<th>Número ejecución</th>
+	<th>Justicia gratuita</th>
+	<th>Fecha subasta</th>
+	<th>Fecha desahucio</th>
+	<th>Fecha TJUE</th>
+	<th>Objetivos negociación</th>
+	<th>Fase negociación</th>
+	<th>Tipo negociación</th>
+	<th>Fecha documentación</th>
+	<th>Resolución deuda</th>
+	<th>Resolucion vivienda</th>
+</tr>
+</tfoot>
+</table>
+</div>
+
+<div class="row">
+<div class="medium secondary btn icon-left entypo icon-reply"><a href="" class="pag-anterior">Página anterior</a></div>
+<div class="medium warning btn icon-right entypo icon-forward"><a href="" class="pag-siguiente">Página siguiente</a></div>
+</div>
+
+<style type="text/css">
+/*@import "/css/jquery.dataTables.css";*/
+table{
+	table-layout:fixed;
+}
+
+thead {
+	border-bottom: 1px solid #ccc;
+}
+
+table.dataTable thead th {
+	padding: 3px 10px 3px 10px;
+	/*background-color: #eee;*/
+	font-weight: bold;
+	cursor: pointer;
+	*cursor: hand;
+}
+
+.dataTables_wrapper {
+	position: relative;
+	clear: both;
+	*zoom: 1;
+}
+
+.sorting { background: url('../img/sort_both.png') no-repeat center right; }
+.sorting_asc { background: url('../img/sort_asc.png') no-repeat center right; }
+.sorting_desc { background: url('../img/sort_desc.png') no-repeat center right; }
+
+.sorting_asc_disabled { background: url('../img/sort_asc_disabled.png') no-repeat center right; }
+.sorting_desc_disabled { background: url('../img/sort_desc_disabled.png') no-repeat center right; }
+
+td,th{
+	min-width:191px;
+}
+
+tbody tr.odd { 
+	background-color: #eee;
+}
+
+tbody tr:hover {
+	background-color: #efe;
+	cursor: pointer;
+	*cursor: hand;
+}
+</style>
+
+<script type="text/javascript" src="/js/ciudades.js"></script>
+<script type="text/javascript" src="/js/lib/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="/js/lib/jquery.dataTables.columnFilter.js"></script>
+<script type="text/javascript">
+
+var mitabla;
+$(function() {
+	/*$('td').each(function() {
+		var valor = $(this).text();
+		if (valor == '-1' || valor == '0000-00-00') $(this).text('');
+	});*/
+	var bancos = {
+		'0061':'MARCH',
+		'0225':'CETELEM',
+		'0487':'BMN',
+		'0235':'PICHINCHA',
+		'0075':'POPULAR',
+		'0081':'SABADELL',
+		'0038':'BANESTO',
+		'2038':'BANKIA',
+		'0128':'BANKINTER',
+		'0065':'BARCLAYS',
+		'0182':'BBVA',
+		'0058':'BNP',
+		'2100':'CAIXA',
+		'3025':'INGENIEROS',
+		'3058':'RURALES',
+		'2013':'CATALUNYA',
+		'0122':'CITIBANK',
+		'8596':'CREDIFIMO',
+		'0019':'DEUTSCHE',
+		'0223':'GENERAL_ELECTRIC',
+		'2085':'IBERCAJA',
+		'1465':'ING',
+		'2095':'KUTXABANK',
+		'2048':'LIBERBANK',
+		'0236':'LLOYDS',
+		'2080':'NCG',
+		'0049':'SANTANDER',
+		'1491':'TRIODOS',
+		'0226':'UBS',
+		'8512':'UCI',
+		'2103':'UNICAJA',
+		'OTRO':'OTRO'
+	};
+	$('.banco').each(function() {
+		var id_banco=$(this).text();
+		(bancos.hasOwnProperty(id_banco))?$(this).text(bancos[id_banco]):$(this).text('');
+	});
+
+	$('.pais').each(function() {
+		$(this).text(ciudades.damePais($(this).text()));
+	});
+	$('.ciudad').each(function() {
+		var id_ciudad=parseInt($(this).text())
+		  , ciudad=ciudades.dameCiudad(id_ciudad);
+		(ciudad)?$(this).text(ciudad.nombre+' ('+ciudad.provincia+')'):$(this).text(''); 
+	});
+	$('.multiple').each(function() {
+		$(this).html($(this).text().replace(/\|/g,'<br>'));
+	});
+	mitabla=$('#informe').dataTable({
+		"sDom": "irt",
+        "sScrollX": "100%",
+		"bScrollCollapse": true,
+        "oLanguage": {
+            "sLengthMenu": "Muestra <span class='picker'>_MENU_</span> expedientes por página",
+			"sSearch": "Buscar: _INPUT_",
+            "sZeroRecords": "Ningún expediente ha sido encontrado",
+            "sInfo": "<p class='light alert'>(_START_ - _END_) de _TOTAL_ expedientes encontrados</p>",
+            "sInfoEmpty": "0 expedientes",
+            //"sInfoFiltered": "(de un total de _MAX_)",
+			"sInfoFiltered": "",
+			"oPaginate": {
+				"sNext": "Pág. siguiente",
+				"sPrevious": "Pág. anterior"
+			} 
+        }
+	});
+	/*mitabla.columnFilter({aoColumns:[
+		null,null,null,null,null,null,null,null,null,{ sSelector: "#filtroEntidad", type:"select"  },
+		null,null,null,null,null,null,null,null,null,null,null,null,null,null,
+		{ sSelector: "#filtroFaseNegociacion", type:"select" },
+		{ sSelector: "#filtroTipoNegociacion", type:"select", values:["INDIVIDUAL", "COLECTIVA"] }
+	]});*/
+
+	$('.pag-anterior').on('click', function(e) {
+		e.preventDefault();
+		mitabla.fnPageChange('previous');
+	});
+	$('.pag-siguiente').on('click', function(e) {
+		e.preventDefault();
+		mitabla.fnPageChange('next');
+	});
+
+	$('tbody tr').on('click',function(e) {
+		var idAfectado = $(this).data('id-afectado');
+		if (idAfectado != '') window.location.href = '/expediente/'+idAfectado;
+	});
+
+	$('#busqueda').on('keyup', function(e) {
+		mitabla.fnFilter($('#busqueda').val());
+	});
+});
+</script>

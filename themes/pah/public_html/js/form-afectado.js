@@ -23,6 +23,7 @@ $(function() {
 			}
 		}
 	});
+
 	// Si cambia cualquier campo activamos el botón guardar
 	// incluidos los campos que se generan desde javascript (sustituto de live)
 	$(document).on('change','input,select,textarea', function(e) {

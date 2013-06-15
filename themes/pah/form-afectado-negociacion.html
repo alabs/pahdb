@@ -46,8 +46,9 @@
 	</select>
 	</div>
 	<ul>
+	<input class="input xwide fecha" id="fechaDocumentacion" name="fechaDocumentacion" data-rel="input-fechaDocumentacion" type="hidden" value="{{ @AFECTADO.fechaDocumentacion }}">
 	<li class="field">
-		<input class="input xwide" name="fechaDocumentacion" placeholder="Fecha" type="date" value="{{ @AFECTADO.fechaDocumentacion }}">
+		<input class="input xwide fecha" id="input-fechaDocumentacion" data-rel="fechaDocumentacion" placeholder="Fecha documentación. Ej: 05/07/2013" type="text">
 	</li>
 	</ul>
 </li>

@@ -102,6 +102,21 @@ class Expediente extends Controlador {
 		}
 	}
 
+	function informe() {
+		$f3=$this->framework;
+		$bd=$this->bd;
+		$f3->set('TABLA',
+			$bd->exec('SELECT A.*, MAX(S.fecha) AS fechaSubasta, MAX(D.fecha) AS fechaDesahucio FROM Afectados A LEFT JOIN Subastas S ON A.idAfectado=S.idAfectado LEFT JOIN Desahucios D ON A.idAfectado=D.idAfectado GROUP BY A.idAfectado;')
+		);
+		$f3->set('mostrarFecha',
+			function ($f) {
+				return ($f != 0)?strftime('%d/%m/%Y', strtotime($f)):'';
+			}
+		);
+
+		$f3->set('contenido', 'informe-resumen.html');
+	}
+
 	function gandalf() {
 		$f3=$this->framework;
 		$f3->set('contenido', 'no-puedes-pasar.html');
