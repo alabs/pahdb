@@ -26,7 +26,8 @@ class Entrada {
 		$PAH=new DB\SQL\Mapper($this->bd,'PAHs');
 		$PAH->load(array('correo=?',$correo));
 		if (!$PAH->dry() && $PAH->passwd === sha1($passwd.$f3->get('SALT'))) {
-			$f3->set('SESSION.correo', $correo);
+			// Copiamos los datos de la PAH como variables de sesión
+			$PAH->copyTo('SESSION');
 			$f3->set('SESSION.autorizado', true);
 			$f3->reroute('/');
 		} else {

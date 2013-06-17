@@ -6,7 +6,7 @@
 
 <li class="field">
 <label class="narrow inline" for="autorFicha">Autor ficha</label>
-<input class="normal input" placeholder="Ejemplo: María Pérez Sánchez" id="autorFicha" name="autorFicha" type="text" value="{{ @AFECTADO.autorFicha }}" />
+<input class="normal input" placeholder="Ejemplo: María Pérez Sánchez" id="autorFicha" name="autorFicha" type="text" value="{{ (@AFECTADO.autorFicha=='')?@SESSION.responsable:'' }}" />
 </li>
 
 <li class="field">

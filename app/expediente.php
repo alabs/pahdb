@@ -42,6 +42,7 @@ class Expediente extends Controlador {
 		if ($afectado->dry()) {
 			// Nuevo afectado
 			$afectado->creadoEn=date('Y-m-d',time());
+			$afectado->idPAH=$f3->get('SESSION.idPAH');
 			$afectado->save();
 		} else {
 			// Modificar afectado
