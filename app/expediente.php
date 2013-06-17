@@ -41,6 +41,7 @@ class Expediente extends Controlador {
 		$afectado->copyfrom('POST');
 		if ($afectado->dry()) {
 			// Nuevo afectado
+			$afectado->creadoEn=date('Y-m-d',time());
 			$afectado->save();
 		} else {
 			// Modificar afectado
