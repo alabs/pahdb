@@ -1,7 +1,13 @@
 /* Alineamos correctamente el pie de página*/
-.container {
+html, body {
+height: 100%;
+}
+#envoltorio {
 min-height:100%;
+}
+.container {
 padding-bottom:80px;
+overflow:auto;
 }
 footer {
 position:relative;
