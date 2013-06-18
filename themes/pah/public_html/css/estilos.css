@@ -1,6 +1,6 @@
 /* Alineamos correctamente el pie de página*/
 .container {
-min-height:100%;
+min-height:90%;
 padding-bottom:80px;
 }
 footer {
