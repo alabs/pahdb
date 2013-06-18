@@ -21,12 +21,6 @@
 </div>
 
 <!--</div>-->
-<!--<div class="row">
-	Filtros:
-	<div id="filtroEntidad" class="picker xwide"></div>
-	<div id="filtroTipoNegociacion" class="picker xwide"></div>
-	<div id="filtroFaseNegociacion" class="picker xwide"></div>
-</div>-->
 
 <!--<div class="row" style="padding-top:120px;">-->
 <div class='row'>Número total expedientes: <strong>{{ count(@TABLA) }}</strong></div>
@@ -105,41 +99,6 @@
 </tr>
 </repeat>
 </tbody>
-<tfoot style="display:none;">
-<tr>
-	<th>Nombre</th>
-	<th>DNI</th>
-	<th>Fecha ficha</th>
-	<th>Nacionalidad</th>
-	<th>Teléfono</th>
-	<th>Correo</th>
-	<th>Ciudad</th>
-	<th>Relación Hipoteca</th>
-	<th>¿Resides?</th>
-	<th>Banco</th>
-	<th>Año</th>
-	<th>Importe</th>
-	<th>Tasación</th>
-	<th>Num. titulares</th>
-	<th>Num. avalistas</th>
-	<th>Clausulas abusivas</th>
-	<th>Pendiente amortizar</th>
-	<th>Neto mes familia</th>
-	<th>Fase</th>
-	<th>Fecha impago</th>
-	<th>Número ejecución</th>
-	<th>Justicia gratuita</th>
-	<th>Fecha subasta</th>
-	<th>Fecha desahucio</th>
-	<th>Fecha TJUE</th>
-	<th>Objetivos negociación</th>
-	<th>Fase negociación</th>
-	<th>Tipo negociación</th>
-	<th>Fecha documentación</th>
-	<th>Resolución deuda</th>
-	<th>Resolucion vivienda</th>
-</tr>
-</tfoot>
 </table>
 </div>
 
@@ -149,8 +108,6 @@
 </div>
 
 <style type="text/css">
-/*@import "/css/jquery.dataTables.css";*/
-/*@import "/css/TableTools.css";*/
 table{
 	table-layout:fixed;
 }
@@ -197,23 +154,10 @@ tbody tr:hover {
 
 <script type="text/javascript" src="/js/ciudades.js"></script>
 <script type="text/javascript" src="/js/lib/jquery.dataTables.min.js"></script>
-<!--<script type="text/javascript" src="/js/lib/jquery.dataTables.columnFilter.js"></script>-->
-<!--<script type="text/javascript" src="/js/lib/TableTools.min.js"></script>-->
 <script type="text/javascript">
-//Borrar, declarada aqui para debug
-var mitabla;
+
 $(function() {
 
-	/*function aCSV (tabla) {
-		var num_campos = $(tabla).find('thead th').length
-		  , celdas = $(tabla).find('thead th, tbody td')
-		  , csv = '';
-		celdas.each(function(i, c) {
-			celda = '"'+$(c).text()+'"';
-			if (csv != '') (i % num_campos == 0)?csv+="\n":csv+=",";
-			csv+=celda;
-		});
-		console.log(csv);*/
 	function aCSV (tabla) {
 		var campos = tabla.fnSettings()["aoColumns"]
 		  , datos = tabla._('tr', {"filter": "applied"})
@@ -286,8 +230,7 @@ $(function() {
 		$(this).html($(this).text().replace(/\|/g,'<br>'));
 	});
 	/* CARGAMOS LA TABLA DINÁMICA */
-	mitabla=$('#informe').dataTable({
-		/*"sDom": "Tirt",*/
+	var mitabla=$('#informe').dataTable({
 		"sDom": "irt",
         "sScrollX": "100%",
 		"bScrollCollapse": true,
@@ -303,18 +246,9 @@ $(function() {
 				"sNext": "Pág. siguiente",
 				"sPrevious": "Pág. anterior"
 			} 
-        }/*,
-		"oTableTools": {
-            "sSwfPath": "/swf/copy_csv_xls_pdf.swf"
-        }*/
+        }
 	});
-	/*mitabla.columnFilter({aoColumns:[
-		null,null,null,null,null,null,null,null,null,{ sSelector: "#filtroEntidad", type:"select"  },
-		null,null,null,null,null,null,null,null,null,null,null,null,null,null,
-		{ sSelector: "#filtroFaseNegociacion", type:"select" },
-		{ sSelector: "#filtroTipoNegociacion", type:"select", values:["INDIVIDUAL", "COLECTIVA"] }
-	]});*/
-	// Activamos botones: página anterior/página siguiente y barra de búsqueda
+	// Activamos botones: página anterior/página siguiente, barra de búsqueda y boton_exportar
 	$('.pag-anterior').on('click', function(e) {
 		e.preventDefault();
 		mitabla.fnPageChange('previous');
@@ -327,7 +261,6 @@ $(function() {
 		mitabla.fnFilter($('#busqueda').val());
 	});
 	$('#boton_exportar').on('click', function(e) {
-		//$(this).attr('href', encodeURI("data:text/csv;charset=utf-8,"+aCSV(mitabla.fnGetData())));
 		$(this).attr('href', "data:text/csv;charset=utf-8,"+encodeURI(aCSV(mitabla)));
 		$(this).attr('download', 'informe-PAH.csv');
 		$(this).attr('target', '_blank');
