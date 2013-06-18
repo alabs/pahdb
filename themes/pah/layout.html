@@ -9,9 +9,12 @@
         <title>{{ @sitio.titulo }}</title>
         <meta name="description" content="{{ @sitio.descripcion }}">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-        <link rel="stylesheet" href="/css/gumby.css">
-        <script src="/js/lib/modernizr-2.6.2.min.js"></script>
-		<script src="/js/lib/jquery-1.9.1.min.js"></script>
+        <link rel="stylesheet" href="{{ @BASE }}/css/gumby.css">
+        <link rel="stylesheet" href="{{ @BASE }}/css/estilos.css">
+        <script src="{{ @BASE }}/js/lib/modernizr-2.6.2.min.js"></script>
+		<script src="{{ @BASE }}/js/lib/jquery-1.9.1.min.js"></script>
+<style>
+</style>
     </head>
     <body>
 
@@ -24,9 +27,9 @@
 
 	</div>
 
-	<div style="width:100%;background-color:#eee;text-align:center;">
+	<footer>
 		powered by<br><a href="https://alabs.org"><img src="/img/logo_alabs.png" alt="alabs" width="99" height="36"></a>
-	</div>
+	</footer>
 
 	<script src="/js/lib/gumby.min.js"></script>
 	<script src="/js/plugins.js"></script>
