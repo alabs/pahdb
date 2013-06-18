@@ -10,23 +10,22 @@
         <meta name="description" content="Gesti&oacute;n de expedientes de Afectados por la Hipoteca">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
         <link rel="stylesheet" href="/css/gumby.css">
+        <link rel="stylesheet" href="/css/estilos.css">
         <script src="/js/lib/modernizr-2.6.2.min.js"></script>
 		<script src="/js/lib/jquery-1.9.1.min.js"></script>
+<style>
+</style>
     </head>
     <body>
 
-	<!--<div class="container">
-	<div class="row">        
-	<h1>PAHBD</h1>
-	</div>
-	</div>-->
-
+	<div id="envoltorio">
 	<div class="container">
         <!--[if lt IE 7]>
             <p class="warning alert">Tu navegador es <strong>muy viejo</strong>. <a href="http://browsehappy.com/">Actualizalo</a> o <a href="http://www.google.com/chromeframe/?redirect=true">activa Google Chrome Frame</a> para ver correctamente la página.</p>
         <![endif]-->
 
-        <!--<div class="navbar fixed" style="background-color:#fff">-->
+        <form id="guardar_form" method="post" action="/expediente/">
+
 <div id="cabecera" class="anclado" style="background-color:#fff;z-index:999;">
 
 <div class="row">
@@ -38,29 +37,40 @@
 		<span class="adjoined">
 			<a href="/expediente/" title="Nuevo expediente"><i class="icon-user-add"></i></a>
 			<a href="/expedientes/" title="Buscar por nombre o DNI/CIF"><i class="icon-search"></i></a>
+			<a href="/informes/" title="Informes"><i class="icon-doc-text"></i></a>
 		</span>
-		<div class="medium info btn"><a class="guardar_accion" href="" title="Guardar"><i class="icon-floppy"></i>Guardado el 17/05/2013 a las 19:35</a></div>
-		<!--<div class="medium danger btn"><a class="borrar_accion" href="" title="Borrar"><i class="icon-trash"></i>Borrar</a></div>-->
-		<span class="adjoined"><a href="/salir" title="Salir"><i class="icon-logout"></i></a><i id="cargando" class="icon-hourglass"></i></span>
+		<span class="adjoined">
+			<a href="" id="despliega-observaciones" title="Observaciones"><i class="icon-tag"></i></a>
+		</span>
+		<div class="medium info btn"><a class="guardar_accion" href="" title="Guardar"><i class="icon-floppy"></i>	
+						Guardar
+			
+			</a>
+		</div>
+		<span class="adjoined">
+			<a href="/admin/" title="Administrar PAHs"><i class="icon-tools"></i></a>
+			<a href="/salir" title="Salir"><i class="icon-logout"></i></a>
+		</span>
+	</div>
+	<div class="field" id="observaciones" style="display:none;">
+		<textarea name="observaciones" placeholder="Observaciones:"></textarea>
 	</div>
 </div>
 </div>
-<!--</div>-->
 
 <div class="row">
 <div class="twelve columns">
-<form id="guardar_form" method="post" action="/expediente/0">
-	<section class="vertical tabs">
-		<!--<div class="four columns">-->
+	<section id="menu_lateral" class="vertical tabs">
+		<input type="hidden" name="num_seccion" id="num_seccion" value="0" />
+		<!-- Menú lateral -->
 		<ul class="tab-nav four columns anclado">
-			<li class="active"><a href="#">Datos personales</a></li>
+			<li><a href="#">Datos personales</a></li>
 			<li><a href="#">Vivienda hipotecada</a></li>
 			<li><a href="#">Familia y trabajo</a></li>
 			<li><a href="#">Acciones previas a la PAH</a></li>
 			<li><a href="#">Seguimiento judicial</a></li>
 			<li><a href="#">Seguimiento negociación</a></li>
 		</ul>
-		<!--</div>-->
 		<!-- SECCION: Datos personales -->
 		<div class="tab-content eight columns active">
 			
@@ -68,7 +78,7 @@
 
 <li class="field">
 <label class="narrow inline" for="autorFicha">Autor ficha</label>
-<input class="normal input" placeholder="Ejemplo: María Pérez Sánchez" id="autorFicha" name="autorFicha" type="text" value="" />
+<input class="normal input" placeholder="Ejemplo: María Pérez Sánchez" id="autorFicha" name="autorFicha" type="text" value="Iv&aacute;n Eixarch" />
 </li>
 
 <li class="field">
@@ -78,12 +88,12 @@
 
 <li class="field">
 <label class="narrow inline" for="dni">DNI/NIE</label>
-<input class="normal input" placeholder="Ejemplo: 12345678Z" id="dni" name="dni" type="text" value="12345678Z" required />
+<input class="normal input" placeholder="Ejemplo: 12345678Z" id="dni" name="dni" type="text" value="" required />
 </li>
 
 <li class="field">
 <label class="narrow inline" for="direccion">Dirección actual</label>
-<input class="normal input" placeholder="Ejemplo: Calle Afectados nº10, 2ºB" id="direccion" name="direccion" type="text" value="Calle Desconocida S/N" />
+<input class="normal input" placeholder="Ejemplo: Calle Afectados nº10, 2ºB" id="direccion" name="direccion" type="text" value="" />
 </li>
 
 <li class="field">
@@ -95,7 +105,7 @@
 </div>
 </li>
 
-<input type="hidden" id="idCiudad" name="idCiudad" data-rel="select-idCiudad" value="1979" />
+<input type="hidden" id="idCiudad" name="idCiudad" data-rel="select-idCiudad" data-provincia="provincia" value="" />
 <li class="field">
 <label class="narrow inline" for="select-idCiudad">Ciudad</label>
 <div class="picker normal">
@@ -105,7 +115,7 @@
 </div>
 </li>
 
-<input type="hidden" id="nacionalidad1" name="nacionalidad1" data-rel="select-nacionalidad1" value="ES" />
+<input type="hidden" id="nacionalidad1" name="nacionalidad1" data-rel="select-nacionalidad1" value="" />
 <li class="field">
 <label class="narrow inline" for="select-nacionalidad1">Nacionalidad</label>
 <div class="picker normal">
@@ -348,7 +358,7 @@
 </select>
 </div>
 </li>
-<input type="hidden" id="nacionalidad2" name="nacionalidad2" data-rel="select-nacionalidad2" value="AR" />
+<input type="hidden" id="nacionalidad2" name="nacionalidad2" data-rel="select-nacionalidad2" value="" />
 <li class="field">
 <label class="narrow inline" for="nacionalidad2">2ª nacionalidad</label>
 <div class="picker normal">
@@ -592,7 +602,7 @@
 </div>
 </li>
 
-<input type="hidden" id="relacionHipoteca" name="relacionHipoteca" data-rel="select-relacionHipoteca" value="TITULAR" />
+<input type="hidden" id="relacionHipoteca" name="relacionHipoteca" data-rel="select-relacionHipoteca" value="" />
 <li class="field">
 <label class="narrow inline" for="select-relacionHipoteca">Relación con hipoteca</label>
 <div class="picker normal">
@@ -604,7 +614,7 @@
 </div>
 </li>
 
-<input type="hidden" id="comoHasContactado" name="comoHasContactado" data-rel="select-comoHasContactado" value="BOCA_OREJA" />
+<input type="hidden" id="comoHasContactado" name="comoHasContactado" data-rel="select-comoHasContactado" value="" />
 <li class="field">
 <label class="narrow inline" for="select-comoHasContactado">¿Cómo has contactado?</label>
 <div class="picker normal">
@@ -626,20 +636,20 @@
 <ul>
 <li class="field">
 <label class="narrow inline" for="correo">Correo electrónico</label>
-<input class="normal input" placeholder="Ejemplo: usuario@dominio.es" id="correo" name="correo" type="email" value="prueba@prueba.com" />
+<input class="normal input" placeholder="Ejemplo: usuario@dominio.es" id="correo" name="correo" type="email" value="" />
 </li>
 
 <li class="field">
 <label class="narrow inline" for="tfMovil">Teléfono móvil</label>
-<input class="normal input numero" placeholder="Ejemplo: 666555444" id="tfMovil" name="tfMovil" type="tel" value="666555444" />
+<input class="normal input numero" placeholder="Ejemplo: 666555444" id="tfMovil" name="tfMovil" type="tel" value="" />
 </li>
 
 <li class="field">
 <label class="narrow inline" for="tfFijo">Teléfono fijo</label>
-<input class="normal input numero" placeholder="Ejemplo: 916665544" id="tfFijo" name="tfFijo" type="tel" value="916665544" />
+<input class="normal input numero" placeholder="Ejemplo: 916665544" id="tfFijo" name="tfFijo" type="tel" value="" />
 </li>
 
-<input type="hidden" id="dispuestoPrensa" name="dispuestoPrensa" data-rel="select-dispuestoPrensa" value="SI" />
+<input type="hidden" id="dispuestoPrensa" name="dispuestoPrensa" data-rel="select-dispuestoPrensa" value="" />
 <li class="field">
 	<label class="normal inline">¿Hablaría con medios?</label>
 	<div class="picker narrow">
@@ -662,24 +672,24 @@
 
 <li class="field">
 <label class="narrow inline" for="direccionHipoteca">Dirección vivienda hipotecada</label>
-<input class="normal input" placeholder="Ejemplo: Calle Afectados nº10, 2ºB" id="direccionHipoteca" name="direccionHipoteca" type="text" value="Calle Hipotecada" />
+<input class="normal input" placeholder="Ejemplo: Calle Afectados nº10, 2ºB" id="direccionHipoteca" name="direccionHipoteca" type="text" value="" />
 </li>
 
 <li class="field">
 <label class="narrow inline" for="CPHipoteca">Código Postal</label>
-<input class="normal input numero" placeholder="Ejemplo: 28080" id="CPHipoteca" name="CPHipoteca" type="text" value="28080" />
+<input class="normal input numero" placeholder="Ejemplo: 28080" id="CPHipoteca" name="CPHipoteca" type="text" value="" />
 </li>
 
 <li class="field">
 <label class="narrow inline" for="provinciaHipoteca">Provincia</label>
 <div class="picker normal">
-<select class="provincia" data-rel="select-idCiudadHipoteca">
+<select id="provinciaHipoteca" class="provincia" data-rel="select-idCiudadHipoteca">
     <option value='0'>(Seleccione)</option>
 </select>
 </div>
 </li>
 
-<input type="hidden" id="idCiudadHipoteca" name="idCiudadHipoteca" data-rel="select-idCiudadHipoteca" value="5007" />
+<input type="hidden" id="idCiudadHipoteca" name="idCiudadHipoteca" data-rel="select-idCiudadHipoteca" data-provincia="provinciaHipoteca" value="" />
 <li class="field">
 <label class="narrow inline" for="select-idCiudadHipoteca">Ciudad</label>
 <div class="picker normal">
@@ -689,7 +699,7 @@
 </div>
 </li>
 
-<input type="hidden" id="residesEnHipoteca" name="residesEnHipoteca" data-rel="select-residesEnHipoteca" value="ALQUILADA" />
+<input type="hidden" id="residesEnHipoteca" name="residesEnHipoteca" data-rel="select-residesEnHipoteca" value="" />
 <li class="field">
 <label class="narrow inline" for="select-residesEnHipoteca">¿Resides en ella?</label>
 <div class="picker normal">
@@ -708,139 +718,76 @@
 <fieldset>
 <legend><h3>Contrato hipoteca</h3></legend>
 <ul>
-<input type="hidden" id="bancoHipoteca" name="bancoHipoteca" data-rel="select-bancoHipoteca" value="0046" />
+<input type="hidden" id="bancoHipoteca" name="bancoHipoteca" data-rel="select-bancoHipoteca" value="" />
 <li class="field">
 <label class="normal inline" for="select-bancoHipoteca">Entidad bancaria</label>
 <div class="picker narrow">
 <select id="select-bancoHipoteca" data-rel="bancoHipoteca">
     <option value="">(Seleccione)</option>
-	<option value="0011">ALLFUNDS BANK, S.A.</option>
-	<option value="0136">ARESBANK</option>
-	<option value="0061">BANCA MARCH, S.A.</option>
-	<option value="0078">BANCA PUEYO, S.A.</option>
-	<option value="0188">BANCO ALCALA, S.A.</option>
-	<option value="0086">BANCO BANIF, S.A.</option>
-	<option value="0130">BANCO CAIXA GERAL, S.A.</option>
-	<option value="0234">BANCO CAMINOS, S.A.</option>
-	<option value="2108">BANCO CEISS</option>
-	<option value="0225">BANCO CETELEM, S.A.</option>
-	<option value="0198">BANCO COOPERATIVO ESPAÑOL, S.A.</option>
-	<option value="0091">BANCO DE ALBACETE, S.A.</option>
-	<option value="0115">BANCO DE CASTILLA-LA MANCHA, S.A.</option>
-	<option value="0003">BANCO DE DEPOSITOS, S.A.</option>
-	<option value="0059">BANCO DE MADRID, S.A.</option>
-	<option value="0132">BANCO DE PROMOCION DE NEGOCIOS, S.A. (PROMOBANC)</option>
-	<option value="0081">BANCO DE SABADELL, S.A.</option>
-	<option value="0093">BANCO DE VALENCIA, S.A.</option>
-	<option value="0057">BANCO DEPOSITARIO BBVA, S.A.</option>
-	<option value="0031">BANCO ETCHEVERRIA, S.A.</option>
-	<option value="0184">BANCO EUROPEO DE FINANZAS, S.A.</option>
-	<option value="0488">BANCO FINANCIERO Y DE AHORROS, S.A.</option>
-	<option value="0220">BANCO FINANTIA SOFINLOC, S.A.</option>
-	<option value="0046">BANCO GALLEGO, S.A.</option>
-	<option value="2086">BANCO GRUPO CAJATRES, S.A.</option>
-	<option value="0113">BANCO INDUSTRIAL DE BILBAO, S.A.</option>
-	<option value="0232">BANCO INVERSIS, S.A.</option>
-	<option value="0487">BANCO MARE NOSTRUM, S.A.</option>
-	<option value="0121">BANCO OCCIDENTAL, S.A.</option>
-	<option value="0235">BANCO PICHINCHA ESPAÑA, S.A.</option>
-	<option value="0075">BANCO POPULAR ESPAÑOL, S.A.</option>
-	<option value="0238">BANCO POPULAR PASTOR, SOCIEDAD ANONIMA</option>
-	<option value="0125">BANCOFAR, S.A.</option>
-	<option value="0186">BANCOMEDIOLANUM</option>
-	<option value="0229">BANCOPOPULAR-E, S.A.</option>
-	<option value="0030">BANESTO</option>
-	<option value="0038">BANESTO BANCO DE EMISIONES, S.A.</option>
-	<option value="0099">BANKIA BANCA PRIVADA, S.A.</option>
-	<option value="2038">BANKIA, S.A</option>
-	<option value="0128">BANKINTER, S.A.</option>
-	<option value="0138">BANKOA, S.A.</option>
-	<option value="0219">BANQUE MAROCAINE DU COMMERCE EXTERIEUR INTERNATIONAL, S.A.</option>
-	<option value="0065">BARCLAYS BANK, S.A.</option>
-	<option value="2430">BBK</option>
-	<option value="0237">BBK BANK CAJASUR, S.A.</option>
-	<option value="0182">BBVA</option>
-	<option value="0129">BBVA BANCO DE FINANCIACION, S.A.</option>
-	<option value="0058">BNP PARIBAS ESPAÑA, S.A.</option>
-	<option value="2427">CAI</option>
-	<option value="2423">CAIXA D'ESTALVIS DEL PENEDES</option>
-	<option value="2100">CAIXABANK, S.A.</option>
-	<option value="2416">CAJA CANTABRIA</option>
-	<option value="2428">CAJA CIRCULO</option>
-	<option value="2422">CAJA DE AHORROS DE MURCIA</option>
-	<option value="2045">CAJA DE AHORROS Y MONTE DE PIEDAD DE ONTINYENT</option>
-	<option value="2429">CAJA DE BADAJOZ</option>
-	<option value="2425">CAJA ESPAÑA DE INVERSIONES, SALAMANCA Y SORIA, CAJA DE AHORROS  Y MONTE DE PIEDAD</option>
-	<option value="2432">CAJA VITAL</option>
-	<option value="2415">CAJAEXTREMADURA</option>
-	<option value="2414">CAJASTUR</option>
-	<option value="2013">CATALUNYA BANC,</option>
-	<option value="2433">CECA</option>
-	<option value="2000">CECABANK, S.A.</option>
-	<option value="0122">CITIBANK ESPAÑA, S.A.</option>
-	<option value="2056">COLONYA</option>
-	<option value="0019">DB-S.A.E.</option>
-	<option value="0231">DEXIA SABADELL, S.A.</option>
-	<option value="0211">EBN BANCO DE NEGOCIOS, S.A.</option>
-	<option value="0223">GE MONEY BANK</option>
-	<option value="2420">IBERCAJA</option>
-	<option value="2085">IBERCAJA BANCO, S.A.</option>
-	<option value="2431">KUTXA</option>
-	<option value="2095">KUTXABANK, S.A</option>
-	<option value="2401">LA CAIXA</option>
-	<option value="2421">LA GENERAL</option>
-	<option value="2048">LIBERBANK</option>
-	<option value="0236">LLOYDS BANK INTERNATIONAL, S.A.</option>
-	<option value="2080">NCG BANCO, S.A.</option>
-	<option value="0133">NUEVO MICRO BANK, S.A.</option>
-	<option value="0073">OPEN BANK, S.A.</option>
-	<option value="0233">POPULAR BANCA PRIVADA, S.A.</option>
-	<option value="0200">PRIVAT BANK DEGROOF, S.A.</option>
-	<option value="0094">RBC INVESTOR</option>
-	<option value="0083">RENTA 4 BANCO, S.A.</option>
-	<option value="2424">SA NOSTRA</option>
-	<option value="0049">SANTANDER</option>
-	<option value="0224">SANTANDER CONSUMER FINANCE, S.A.</option>
-	<option value="0036">SANTANDER INVESTMENT, S.A.</option>
-	<option value="1490">SELF TRADE BANK</option>
-	<option value="0216">TARGOBANK, S.A.</option>
-	<option value="0226">UBS BANK, S.A.</option>
-	<option value="2426">UNICAJA</option>
-	<option value="2103">UNICAJA BANCO, S.A.</option>
-	<option value="2107">UNNIM BANC, S.A</option>
-	<option value="0227">UNO-E</option>
+	<option value='0061'>BANCA MARCH</option>
+	<option value='0225'>BANCO CETELEM</option>
+	<option value='0487'>BANCO MARE NOSTRUM BMN (C.MURCIA, C.PENEDES, C.GRANADA, SA NOSTRA)</option>
+	<option value='0235'>BANCO PICHINCHA ESPAÑA</option>
+	<option value='0075'>BANCO POPULAR (B.PASTOR, B.POPULAR)</option>
+	<option value='0081'>BANCO SABADELL (B.SABADELL, GUIPUZCOANO, CAM, URQUIJO)</option>
+	<option value='0038'>BANESTO</option>
+	<option value='2038'>BANKIA (C.MADRID, BANCAJA, C.INSULAR CANARIAS, C.LAIETANA, C.AVILA, C.SEGOVIA, C.RIOJA)</option>
+	<option value='0128'>BANKINTER</option>
+	<option value='0065'>BARCLAYS BANK</option>
+	<option value='0182'>BBVA (BBV, UNNIM-C.SABADELL, C.TERRASSA, C.MANLLEU)</option>
+	<option value='0058'>BNP PARIBAS ESPAÑA</option>
+	<option value='2100'>CAIXABANK (LA CAIXA, CAIXA GIRONA, BANCA CÍVICA-CAJASOL, C. NAVARRA, CAJACANARIAS, C. BURGOS-C. GUADALAJARA, BANCO DE VALENCIA)</option>
+	<option value='3025'>CAJA DE CRÉDITO INGENIEROS (COOP.CRE)</option>
+	<option value='3058'>CAJAS RURALES UNIDAS (GRUPO COOPERATIVO CAJAMAR, GRUPO CRM-RURALCAJA)</option>
+	<option value='2013'>CATALUNYA BANK CX (C.CATALUNYA, C.TARRAGONA, C. MANRESA)</option>
+	<option value='0122'>CITIBANK ESPAÑA</option>
+	<option value='8596'>CREDIFIMO</option>
+	<option value='0019'>DEUTSCHE BANK, SOCIEDAD ANONIMA ESPAÑOLA</option>
+	<option value='0223'>GENERAL ELECTRIC CAPITAL BANK</option>
+	<option value='2085'>IBERCAJA BANCO (CAJA 3-CAI, C.CÍRCULO, C.BADAJOZ) </option>
+	<option value='1465'>ING DIRECT</option>
+	<option value='2095'>KUTXABANK (BBK, C.VITAL, KUTXA)</option>
+	<option value='2048'>LIBERBANK (C.CANTABRIA, GRUPO CAJASTUR-CCM, EXTREMADURA)</option>
+	<option value='0236'>LLOYDS BANK INTERNATIONAL</option>
+	<option value='2080'>NCG BANCO (C.GALICIA, CAIXANOVA)</option>
+	<option value='0049'>SANTANDER</option>
+	<option value='1491'>TRIODOS BANK</option>
+	<option value='0226'>UBS BANK</option>
+	<option value='8512'>UCI</option>
+	<option value='2103'>UNICAJA BANCO (C.JAEN, CAJA ESPAÑA-DUERO)</option>
+	<option value='OTRO'>OTRO</option>
 </select>
 </div>
 </li>
 
 <li class="field">
 <label class="normal inline" for="bancoOrigenHipoteca">Entidad bancaria de origen</label>
-<input class="narrow input" placeholder="Sólo si es distinta" id="bancoOrigen" name="bancoOrigenHipoteca" type="text" value="Caja Madrid" />
+<input class="narrow input" placeholder="Sólo si es distinta" id="bancoOrigen" name="bancoOrigenHipoteca" type="text" value="" />
 </li>
 
 <li class="field">
 <label class="normal inline" for="anyoFirmaHipoteca">Año firma</label>
-<input class="narrow input numero" placeholder="Ejemplo: 1999" id="anyoFirmaHipoteca" name="anyoFirmaHipoteca" type="text" value="1990" />
+<input class="narrow input numero" placeholder="Ejemplo: 1999" id="anyoFirmaHipoteca" name="anyoFirmaHipoteca" type="text" value="" />
 </li>
 
 <li class="field">
 <label class="normal inline" for="importeHipoteca">Importe préstamo inicial</label>
-<input class="narrow input numero" placeholder="Ejemplo: 120000" id="importeHipoteca" name="importeHipoteca" type="text" value="120000" />
+<input class="narrow input numero" placeholder="Ejemplo: 120000" id="importeHipoteca" name="importeHipoteca" type="text" value="" />
 </li>
 
 <li class="field">
 <label class="normal inline" for="anyosHipoteca">Plazo hipoteca (en años)</label>
-<input class="narrow input numero" placeholder="Ejemplo: 20" id="anyosHipoteca" name="anyosHipoteca" type="text" value="20" />
+<input class="narrow input numero" placeholder="Ejemplo: 20" id="anyosHipoteca" name="anyosHipoteca" type="text" value="" />
 </li>
 
 <li class="field">
 <label class="normal inline" for="tasacionHipoteca">Valor tasación subasta</label>
-<input class="narrow input numero" placeholder="Ejemplo: 120000" id="tasacionHipoteca" name="tasacionHipoteca" type="text" value="100000" />
+<input class="narrow input numero" placeholder="Ejemplo: 120000" id="tasacionHipoteca" name="tasacionHipoteca" type="text" value="" />
 </li>
 
 <li class="field">
 <label class="normal inline" for="numTitularesHipoteca">Número de titulares</label>
-<input class="narrow input numero" placeholder="Ejemplo: 3" id="numTitularesHipoteca" name="numTitularesHipoteca" type="text" value="2" />
+<input class="narrow input numero" placeholder="Ejemplo: 3" id="numTitularesHipoteca" name="numTitularesHipoteca" type="text" value="" />
 </li>
 
 <input type="hidden" id="avalistasHipoteca" name="avalistasHipoteca" data-rel="select-avalistasHipoteca" value="" />
@@ -860,7 +807,7 @@
 
 <li class="field">
 <label class="normal inline" for="numAvalistasHipoteca">Número de avalistas</label>
-<input class="narrow input numero" placeholder="Ejemplo: 3" id="numAvalistasHipoteca" name="numAvalistasHipoteca" type="text" value="0" />
+<input class="narrow input numero" placeholder="Ejemplo: 3" id="numAvalistasHipoteca" name="numAvalistasHipoteca" type="text" value="" />
 </li>
 
 <!-- FIX ME -->
@@ -912,25 +859,25 @@
 <ul>
 <li class="field">
 <label class="normal inline" for="pendienteAmortizarHipoteca">Capital pendiente de amortizar</label>
-<input class="narrow input numero" placeholder="Ejemplo: 30000" id="pendienteAmortizarHipoteca" name="pendienteAmortizarHipoteca" type="text" value="30000" />
+<input class="narrow input numero" placeholder="Ejemplo: 30000" id="pendienteAmortizarHipoteca" name="pendienteAmortizarHipoteca" type="text" value="" />
 </li>
 
 <li class="field">
 <label class="normal inline" for="cuotaMensualHipoteca">Cuota mensual actual</label>
-<input class="narrow input numero" placeholder="Ejemplo: 500" id="cuotaMensualHipoteca" name="cuotaMensualHipoteca" type="text" value="500" />
+<input class="narrow input numero" placeholder="Ejemplo: 500" id="cuotaMensualHipoteca" name="cuotaMensualHipoteca" type="text" value="" />
 </li>
 
 <li class="field">
 <label class="normal inline" for="importeRefinanciacionHipoteca">Importe refinanciación</label>
-<input class="narrow input numero" placeholder="Ejemplo: 25000" id="importeRefinanciacionHipoteca" name="importeRefinanciacionHipoteca" type="text" value="25000" />
+<input class="narrow input numero" placeholder="Ejemplo: 25000" id="importeRefinanciacionHipoteca" name="importeRefinanciacionHipoteca" type="text" value="" />
 </li>
 
 <li class="field">
 <label class="normal inline" for="precioCompraVentaHipoteca">Precio compra-venta escriturado</label>
-<input class="narrow input numero" placeholder="Ejemplo: 55000" id="precioCompraVentaHipoteca" name="precioCompraVentaHipoteca" type="text" value="55000" />
+<input class="narrow input numero" placeholder="Ejemplo: 55000" id="precioCompraVentaHipoteca" name="precioCompraVentaHipoteca" type="text" value="" />
 </li>
 
-<input type="hidden" id="avalistaOtraHipoteca" name="avalistaOtraHipoteca" data-rel="select-avalistaOtraHipoteca" value="SI_SIN_DIFICULTAD" />
+<input type="hidden" id="avalistaOtraHipoteca" name="avalistaOtraHipoteca" data-rel="select-avalistaOtraHipoteca" value="" />
 <li class="field">
 <label class="normal inline" for="select-avalistaOtraHipoteca">¿Eres avalistas de otras hipotecas?</label>
 <div class="picker narrow">
@@ -945,7 +892,7 @@
 
 <li class="field">
 <label class="normal inline" for="importeOtrosPrestamos">Importe otros préstamos</label>
-<input class="narrow input numero" placeholder="Ejemplo: 15000" id="importeOtrosPrestamos" name="importeOtrosPrestamos" type="text" value="0" />
+<input class="narrow input numero" placeholder="Ejemplo: 15000" id="importeOtrosPrestamos" name="importeOtrosPrestamos" type="text" value="" />
 </li>
 
 <li class="field">
@@ -959,86 +906,49 @@
 		</div>
 		<!-- SECCIÓN: Familia y trabajo -->
 		<div class="tab-content eight columns">
-			<!-- Sección "Familia y Trabajo" "DATOS SOCIALES Y LABORALES"-->
+			<!-- Sección "Familia y Trabajo" -->
 
 <ul>
 <li class="append field">
-<input class="wide input numero" type="text" id="numUnidadFamiliar" placeholder="Número personas unidad familiar" />
+<input class="wide input numero" type="text" id="numUnidadFamiliar" placeholder="Número personas unidad familiar"  />
 <div class="medium primary btn"><a href="#" id="boton_unidad_familiar">Añadir</a></div>
 </li>
 </ul>
 
 <table id="unidadfamiliar">
-<!--
-<tr>
-<td class="field"><input class="text input" type="text" placeholder="Año nacimiento" /></td>
-<td class="field">
-<select>
-	<option value='' selected>Sexo</option>
-    <option value='H'>Hombre</option>
-	<option value='M'>Mujer</option>
-</select>
-</td>
-<td class="field">
-<select>
-	<option value=''>Situación laboral</option>
-    <option value='TRABAJO_CON_CONTRATO'>Trabajo con contrato</option>
-    <option value='TRABAJO_SIN_CONTRATO'>Trabajo sin contrato</option>
-    <option value='PARADO'>Parado</option>
-    <option value='AYUDAS_PUBLICAS'>Otras ayudas públicas</option>
-    <option value='PENSIONISTA'>Pensionista</option>
-    <option value='ESTUDIANTE'>Estudiante</option>
-</select>
-</td>
-<td class="field">
-<select>
-	<option value='' selected>Discapacidad</option>
-    <option value='SI'>Sí</option>
-	<option value='NO'>No</option>
-</select>
-</td>
-<td class="field">
-<select>
-	<option value='' selected>Relación hipoteca</option>
-    <option value='TITULAR'>Titular</option>
-	<option value='AVALISTA'>Avalista</option>
-	<option value='NADA'>Nada</option>
-</select>
-</td>
-</tr>
--->
 </table>
 
 <h4>Ingresos Unidad Familiar</h4>
 <ul>
 <li class="field">
 <label class="normal inline" for="brutoAnualTitulares">Ingreso bruto anual titulares</label>
-<input class="narrow input numero" placeholder="Ejemplo: 25000" id="brutoAnualTitulares" name="brutoAnualTitulares" type="text" value="0" />
+<input class="narrow input numero" placeholder="Ejemplo: 25000" id="brutoAnualTitulares" name="brutoAnualTitulares" type="text" value="" />
 </li>
 <li class="field">
 <label class="normal inline" for="netoMesTitulares">Ingreso neto mensual titulares</label>
-<input class="narrow input numero" placeholder="Ejemplo: 1500" id="netoMesTitulares" name="netoMesTitulares" type="text" value="0" />
+<input class="narrow input numero" placeholder="Ejemplo: 1500" id="netoMesTitulares" name="netoMesTitulares" type="text" value="" />
 </li>
 <li class="field">
 <label class="normal inline" for="netoMesFamilia">Ingreso neto mensual familia</label>
-<input class="narrow input numero" placeholder="Ejemplo: 1500" id="netoMesFamilia" name="netoMesFamilia" type="text" value="0" />
+<input class="narrow input numero" placeholder="Ejemplo: 1500" id="netoMesFamilia" name="netoMesFamilia" type="text" value="" />
 </li>
 </ul>
-<!-- FIX ME -->
+
 <h4>Principales motivos de impago</h4>
-<label><input value="0" type="checkbox">
+<input type="hidden" id="motivosImpago" name="motivosImpago" class="casillas" value="" />
+<label><input value="PARO" type="checkbox" data-rel="motivosImpago">
 	<spam></spam>Paro
 </label>
-<label><input value="0" type="checkbox">
+<label><input value="DIVORCIO" type="checkbox" data-rel="motivosImpago">
 	<spam></spam>Separación/Divorcio
 </label>
-<label><input value="0" type="checkbox">
+<label><input value="ENFERMEDAD" type="checkbox" data-rel="motivosImpago">
 	<spam></spam>Enfermedad/Baja
 </label>
-<label><input value="0" type="checkbox">
+<label><input value="CUOTA" type="checkbox" data-rel="motivosImpago">
 	<spam></spam>Subida cuota de hipoteca
 </label>
-<label><input value="0" type="checkbox">
+<label><input value="DEUDAS" type="checkbox" data-rel="motivosImpago">
 	<spam></spam>Muchas deudas contraidas
 </label>
 
@@ -1080,46 +990,45 @@
 	</ul>
 </div>
 
-
-<h4>¿Tiene dificultades para cubrir las siguientes necesidades básicas?</h4>
-<label><input value="0" type="checkbox">
-	<spam></spam>Vestimenta
-</label>
-<label><input value="0" type="checkbox">
-	<spam></spam>Agua, luz, teléfono, etc.
-</label>
+<h4>¿Tiene dificultades para cubrir alguna necesidad básica (agua, luz, teléfono, vestimenta, internet, transporte, escuela, etc)?</h4>
+<ul>
+<li class="field">
+<input class="xwide input" placeholder="Explica" id="dificultadesNecesidadesBasicas" name="dificultadesNecesidadesBasicas" type="text" value="" />
+</li>
+</ul>
 
 <h4>¿Cómo está afectando a su vida/salud?</h4>
-<label><input value="0" type="checkbox">
+<input type="hidden" id="impactoSalud" name="impactoSalud" class="casillas" value="" />
+<label><input value="INSOMNIO" type="checkbox" data-rel="impactoSalud">
 	<spam></spam>Insomnio
 </label>
-<label><input value="0" type="checkbox">
+<label><input value="DROGAS" type="checkbox" data-rel="impactoSalud">
 	<spam></spam>Aumento del consumo de alcohol/drogas
 </label>
-<label><input value="0" type="checkbox">
+<label><input value="ANSIEDAD" type="checkbox" data-rel="impactoSalud">
 	<spam></spam>Ansiedad
 </label>
-<label><input value="0" type="checkbox">
+<label><input value="DEPRESION" type="checkbox" data-rel="impactoSalud">
 	<spam></spam>Depresión
 </label>
-<label><input value="0" type="checkbox">
+<label><input value="TENSION_FAMILIAR" type="checkbox" data-rel="impactoSalud">
 	<spam></spam>Tensión familiar
 </label>
-<label><input value="0" type="checkbox">
+<label><input value="DESATENCION_HIJOS" type="checkbox" data-rel="impactoSalud">
 	<spam></spam>Desatención hijos
 </label>
 
 		</div>
 		<!-- SECCIÓN: Acciones previas a la PAH -->
 		<div class="tab-content eight columns">
-			<!-- Sección "Proceso y acciones pre-PAH" -->
+			
 <ul>
 <input type="hidden" id="fasePrePAH" name="fasePrePAH" data-rel="select-fasePrePAH" value="" />
 <li class="field">
 <label class="inline"><h4>Fase en la que se encuentra</h4></label>
 <div class="picker xwide">
 <select id="select-fasePrePAH" data-rel="fasePrePAH">
-	<option value='' selected>(Seleccione)</option>
+	<option value=''>(Seleccione)</option>
     <option value='PAGADO'>Al día con dificultades</option>
 	<option value='NO_PAGADO'>He dejado de pagar, pero no tengo demanda</option>
 	<option value='DEMANDA'>He recibido demanda</option>
@@ -1128,7 +1037,6 @@
 </select>
 </div>
 </li>
-
 </ul>
 
 <input type="hidden" id="renegociacionPrePAH" name="renegociacionPrePAH" data-rel="select-renegociacionPrePAH" value="" />
@@ -1157,6 +1065,7 @@
 </li>
 </ul>
 </div>
+<input type="hidden" id="tratoDenigrantePrePAH" name="tratoDenigrantePrePAH" class="casillas" value="" />
 <h4>¿Ha recibido algun tipo de trato denigrante por parte del banco?</h4>
 <div class="desplegable">
 <div class="field">
@@ -1170,40 +1079,40 @@
 </div>
 <ul>
 	<li>
-		<label><input type="checkbox" value="TF_CASA"><span></span> Llamadas telefónicas a casa</label>
+		<label><input type="checkbox" value="TF_CASA" data-rel="tratoDenigrantePrePAH"><span></span> Llamadas telefónicas a casa</label>
 	</li>
 	<li>
-		<label><input type="checkbox" value="TF_FAMILIA"><span></span> Llamadas telefónicas a familiares</label>
+		<label><input type="checkbox" value="TF_FAMILIA" data-rel="tratoDenigrantePrePAH"><span></span> Llamadas telefónicas a familiares</label>
 	</li>
 	<li>
-		<label><input type="checkbox" value="TF_TRABAJO"><span></span> Llamadas telefónicas al trabajo</label>
+		<label><input type="checkbox" value="TF_TRABAJO" data-rel="tratoDenigrantePrePAH"><span></span> Llamadas telefónicas al trabajo</label>
 	</li>
 	<li>
-		<label><input type="checkbox" value="ACOSO_AVALISTAS"><span></span> Acoso a avalistas</label>
+		<label><input type="checkbox" value="ACOSO_AVALISTAS" data-rel="tratoDenigrantePrePAH"><span></span> Acoso a avalistas</label>
 	</li>
 	<li>
-		<label><input type="checkbox" value="ACOSO_MENORES"><span></span> Acoso a niños menores</label>
+		<label><input type="checkbox" value="ACOSO_MENORES" data-rel="tratoDenigrantePrePAH"><span></span> Acoso a niños menores</label>
 	</li>
 	<li>
-		<label><input type="checkbox" value="CUSTODIA_MENORES"><span></span> Amenazas con perder la custodia de sus hijos</label>
+		<label><input type="checkbox" value="CUSTODIA_MENORES" data-rel="tratoDenigrantePrePAH"><span></span> Amenazas con perder la custodia de sus hijos</label>
 	</li>
 	<li>
-		<label><input type="checkbox" value="POLICIA"><span></span> Amenazas con enviar a la policía</label>
+		<label><input type="checkbox" value="POLICIA" data-rel="tratoDenigrantePrePAH"><span></span> Amenazas con enviar a la policía</label>
 	</li>
 	<li>
-		<label><input type="checkbox" value="COBRADORES"><span></span> Envío de cobradores</label>
+		<label><input type="checkbox" value="COBRADORES" data-rel="tratoDenigratePrePAH"><span></span> Envío de cobradores</label>
 	</li>
 	<li>
-		<label><input type="checkbox" value="INSULTOS"><span></span> Insultos y desprecio</label>
+		<label><input type="checkbox" value="INSULTOS" data-rel="tratoDenigrantePrePAH"><span></span> Insultos y desprecio</label>
 	</li>
 	<li>
-		<label><input type="checkbox" value="ESPERA"><span></span> Largas horas de espera</label>
+		<label><input type="checkbox" value="ESPERA" data-rel="tratoDenigrantePrePAH"><span></span> Largas horas de espera</label>
 	</li>
 	<li>
-		<label><input type="checkbox" value="HERENCIA"><span></span> Presión psicológica por la herencia de la deuda a los hijos</label>
+		<label><input type="checkbox" value="HERENCIA" data-rel="tratoDenigrantePrePAH"><span></span> Presión psicológica por la herencia de la deuda a los hijos</label>
 	</li>
 	<li class="field">
-		<input class="input xwide" placeholder="Explica" type="text" value="">
+		<input class="input xwide" placeholder="Explica" type="text" value="" data-rel="tratoDenigrantePrePAH">
 	</li>
 </ul>
 </div>
@@ -1218,12 +1127,12 @@
 	<option value='NO'>No</option>
 </select>
 </div>
-	<input type="hidden" id="valoracionServSocialesPrePAH" name="valoracionServSocialesPrePAH" data-rel="select-valoracionServSocialesPrePAH" value="0" />
+	<input type="hidden" id="valoracionServSocialesPrePAH" name="valoracionServSocialesPrePAH" data-rel="select-valoracionServSocialesPrePAH" value="" />
 	<ul>
 	<li class="field">
 		<div class="picker xwide">
-		<select id="select-valoracionServSocialesPrePAH" data-rel="valoracionServSocialesPrePAH">
-			<option value=''>Valoración (del 0 al 10)</option>
+		<select id="select-valoracionServSocialesPrePAH" data-rel="valoracionServSocialesPrePAH" class="numero">
+			<option value='-1'>Valoración (del 0 al 10)</option>
 			<option value='0'>0</option>
 			<option value='1'>1</option>
 			<option value='2'>2</option>
@@ -1254,12 +1163,12 @@
 	<option value='NO'>No</option>
 </select>
 </div>
-	<input type="hidden" id="valoracionServMediacionPrePAH" name="valoracionServMediacionPrePAH" data-rel="select-valoracionServMediacionPrePAH" value="0" />
+	<input type="hidden" id="valoracionServMediacionPrePAH" name="valoracionServMediacionPrePAH" data-rel="select-valoracionServMediacionPrePAH" value="" />
 <ul>
 	<li class="field">
 		<div class="picker xwide">
-		<select id="select-valoracionServMediacionPrePAH" data-rel="valoracionServMediacionPrePAH">
-			<option value=''>Valoración (del 0 al 10)</option>
+		<select id="select-valoracionServMediacionPrePAH" data-rel="valoracionServMediacionPrePAH" class="numero">
+			<option value='-1'>Valoración (del 0 al 10)</option>
 			<option value='0'>0</option>
 			<option value='1'>1</option>
 			<option value='2'>2</option>
@@ -1294,11 +1203,11 @@
 	<li class="field">
 		<input class="input xwide" placeholder="¿Cual?" type="text" value="">
 	</li>
-	<input type="hidden" id="valoracionAsocApoyoPrePAH" name="valoracionAsocApoyoPrePAH" data-rel="select-valoracionAsocApoyoPrePAH" value="0" />
+	<input type="hidden" id="valoracionAsocApoyoPrePAH" name="valoracionAsocApoyoPrePAH" data-rel="select-valoracionAsocApoyoPrePAH" value="" />
 	<li class="field">
 		<div class="picker xwide">
-		<select id="select-valoracionApoyoPrePAH" data-rel="valoracionAsocApoyoPrePAH">
-			<option value=''>Valoración (del 0 al 10)</option>
+		<select id="select-valoracionApoyoPrePAH" data-rel="valoracionAsocApoyoPrePAH" class="numero">
+			<option value='-1'>Valoración (del 0 al 10)</option>
 			<option value='0'>0</option>
 			<option value='1'>1</option>
 			<option value='2'>2</option>
@@ -1348,8 +1257,9 @@
 	</select>
 	</div>
 	<ul>
+	<input class="input xwide fecha" id="fechaImpago" name="fechaImpago" data-rel="input-fechaImpago" type="hidden" value="">
 	<li class="field">
-		<input class="input xwide" name="fechaImpago" placeholder="Fecha del impago" type="date" value="0000-00-00">
+		<input class="input xwide fecha" id="input-fechaImpago" data-rel="fechaImpago" placeholder="Fecha del impago. Ej: 30/04/2000" type="text">
 	</li>
 	</ul>
 </div>
@@ -1363,20 +1273,21 @@
 	</select>
 	</div>
 	<ul>
+	<input class="input xwide fecha" id="fechaDemandaJudicial" name="fechaDemandaJudicial" data-rel="input-fechaDemandaJudicial" type="hidden" value="">
 	<li class="field">
-		<input class="input xwide" name="fechaDemandaJudicial" placeholder="Fecha demanda judicial" type="date" value="0000-00-00">
+		<input class="input xwide fecha" id="input-fechaDemandaJudicial" data-rel="fechaDemandaJudicial" placeholder="Fecha demanda judicial. Ej: 30/04/2000" type="text"">
 	</li>
 	<li class="field">
 		<input class="input xwide" name="numEjecucion" placeholder="NUM EJECUCIÓN" type="text" value="">
 	</li>
 	<li class="field">
-		<input class="input xwide" name="cantidadReclamadaPrincipal" placeholder="Cantidad reclamada principal" type="text" value="0">
+		<input class="input xwide numero" name="cantidadReclamadaPrincipal" placeholder="Cantidad reclamada principal" type="text" value="">
 	</li>
 	<li class="field">
-		<input class="input xwide" name="cantidadReclamadaIntereses" placeholder="Cantidad reclamada en intereses" type="text" value="0">
+		<input class="input xwide numero" name="cantidadReclamadaIntereses" placeholder="Cantidad reclamada en intereses" type="text" value="">
 	</li>
 	<li class="field">
-		<input class="input xwide" name="costasJudiciales" placeholder="Costas judiciales" type="text" value="0">
+		<input class="input xwide numero" name="costasJudiciales" placeholder="Costas judiciales" type="text" value="">
 	</li>
 	<input type="hidden" id="justiciaGratuita" name="justiciaGratuita" data-rel="select-justiciaGratuita" value="" />
 	<li class="field">
@@ -1410,6 +1321,8 @@
 <fieldset>
 <legend><h4>Subastas</h4></legend>
 <div class="medium secondary btn"><a href="" id="boton_subasta">Añadir fecha de subasta</a></div>
+<div class="medium danger btn"><a href="" id="boton_borrar_subastas">Borrar todas las subastas</a></div>
+<hr>
 <table id="subastas">
 </table>
 </fieldset>
@@ -1417,6 +1330,8 @@
 <fieldset>
 <legend><h4>Desahucios</h4></legend>
 <div class="medium secondary btn"><a href="" id="boton_desahucio">Añadir fecha de desahucio</a></div>
+<div class="medium danger btn"><a href="" id="boton_borrar_desahucios">Borrar todos los desahucios</a></div>
+<hr>
 <table id="desahucios">
 </table>
 
@@ -1447,8 +1362,9 @@
 	</select>
 	</div>
 	<ul>
+	<input class="input xwide fecha" id="fechaRecursoTJUE" name="fechaRecursoTJUE" data-rel="input-fechaRecursoTJUE" type="hidden" value="">
 	<li class="field">
-		<input class="input xwide" name="fechaRecursoTJUE" placeholder="Fecha" type="date" value="0000-00-00">
+		<input class="input xwide fecha" id="input-fechaRecursoTJUE" placeholder="Fecha. Ej: 13/01/2001" type="text">
 	</li>
 	</ul>
 </div>
@@ -1459,24 +1375,24 @@
 		<div class="tab-content eight columns">
 			<!-- Sección "Seguimiento negociación" -->
 
-<!-- FIX ME -->
 <fieldset>
+<input type="hidden" id="objetivosNegociacion" name="objetivosNegociacion" class="casillas" value="" />
 <legend><h4>¿Qué quiere conseguir?</h4></legend>
 <ul>
 	<li>
-		<label><input type="checkbox" value="DACION"><span></span> Dación en pago</label>
+		<label><input type="checkbox" value="DACION" data-rel="objetivosNegociacion"><span></span> Dación en pago</label>
 	</li>
 	<li>
-		<label><input type="checkbox" value="RENEGOCIACION"><span></span> Renegociación</label>
+		<label><input type="checkbox" value="RENEGOCIACION" data-rel="objetivosNegociacion"><span></span> Renegociación</label>
 	</li>
 	<li>
-		<label><input type="checkbox" value="CONDONACION"><span></span> Condonación</label>
+		<label><input type="checkbox" value="CONDONACION" data-rel="objetivosNegociacion"><span></span> Condonación</label>
 	</li>
 	<li>
-		<label><input type="checkbox" value="ALQUILER_SOCIAL"><span></span> Alquiler social</label>
+		<label><input type="checkbox" value="ALQUILER_SOCIAL" data-rel="objetivosNegociacion"><span></span> Alquiler social</label>
 	</li>
 	<li>
-		<label><input type="checkbox" value="QUITA"><span></span> Quita</label>
+		<label><input type="checkbox" value="QUITA" data-rel="objetivosNegociacion"><span></span> Quita</label>
 	</li>
 </ul>
 </fieldset>
@@ -1505,8 +1421,9 @@
 	</select>
 	</div>
 	<ul>
+	<input class="input xwide fecha" id="fechaDocumentacion" name="fechaDocumentacion" data-rel="input-fechaDocumentacion" type="hidden" value="">
 	<li class="field">
-		<input class="input xwide" name="fechaDocumentacion" placeholder="Fecha" type="date" value="0000-00-00">
+		<input class="input xwide fecha" id="input-fechaDocumentacion" data-rel="fechaDocumentacion" placeholder="Fecha documentación. Ej: 05/07/2013" type="text">
 	</li>
 	</ul>
 </li>
@@ -1595,13 +1512,13 @@
 	</div>
 </li>
 	<li class="field">
-		<input class="input xwide numero" name="precioAlquiler" placeholder="Precio alquiler" type="text" value="0">
+		<input class="input xwide numero" name="precioAlquiler" placeholder="Precio alquiler" type="text" value="">
+	</li>
+	<input class="input xwide fecha" id="fechaResolucion" name="fechaResolucion" data-rel="input-fechaResolucion" type="hidden" value="">
+	<li class="field">
+		<input class="input xwide fecha" id="input-fechaResolucion" data-rel="fechaResolucion" placeholder="Fecha resolución. Ej: 20/02/2013" type="text">
 	</li>
 	<li class="field">
-		<input class="input xwide" name="fechaResolucion" placeholder="Fecha resolución" type="date" value="0000-00-00">
-	</li>
-	<li class="field">
-		<!--<input class="input xwide" placeholder="Explica" type="text" value="">-->
 		<textarea name="observacionesResolucion" class="xwide" placeholder="Explica"></textarea>
 	</li>
 </ul>
@@ -1609,24 +1526,25 @@
 
 		</div>
 	</section>
-</form>
 </div>
 </div>
 
-<div style="width:100%;background-color:#eee;text-align:center;">
-powered by<br><a href="https://alabs.org"><img src="/img/logo_alabs.png" alt="alabs" width="99" height="36"></object></a>
-</div>
+</form>
+
 
 <script src="/js/ciudades.js"></script>
 <script src="/js/form-afectado.js"></script>
 
 
 	</div>
+	</div>
 
+	<footer>
+		powered by<br><a href="https://alabs.org"><img src="/img/logo_alabs.png" alt="alabs" width="99" height="36"></a>
+	</footer>
 
 	<script src="/js/lib/gumby.min.js"></script>
 	<script src="/js/plugins.js"></script>
 
     </body>
 </html>
-

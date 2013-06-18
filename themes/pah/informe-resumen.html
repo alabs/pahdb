@@ -60,7 +60,7 @@
 	<th>Resolucion vivienda</th>
 </tr>
 </thead>
-<tbody>
+<tbody style="display:none;">
 <repeat group="{{ @TABLA }}" value="{{ @FILA }}" counter="{{ @i }}">
 <tr data-id-afectado="{{ @FILA.idAfectado }}">
 	<td>{{ @FILA.nombre }}</td>
@@ -271,6 +271,8 @@ $(function() {
 		var idAfectado = $(this).data('id-afectado');
 		if (idAfectado != '') window.location.href = '/expediente/'+idAfectado;
 	});
+
+	$('#informe tbody').show();
 
 });
 </script>
