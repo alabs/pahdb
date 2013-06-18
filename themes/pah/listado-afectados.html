@@ -1,14 +1,25 @@
 <div class="row">
 	<h2><i class="icon-home"></i>Expedientes</h2>
 </div>
-<div id="buscador" class="row">
-	<div class="prepend append field">
-		<span class="adjoined"><a href="/expediente/" title="Nuevo expediente"><i class="icon-user-add"></i></a> <a href="/salir" title="Salir"><i class="icon-logout"></i></a><i class="icon-search"></i></span>
-		<input class="wide input" type="text" placeholder="DNI/NIE o nombre..." />
-		<div class="medium primary btn"><a href="" id="buscar">Buscar</a></div>
-		<span id="cargando" class="adjoined"><i class="icon-hourglass"></i></span>
-	</div>
+
+<div class="row">
+	<nav class="nav" gumby-fixed="top">
+		<div class="prepend append field">
+			<span class="adjoined">
+				<a href="{{ @BASE }}/expediente/" title="Nuevo expediente"><i class="icon-user-add"></i></a>
+				<i class="icon-search"></i>
+				<a href="{{ @BASE }}/informes/" title="Informes"><i class="icon-doc-text"></i></a>
+			</span>
+			<input id="busqueda" class="narrow input" type="text" placeholder="Filtra por DNI/NIE o nombre..." />
+			<span class="adjoined">
+				<a href="{{ @BASE }}/admin/" title="Administrar PAHs"><i class="icon-tools"></i></a>
+				<a href="{{ @BASE }}/salir/" title="Salir"><i class="icon-logout"></i></a>
+			</span>
+			<span id="cargando" class="adjoined"><i class="icon-hourglass"></i></span>
+		</div>
+	</nav>
 </div>
+
 <div class="row">
 	<check if="{{ isset(@aviso) }}">
 	<p class="danger alert">{{ @aviso }}</p>
@@ -40,14 +51,14 @@ var buscar = function(busqueda) {
 	$('#cargando').show();
 	$('.afectado h4, .afectado h5').each(function() {
 		var nombre = $(this).text().toUpperCase()
-		  , busqueda = $('#buscador input').val().toUpperCase();
-		if (nombre.indexOf(busqueda) >= 0) $(this).parents('.afectado').fadeIn();
+		  , busqueda = $('#busqueda').val().toUpperCase();
+		if (nombre.indexOf(busqueda) >= 0) $(this).parents('.afectado').show();
 	});
 	$('#cargando').fadeOut('slow');
 	$('#aviso>span').text($('.afectado:visible').length);
 }
-$('#buscar').on('click', function(e) {
-	e.preventDefault();
+$('#busqueda').on('keyup', function(e) {
+	//e.preventDefault();
 	$('.afectado').hide();
 	buscar();
 });
@@ -69,9 +80,11 @@ $('.borrar').on('click', function(e) {
 			alert('Error de conexión a la base de datos');
 		  },
 		  success: function(respuesta) {
-			$(respuesta).remove();
-			//Actualizamos conteo
-			$('#aviso>span').text($('#aviso>span').text()-1);
+			if (respuesta != 'ERROR') {
+				$(respuesta).remove();
+				//Actualizamos conteo
+				$('#aviso>span').text($('#aviso>span').text()-1);
+			}
 		  }
 		});
 	}

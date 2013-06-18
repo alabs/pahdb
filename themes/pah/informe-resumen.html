@@ -1,28 +1,26 @@
-<!--<div class="fixed" style="background-color:#fff;z-index:999;width:100%;">-->
-
 <div class="row">
 	<h2><i class="icon-home"></i> Informe</h2>
 </div>
 
 <div class="row">
-	<div class="prepend append field">
-		<span class="adjoined">
-			<a href="{{ @BASE }}/expediente/" title="Nuevo expediente"><i class="icon-user-add"></i></a>
-			<a href="{{ @BASE }}/expedientes/" title="Buscar por nombre o DNI/CIF"><i class="icon-search"></i></a>
-			<i class="icon-doc-text"></i>
-		</span>
-		<input id="busqueda" class="narrow input" type="text" placeholder="Búsqueda general" />
-		<span class="adjoined">
-			<a href="" id="boton_exportar" title="Exportar a CSV"><i class="icon-down-open-big"></i></a>
-			<a href="{{ @BASE }}/admin/" title="Administrar PAHs"><i class="icon-tools"></i></a>
-			<a href="{{ @BASE }}/salir/" title="Salir"><i class="icon-logout"></i></a>
-		</span>
-	</div>
+	<nav class="nav" gumby-fixed="top">
+		<div class="prepend append field">
+			<span class="adjoined">
+				<a href="{{ @BASE }}/expediente/" title="Nuevo expediente"><i class="icon-user-add"></i></a>
+				<a href="{{ @BASE }}/expedientes/" title="Buscar por nombre o DNI/CIF"><i class="icon-search"></i></a>
+				<i class="icon-doc-text"></i>
+			</span>
+			<span class="adjoined">
+				<a href="" id="boton_exportar" title="Exportar a CSV"><i class="icon-download"></i></a>
+			</span>
+			<input id="busqueda" class="narrow input" type="text" placeholder="Búsqueda general" />
+			<span class="adjoined">
+				<a href="{{ @BASE }}/admin/" title="Administrar PAHs"><i class="icon-tools"></i></a>
+				<a href="{{ @BASE }}/salir/" title="Salir"><i class="icon-logout"></i></a>
+			</span>
+		</div>
+	</nav>
 </div>
-
-<!--</div>-->
-
-<!--<div class="row" style="padding-top:120px;">-->
 <div class='row'>Número total expedientes: <strong>{{ count(@TABLA) }}</strong></div>
 
 <div class="row">
@@ -118,7 +116,6 @@ thead {
 
 table.dataTable thead th {
 	padding: 3px 10px 3px 10px;
-	/*background-color: #eee;*/
 	font-weight: bold;
 	cursor: pointer;
 	*cursor: hand;
@@ -144,9 +141,12 @@ td,th{
 tbody tr.odd { 
 	background-color: #eee;
 }
+tbody tr.even { 
+	background-color: #ddd;
+}
 
 tbody tr:hover {
-	background-color: #efe;
+	background-color: #dfd;
 	cursor: pointer;
 	*cursor: hand;
 }
@@ -166,7 +166,7 @@ $(function() {
 			csv.push('"'+campos[i]["sTitle"]+'"');
 		}
 		csv = csv.join(',')+"\n";
-		csv += JSON.stringify(datos).replace(/\]\s*,\s*\[/g,"\n").replace('[[','').replace(']]','').replace('/<br>/g','');
+		csv += JSON.stringify(datos).replace(/\]\s*,\s*\[/g,"\n").replace('[[','').replace(']]','').replace('/<br>/g','|');
 		return csv;
 	}
 

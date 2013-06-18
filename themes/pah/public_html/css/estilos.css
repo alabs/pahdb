@@ -11,4 +11,10 @@ height:80px;
 margin-top:-80px;
 background-color:#eee;
 text-align:center;
+border-top:solid 1px #ddd;
+}
+.fixed {
+top:2px;
+width:100%;
+z-index:999;
 }
