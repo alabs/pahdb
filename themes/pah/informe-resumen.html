@@ -13,7 +13,7 @@
 		</span>
 		<input id="busqueda" class="narrow input" type="text" placeholder="Búsqueda general" />
 		<span class="adjoined">
-			<a href=""><i class="icon-down-open-big"></i></a>
+			<a href="" id="boton_exportar" title="Exportar a CSV"><i class="icon-down-open-big"></i></a>
 			<a href="{{ @BASE }}/admin/" title="Administrar PAHs"><i class="icon-tools"></i></a>
 			<a href="{{ @BASE }}/salir/" title="Salir"><i class="icon-logout"></i></a>
 		</span>
@@ -71,7 +71,6 @@
 <tbody>
 <repeat group="{{ @TABLA }}" value="{{ @FILA }}" counter="{{ @i }}">
 <tr data-id-afectado="{{ @FILA.idAfectado }}">
-	<!--<td><a href="{{ @BASE }}/expediente/{{ @FILA.idAfectado }}">{{ @FILA.nombre }}</a></td>-->
 	<td>{{ @FILA.nombre }}</td>
 	<td>{{ @FILA.dni }}</td>
 	<td class="fecha">{{ @mostrarFecha(@FILA.creadoEn) }}</td>
@@ -151,6 +150,7 @@
 
 <style type="text/css">
 /*@import "/css/jquery.dataTables.css";*/
+/*@import "/css/TableTools.css";*/
 table{
 	table-layout:fixed;
 }
@@ -197,15 +197,42 @@ tbody tr:hover {
 
 <script type="text/javascript" src="/js/ciudades.js"></script>
 <script type="text/javascript" src="/js/lib/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="/js/lib/jquery.dataTables.columnFilter.js"></script>
+<!--<script type="text/javascript" src="/js/lib/jquery.dataTables.columnFilter.js"></script>-->
+<!--<script type="text/javascript" src="/js/lib/TableTools.min.js"></script>-->
 <script type="text/javascript">
-
+//Borrar, declarada aqui para debug
 var mitabla;
 $(function() {
-	/*$('td').each(function() {
+
+	/*function aCSV (tabla) {
+		var num_campos = $(tabla).find('thead th').length
+		  , celdas = $(tabla).find('thead th, tbody td')
+		  , csv = '';
+		celdas.each(function(i, c) {
+			celda = '"'+$(c).text()+'"';
+			if (csv != '') (i % num_campos == 0)?csv+="\n":csv+=",";
+			csv+=celda;
+		});
+		console.log(csv);*/
+	function aCSV (tabla) {
+		var campos = tabla.fnSettings()["aoColumns"]
+		  , datos = tabla._('tr', {"filter": "applied"})
+		  , csv = [];
+		for (var i=0; i<campos.length; i++) {
+			csv.push('"'+campos[i]["sTitle"]+'"');
+		}
+		csv = csv.join(',')+"\n";
+		csv += JSON.stringify(datos).replace(/\]\s*,\s*\[/g,"\n").replace('[[','').replace(']]','').replace('/<br>/g','');
+		return csv;
+	}
+
+	/* ANTES DE CARGAR LA TABLA DINÁMICA */
+	// Limpiamos valores inválidos
+	$('td').each(function() {
 		var valor = $(this).text();
 		if (valor == '-1' || valor == '0000-00-00') $(this).text('');
-	});*/
+	});
+	// Sustituimos el código bancario por su nombre corto
 	var bancos = {
 		'0061':'MARCH',
 		'0225':'CETELEM',
@@ -244,19 +271,23 @@ $(function() {
 		var id_banco=$(this).text();
 		(bancos.hasOwnProperty(id_banco))?$(this).text(bancos[id_banco]):$(this).text('');
 	});
-
+	// Sustituimos el código del país por su nombre
 	$('.pais').each(function() {
 		$(this).text(ciudades.damePais($(this).text()));
 	});
+	// Sustituimos el código de la ciudad por su nombre
 	$('.ciudad').each(function() {
 		var id_ciudad=parseInt($(this).text())
 		  , ciudad=ciudades.dameCiudad(id_ciudad);
 		(ciudad)?$(this).text(ciudad.nombre+' ('+ciudad.provincia+')'):$(this).text(''); 
 	});
+	// Mostramos las acciones múltiples en líneas separadas
 	$('.multiple').each(function() {
 		$(this).html($(this).text().replace(/\|/g,'<br>'));
 	});
+	/* CARGAMOS LA TABLA DINÁMICA */
 	mitabla=$('#informe').dataTable({
+		/*"sDom": "Tirt",*/
 		"sDom": "irt",
         "sScrollX": "100%",
 		"bScrollCollapse": true,
@@ -272,7 +303,10 @@ $(function() {
 				"sNext": "Pág. siguiente",
 				"sPrevious": "Pág. anterior"
 			} 
-        }
+        }/*,
+		"oTableTools": {
+            "sSwfPath": "/swf/copy_csv_xls_pdf.swf"
+        }*/
 	});
 	/*mitabla.columnFilter({aoColumns:[
 		null,null,null,null,null,null,null,null,null,{ sSelector: "#filtroEntidad", type:"select"  },
@@ -280,7 +314,7 @@ $(function() {
 		{ sSelector: "#filtroFaseNegociacion", type:"select" },
 		{ sSelector: "#filtroTipoNegociacion", type:"select", values:["INDIVIDUAL", "COLECTIVA"] }
 	]});*/
-
+	// Activamos botones: página anterior/página siguiente y barra de búsqueda
 	$('.pag-anterior').on('click', function(e) {
 		e.preventDefault();
 		mitabla.fnPageChange('previous');
@@ -289,14 +323,21 @@ $(function() {
 		e.preventDefault();
 		mitabla.fnPageChange('next');
 	});
+	$('#busqueda').on('keyup', function(e) {
+		mitabla.fnFilter($('#busqueda').val());
+	});
+	$('#boton_exportar').on('click', function(e) {
+		//$(this).attr('href', encodeURI("data:text/csv;charset=utf-8,"+aCSV(mitabla.fnGetData())));
+		$(this).attr('href', "data:text/csv;charset=utf-8,"+encodeURI(aCSV(mitabla)));
+		$(this).attr('download', 'informe-PAH.csv');
+		$(this).attr('target', '_blank');
+	});
 
+	// Hacemos las filas clickeables al expediente
 	$('tbody tr').on('click',function(e) {
 		var idAfectado = $(this).data('id-afectado');
 		if (idAfectado != '') window.location.href = '/expediente/'+idAfectado;
 	});
 
-	$('#busqueda').on('keyup', function(e) {
-		mitabla.fnFilter($('#busqueda').val());
-	});
 });
 </script>
