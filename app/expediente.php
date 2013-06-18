@@ -5,8 +5,9 @@ class Expediente extends Controlador {
 	function todos() {
 		$f3=$this->framework;
 		$bd=$this->bd;
+		$where=($f3->get('SESSION.rol') != 'admin')?' WHERE idPAH='.$f3->get('SESSION.idPAH'):'';
 		$f3->set('afectados',
-			$bd->exec('SELECT idAfectado, nombre, dni FROM Afectados')
+			$bd->exec('SELECT idAfectado, nombre, dni FROM Afectados'.$where)
 		);
 		$f3->set('contenido', 'listado-afectados.html');
 	}
@@ -18,6 +19,8 @@ class Expediente extends Controlador {
 		$afectado=new DB\SQL\Mapper($bd,'Afectados');
 		if (!$f3->exists('PARAMS.idAfectado')) $f3->set('PARAMS.idAfectado',NULL);
 		$afectado->load(array('idAfectado=?', $f3->get('PARAMS.idAfectado')));
+		// Comprobamos permisos
+		if (($f3->get('PARAMS.idAfectado') != NULL) && ($f3->get('SESSION.rol') != 'admin') && ($f3->get('SESSION.idPAH') != $afectado->idPAH)) $f3->reroute('/gandalf');
 		$afectado->copyto('AFECTADO');
 		// Recuperamos los datos de los familiares de la tabla Familiares
 		$f3->set('FAMILIARES', 
@@ -46,6 +49,8 @@ class Expediente extends Controlador {
 			$afectado->save();
 		} else {
 			// Modificar afectado
+			// Comprobamos permisos
+			if (($f3->get('SESSION.rol') != 'admin') && ($f3->get('SESSION.idPAH') != $afectado->idPAH)) $f3->reroute('/gandalf');
 			$afectado->update();
 		}
 		// FAMILIARES
@@ -93,7 +98,8 @@ class Expediente extends Controlador {
 		$id_afectado = $f3->get('PARAMS.idAfectado');
 		$afectado=new DB\SQL\Mapper($bd,'Afectados');
 		$afectado->load(array('idAfectado=?', $id_afectado));
-		if ($afectado->dry()) {
+		// Si no existe afectado o no tienes permisos devolvemos ERROR
+		if ($afectado->dry() || (($f3->get('SESSION.rol') != 'admin') && ($f3->get('SESSION.idPAH') != $afectado->idPAH))) {
 			echo 'ERROR';
 		} else {
 			$bd->exec('DELETE FROM Familiares WHERE idAfectado=?', $afectado->idAfectado);
@@ -107,8 +113,9 @@ class Expediente extends Controlador {
 	function informe() {
 		$f3=$this->framework;
 		$bd=$this->bd;
+		$where=($f3->get('SESSION.rol') != 'admin')?' WHERE idPAH='.$f3->get('SESSION.idPAH'):'';
 		$f3->set('TABLA',
-			$bd->exec('SELECT A.*, MAX(S.fecha) AS fechaSubasta, MAX(D.fecha) AS fechaDesahucio FROM Afectados A LEFT JOIN Subastas S ON A.idAfectado=S.idAfectado LEFT JOIN Desahucios D ON A.idAfectado=D.idAfectado GROUP BY A.idAfectado;')
+			$bd->exec('SELECT A.*, MAX(S.fecha) AS fechaSubasta, MAX(D.fecha) AS fechaDesahucio FROM Afectados A LEFT JOIN Subastas S ON A.idAfectado=S.idAfectado LEFT JOIN Desahucios D ON A.idAfectado=D.idAfectado'.$where.' GROUP BY A.idAfectado;')
 		);
 		$f3->set('mostrarFecha',
 			function ($f) {
