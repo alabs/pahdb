@@ -126,7 +126,7 @@
 <li class="field">
 <label class="normal inline" for="select-avalistasHipoteca">¿Tiene avalistas?</label>
 <div class="picker narrow">
-<select id="select-avalistasHipoteca">
+<select id="select-avalistasHipoteca" data-rel="avalistasHipoteca">
     <option value=''>No contesta</option>
     <option value='NO'>No</option>
 	<option value='PADRES'>Sí, mis padres</option>
@@ -142,42 +142,46 @@
 <input class="narrow input numero" placeholder="Ejemplo: 3" id="numAvalistasHipoteca" name="numAvalistasHipoteca" type="text" value="{{ @AFECTADO.numAvalistasHipoteca }}" />
 </li>
 
-<!-- FIX ME -->
-<input type="hidden" id="clausulasAbusivasHipoteca" name="clausulasAbusivasHipoteca" value="{{ @AFECTADO.clausulasAbusivasHipoteca }}" />
+<input type="hidden" id="clausulasAbusivasHipoteca" name="clausulasAbusivasHipoteca" class="casillas" value="{{ @AFECTADO.clausulasAbusivasHipoteca }}" />
 <li class="field desplegable">
 <label class="normal inline" for="si_clausula_abusiva">¿Contiene cláusulas abusivas?</label>
 <div class="picker narrow">
 <select id="si_clausula_abusiva" name="si_clausula_abusiva" class="desplegador">
     <option value=''>No contesta</option>
-	<option value='SI'>Sí</option>
+	<option value='SI'{{ (@AFECTADO.clausulasAbusivasHipoteca != '')?' selected':'' }}>Sí</option>
 	<option value='NO'>No</option>
-	<option value='NC'>Lo ignoro</option>
+	<!--<option value='NC'>Lo ignoro</option>-->
 </select>
 </div>
 <ul>
 	<li>
-	<label><input value="0" type="checkbox">
+	<label><input value="CLAUSULA_SUELO" type="checkbox" data-rel="clausulasAbusivasHipoteca">
 		<spam></spam>Cláusula suelo
 	</label>
 	</li>
 	<li>
-	<label><input value="0" type="checkbox">
+	<label><input value="INTERESES_MORA" type="checkbox" data-rel="clausulasAbusivasHipoteca">
 		<spam></spam>Intereses mora 10%
 	</label>
 	</li>
 	<li>
-	<label><input value="0" type="checkbox">
+	<label><input value="COSTAS_JUDICIALES" type="checkbox" data-rel="clausulasAbusivasHipoteca">
 		<spam></spam>Costas judiciales
 	</label>
 	</li>
 	<li>
-	<label><input value="0" type="checkbox">
+	<label><input value="VENCIMIENTO_ANTICIPADO" type="checkbox" data-rel="clausulasAbusivasHipoteca">
 		<spam></spam>Vencimiento anticipado
 	</label>
 	</li>
 	<li>
-	<label><input value="0" type="checkbox">
+	<label><input value="MULTIDIVISA" type="checkbox" data-rel="clausulasAbusivasHipoteca">
 		<spam></spam>Multidivisa
+	</label>
+	</li>
+	<li>
+	<label><input value="OTRAS" type="checkbox" data-rel="clausulasAbusivasHipoteca">
+		<spam></spam>Otras
 	</label>
 	</li>
 </ul>
@@ -229,7 +233,7 @@
 
 <li class="field">
 <label class="normal inline" for="numViviendasEnPropiedad">Nº viviendas en propiedad adicionales</label>
-<input class="narrow input numero" placeholder="Ejemplo: 1" id="importeOtrosPrestamos" name="importeOtrosPrestamos" type="text" value="{{ @AFECTADO.numViviendasEnPropiedad }}" />
+<input class="narrow input numero" placeholder="Ejemplo: 1" id="numViviendasEnPropiedad" name="numViviendasEnPropiedad" type="text" value="{{ @AFECTADO.numViviendasEnPropiedad }}" />
 </li>
 
 </ul>

@@ -40,7 +40,8 @@ $(function() {
 	$('.desplegador').on('change', function() {
 		var casilla = $(this)
 		  , desplegable = casilla.parents('.desplegable').find('ul').first();
-		if (casilla.is(':checked') || casilla.hasClass('ckecked') || casilla.val() == 'SI') {
+		//if (casilla.is(':checked') || casilla.hasClass('ckecked') || (casilla.val() != 'NO' && casilla.val() != '')) {
+		if (casilla.is(':checked') || casilla.hasClass('ckecked') || (casilla.val() == 'SI')) {
 			desplegable.slideDown();
 		} else {
 			desplegable.slideUp();

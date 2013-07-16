@@ -41,7 +41,7 @@
 	<div class="picker narrow">
 	<select class="desplegador">
 		<option value=''>No responde</option>
-		<option value='SI'>Sí</option>
+		<option value='SI'{{ (@AFECTADO.fechaDocumentacion != '0000-00-00')?' selected':'' }}>Sí</option>
 		<option value='NO'>No</option>
 	</select>
 	</div>
