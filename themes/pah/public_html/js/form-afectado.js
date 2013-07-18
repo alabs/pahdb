@@ -56,7 +56,7 @@ $(function() {
 		  , num_nuevos = num - desplegados;
 		for (i=0; i<num_nuevos; i++) {
 			var fila = "\n"+'<tr>'+"\n"+
-			'	<td class="field"><input name="familiar['+i+'][nacidoEnAnyo]" class="text input numero" type="text" placeholder="Nacido año" /></td>'+"\n"+
+			'	<td class="field"><input name="familiar['+i+'][nacidoEnAnyo]" class="text input numero" type="text" placeholder="Nacido año" maxlength="4" /></td>'+"\n"+
 			'	<td class="field"><select name="familiar['+i+'][sexo]">'+"\n"+
 			'		<option value="" selected>Sexo</option>'+"\n"+
 			'		<option value="H">Hombre</option><option value="M">Mujer</option>'+"\n"+

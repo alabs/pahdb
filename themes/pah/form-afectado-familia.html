@@ -10,7 +10,7 @@
 <table id="unidadfamiliar">
 <repeat group="{{ @FAMILIARES }}" value="{{ @FAMILIAR }}" counter="{{ @i }}">
 <tr>
-	<td class="field"><input name="familiar[{{ @i-1 }}][nacidoEnAnyo]" class="text input numero" type="text" placeholder="Nacido año" value="{{ @FAMILIAR.nacidoEnAnyo }}" /></td>
+	<td class="field"><input name="familiar[{{ @i-1 }}][nacidoEnAnyo]" class="text input numero" type="text" placeholder="Nacido año" value="{{ @FAMILIAR.nacidoEnAnyo }}" maxlength="4" /></td>
 	<td class="field"><select name="familiar[{{ @i-1 }}][sexo]" value="{{ @FAMILIAR.sexo }}">
 		<option value="">Sexo</option>
 		<option value="H" <check if="{{ @FAMILIAR.sexo == 'H' }}">selected</check>>Hombre</option>
