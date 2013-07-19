@@ -1,5 +1,3 @@
-<!-- Sección "Familia y Trabajo" -->
-
 <ul>
 <li class="append field">
 <input class="wide input numero" type="text" id="numUnidadFamiliar" placeholder="Número personas unidad familiar" <check if="{{ count(@FAMILIARES) > 0 }}">value="{{ count(@FAMILIARES) }}"</check> />
@@ -20,7 +18,8 @@
 		<option value="">Situación laboral</option>
 		<option value="TRABAJO_CON_CONTRATO" <check if="{{ @FAMILIAR.situacionLaboral == 'TRABAJO_CON_CONTRATO' }}">selected</check>>Trabajo con contrato</option>
 		<option value="TRABAJO_SIN_CONTRATO" <check if="{{ @FAMILIAR.situacionLaboral == 'TRABAJO_SIN_CONTRATO' }}">selected</check>>Trabajo sin contrato</option>
-		<option value="PARADO" <check if="{{ @FAMILIAR.situacionLaboral == 'PARADO' }}">selected</check>>Parado</option>
+		<option value="PARADO_CON_PRESTACION" <check if="{{ @FAMILIAR.situacionLaboral == 'PARADO_CON_PRESTACION' }}">selected</check>>Parado con prestación</option>
+		<option value="PARADO_SIN_PRESTACION" <check if="{{ @FAMILIAR.situacionLaboral == 'PARADO_SIN_PRESTACION' }}">selected</check>>Parado sin prestación</option>
 		<option value="AYUDAS_PUBLICAS" <check if="{{ @FAMILIAR.situacionLaboral == 'AYUDAS_PUBLICAS' }}">selected</check>>Otras ayudas públicas</option>
 		<option value="PENSIONISTA" <check if="{{ @FAMILIAR.situacionLaboral == 'PENSIONISTA' }}">selected</check>>Pensionista</option>
 		<option value="ESTUDIANTE" <check if="{{ @FAMILIAR.situacionLaboral == 'ESTUDIANTE' }}">selected</check>>Estudiante</option>

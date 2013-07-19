@@ -101,6 +101,7 @@ CREATE  TABLE IF NOT EXISTS `datapah`.`Afectados` (
   `objetivosNegociacion` VARCHAR(255) NULL ,
   `tipoNegociacion` VARCHAR(45) NULL ,
   `fechaDocumentacion` DATE NULL ,
+  `fechaEnvio` DATE NULL ,
   `faseNegociacion` VARCHAR(45) NULL ,
   `oficinaMediacion` VARCHAR(45) NULL ,
   `servSociales` VARCHAR(45) NULL ,
@@ -179,5 +180,3 @@ USE `datapah` ;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
-
-

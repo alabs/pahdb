@@ -66,7 +66,8 @@ $(function() {
 			'		<option value="">Situación laboral</option>'+"\n"+
 			'		<option value="TRABAJO_CON_CONTRATO">Trabajo con contrato</option>'+"\n"+
 			'		<option value="TRABAJO_SIN_CONTRATO">Trabajo sin contrato</option>'+"\n"+
-			'		<option value="PARADO">Parado</option>'+"\n"+
+			'		<option value="PARADO_CON_PRESTACION">Parado con prestación</option>'+"\n"+
+			'		<option value="PARADO_SIN_PRESTACION">Parado sin prestación</option>'+"\n"+
 			'		<option value="AYUDAS_PUBLICAS">Otras ayudas públicas</option>'+"\n"+
 			'		<option value="PENSIONISTA">Pensionista</option>'+"\n"+
 			'		<option value="ESTUDIANTE">Estudiante</option>'+"\n"+

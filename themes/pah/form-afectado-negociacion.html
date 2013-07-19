@@ -41,7 +41,7 @@
 	<div class="picker narrow">
 	<select class="desplegador">
 		<option value=''>No responde</option>
-		<option value='SI'{{ (@AFECTADO.fechaDocumentacion != '0000-00-00')?' selected':'' }}>Sí</option>
+		<option value='SI'{{ (@AFECTADO.fechaDocumentacion != '0000-00-00' || @AFECTADO.fechaEnvio != '0000-00-00')?' selected':'' }}>Sí</option>
 		<option value='NO'>No</option>
 	</select>
 	</div>
@@ -49,6 +49,10 @@
 	<input class="input xwide fecha" id="fechaDocumentacion" name="fechaDocumentacion" data-rel="input-fechaDocumentacion" type="hidden" value="{{ @AFECTADO.fechaDocumentacion }}">
 	<li class="field">
 		<input class="input xwide fecha" id="input-fechaDocumentacion" data-rel="fechaDocumentacion" placeholder="Fecha documentación. Ej: 05/07/2013" type="text">
+	</li>
+	<input class="input xwide fecha" id="fechaEnvio" name="fechaEnvio" data-rel="input-fechaEnvio" type="hidden" value="{{ @AFECTADO.fechaEnvio }}">
+	<li class="field">
+		<input class="input xwide fecha" id="input-fechaEnvio" data-rel="fechaEnvio" placeholder="Fecha de envío del caso. Ej: 05/07/2013" type="text">
 	</li>
 	</ul>
 </li>
