@@ -231,6 +231,50 @@
 <input class="narrow input numero" placeholder="Ejemplo: 15000" id="importeOtrosPrestamos" name="importeOtrosPrestamos" type="text" value="{{ @AFECTADO.importeOtrosPrestamos }}" />
 </li>
 
+<!--
+<input type="hidden" id="entidadOtrosPrestamos" name="entidadOtrosPrestamos" data-rel="select-entidadOtrosPrestamos" value="@AFECTADO.entidadOtrosPrestamos" />
+-->
+<li class="field">
+<label class="normal inline" for="select-entidadOtrosPrestamos">Entidad bancaria otros préstamos</label>
+<div class="picker narrow">
+<select id="select-entidadOtrosPrestamos" data-rel="entidadOtrosPrestamos">
+    <option value="">(Seleccione)</option>
+	<option value='0061'>BANCA MARCH</option>
+	<option value='0225'>BANCO CETELEM</option>
+	<option value='0487'>BANCO MARE NOSTRUM BMN (C.MURCIA, C.PENEDES, C.GRANADA, SA NOSTRA)</option>
+	<option value='0235'>BANCO PICHINCHA ESPAÑA</option>
+	<option value='0075'>BANCO POPULAR (B.PASTOR, B.POPULAR)</option>
+	<option value='0081'>BANCO SABADELL (B.SABADELL, GUIPUZCOANO, CAM, URQUIJO)</option>
+	<option value='0038'>BANESTO</option>
+	<option value='2038'>BANKIA (C.MADRID, BANCAJA, C.INSULAR CANARIAS, C.LAIETANA, C.AVILA, C.SEGOVIA, C.RIOJA)</option>
+	<option value='0128'>BANKINTER</option>
+	<option value='0065'>BARCLAYS BANK</option>
+	<option value='0182'>BBVA (BBV, UNNIM-C.SABADELL, C.TERRASSA, C.MANLLEU)</option>
+	<option value='0058'>BNP PARIBAS ESPAÑA</option>
+	<option value='2100'>CAIXABANK (LA CAIXA, CAIXA GIRONA, BANCA CÍVICA-CAJASOL, C. NAVARRA, CAJACANARIAS, C. BURGOS-C. GUADALAJARA, BANCO DE VALENCIA)</option>
+	<option value='3025'>CAJA DE CRÉDITO INGENIEROS (COOP.CRE)</option>
+	<option value='3058'>CAJAS RURALES UNIDAS (GRUPO COOPERATIVO CAJAMAR, GRUPO CRM-RURALCAJA)</option>
+	<option value='2013'>CATALUNYA BANK CX (C.CATALUNYA, C.TARRAGONA, C. MANRESA)</option>
+	<option value='0122'>CITIBANK ESPAÑA</option>
+	<option value='8596'>CREDIFIMO</option>
+	<option value='0019'>DEUTSCHE BANK, SOCIEDAD ANONIMA ESPAÑOLA</option>
+	<option value='0223'>GENERAL ELECTRIC CAPITAL BANK</option>
+	<option value='2085'>IBERCAJA BANCO (CAJA 3-CAI, C.CÍRCULO, C.BADAJOZ) </option>
+	<option value='1465'>ING DIRECT</option>
+	<option value='2095'>KUTXABANK (BBK, C.VITAL, KUTXA)</option>
+	<option value='2048'>LIBERBANK (C.CANTABRIA, GRUPO CAJASTUR-CCM, EXTREMADURA)</option>
+	<option value='0236'>LLOYDS BANK INTERNATIONAL</option>
+	<option value='2080'>NCG BANCO (C.GALICIA, CAIXANOVA)</option>
+	<option value='0049'>SANTANDER</option>
+	<option value='1491'>TRIODOS BANK</option>
+	<option value='0226'>UBS BANK</option>
+	<option value='8512'>UCI</option>
+	<option value='2103'>UNICAJA BANCO (C.JAEN, CAJA ESPAÑA-DUERO)</option>
+	<option value='OTRO'>OTRO</option>
+</select>
+</div>
+</li>
+
 <li class="field">
 <label class="normal inline" for="numViviendasEnPropiedad">Nº viviendas en propiedad adicionales</label>
 <input class="narrow input numero" placeholder="Ejemplo: 1" id="numViviendasEnPropiedad" name="numViviendasEnPropiedad" type="text" value="{{ @AFECTADO.numViviendasEnPropiedad }}" />

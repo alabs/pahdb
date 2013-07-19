@@ -10,7 +10,7 @@
 <table id="unidadfamiliar">
 <repeat group="{{ @FAMILIARES }}" value="{{ @FAMILIAR }}" counter="{{ @i }}">
 <tr>
-	<td class="field"><input name="familiar[{{ @i-1 }}][nacidoEnAnyo]" class="text input numero" type="text" placeholder="Nacido año" value="{{ @FAMILIAR.nacidoEnAnyo }}" maxlength="4" /></td>
+	<td class="append field"><input name="familiar[{{ @i-1 }}][nacidoEnAnyo]" class="text input numero" type="text" placeholder="Nacido año" value="{{ @FAMILIAR.nacidoEnAnyo }}" maxlength="4" /></td>
 	<td class="field"><select name="familiar[{{ @i-1 }}][sexo]" value="{{ @FAMILIAR.sexo }}">
 		<option value="">Sexo</option>
 		<option value="H" <check if="{{ @FAMILIAR.sexo == 'H' }}">selected</check>>Hombre</option>
@@ -25,17 +25,16 @@
 		<option value="PENSIONISTA" <check if="{{ @FAMILIAR.situacionLaboral == 'PENSIONISTA' }}">selected</check>>Pensionista</option>
 		<option value="ESTUDIANTE" <check if="{{ @FAMILIAR.situacionLaboral == 'ESTUDIANTE' }}">selected</check>>Estudiante</option>
 	</select></td>
-	<td class="field"><select name="familiar[{{ @i-1 }}][discapacidad]" value="{{ @FAMILIAR.discapacidad }}">
-		<option value="">Discapacidad</option>
-		<option value="SI" <check if="{{ @FAMILIAR.discapacidad == 'SI' }}">selected</check>>Sí</option>
-		<option value="NO" <check if="{{ @FAMILIAR.discapacidad == 'NO' }}">selected</check>>No</option>
-	</select></td>
 	<td class="field"><select name="familiar[{{ @i-1 }}][relacionHipoteca]" value="{{ @FAMILIAR.relacionHipoteca }}">
 		<option value="">Relación hipoteca</option>
 		<option value="TITULAR" <check if="{{ @FAMILIAR.relacionHipoteca == 'TITULAR' }}">selected</check>>Titular</option>
 		<option value="AVALISTA" <check if="{{ @FAMILIAR.relacionHipoteca == 'AVALISTA' }}">selected</check>>Avalista</option>
 		<option value="NADA" <check if="{{ @FAMILIAR.relacionHipoteca == 'NADA' }}">selected</check>>Nada</option>
 	</select></td>
+	<td class="append field">
+		<input name="familiar[{{ @i-1 }}][discapacidad]" value="{{ @FAMILIAR.discapacidad }}" placeholder="Discapacidad" class="text input numero" type="text" maxlength="3" min="-1" max="100" style="text-align:right;">
+		 <span class="adjoined">%</span>
+	</td>
 </tr>
 </repeat>
 </table>
@@ -75,38 +74,44 @@
 </label>
 
 <h4>¿Recibe ayuda de alguna entidad social para alimentar a su familia?</h4>
+<input type="hidden" id="ayudaAlimentos" name="ayudaAlimentos" class="casillas" value="{{ @AFECTADO.ayudaAlimentos }}" />
 <div class="desplegable">
 	<div class="picker narrow">
 	<select class="desplegador">
 		<option value=''>No responde</option>
-		<option value='SI'>Sí</option>
+		<option value='SI'{{ (@AFECTADO.ayudaAlimentos != '')?' selected':'' }}>Sí</option>
 		<option value='NO'>No</option>
 	</select>
 	</div>
 	<ul>
 		<li>
-		<label><input value="0" type="checkbox">
+		<label><input value="CARITAS" type="checkbox" data-rel="ayudaAlimentos">
 			<spam></spam>Caritas
 		</label>
 		</li>
 		<li>
-		<label><input value="0" type="checkbox">
+		<label><input value="CRUZ_ROJA" type="checkbox" data-rel="ayudaAlimentos">
 			<spam></spam>Cruz Roja
 		</label>
 		</li>
 		<li>
-		<label><input value="0" type="checkbox">
+		<label><input value="BANCO_ALIMENTOS" type="checkbox" data-rel="ayudaAlimentos">
 			<spam></spam>Banco de alimentos
 		</label>
 		</li>
 		<li>
-		<label><input value="0" type="checkbox">
+		<label><input value="PAH" type="checkbox" data-rel="ayudaAlimentos">
 			<spam></spam>PAH
 		</label>
 		</li>
 		<li>
-		<label><input value="0" type="checkbox">
+		<label><input value="FAMILIA" type="checkbox" data-rel="ayudaAlimentos">
 			<spam></spam>Familiares
+		</label>
+		</li>
+		<li>
+		<label><input value="OTRAS" type="checkbox" data-rel="ayudaAlimentos">
+			<spam></spam>Otras
 		</label>
 		</li>
 	</ul>

@@ -11,7 +11,7 @@ USE `datapah` ;
 DROP TABLE IF EXISTS `datapah`.`PAHs` ;
 
 CREATE  TABLE IF NOT EXISTS `datapah`.`PAHs` (
-  `idPAH` INT NOT NULL ,
+  `idPAH` INT NOT NULL AUTO_INCREMENT ,
   `correo` VARCHAR(255) NOT NULL ,
   `passwd` CHAR(40) NOT NULL ,
   `responsable` VARCHAR(255) NULL ,
@@ -35,7 +35,7 @@ COLLATE = utf8_general_ci;
 DROP TABLE IF EXISTS `datapah`.`Afectados` ;
 
 CREATE  TABLE IF NOT EXISTS `datapah`.`Afectados` (
-  `idAfectado` INT NOT NULL ,
+  `idAfectado` INT NOT NULL AUTO_INCREMENT ,
   `autorFicha` VARCHAR(255) NULL ,
   `nombre` VARCHAR(255) NULL ,
   `dni` CHAR(9) NOT NULL ,
@@ -69,16 +69,19 @@ CREATE  TABLE IF NOT EXISTS `datapah`.`Afectados` (
   `precioCompraVentaHipoteca` INT NULL ,
   `avalistaOtraHipoteca` VARCHAR(45) NULL ,
   `importeOtrosPrestamos` INT NULL ,
+  `entidadOtrosPrestamos` CHAR(4) NULL ,
   `numViviendasEnPropiedad` INT NULL ,
   `brutoAnualTitulares` INT NULL ,
   `netoMesTitulares` INT NULL ,
   `netoMesFamilia` INT NULL ,
   `motivosImpago` VARCHAR(255) NULL ,
+  `ayudaAlimentos` VARCHAR(255) NULL ,
   `dificultadesNecesidadesBasicas` VARCHAR(255) NULL ,
   `impactoSalud` VARCHAR(255) NULL ,
   `fasePrePAH` VARCHAR(45) NULL ,
   `renegociacionPrePAH` VARCHAR(45) NULL ,
   `tratoDenigrantePrePAH` VARCHAR(255) NULL ,
+  `explicaTratoDenigrantePrePAH` VARCHAR(255) NULL ,
   `servSocialesPrePAH` VARCHAR(45) NULL ,
   `valoracionServSocialesPrePAH` INT NULL ,
   `servMediacionPrePAH` VARCHAR(45) NULL ,
@@ -95,7 +98,6 @@ CREATE  TABLE IF NOT EXISTS `datapah`.`Afectados` (
   `justiciaGratuita` VARCHAR(45) NULL ,
   `demandaExtrajudicial` VARCHAR(45) NULL ,
   `viviendaSiDesahucio` VARCHAR(45) NULL ,
-  `fechaRecursoTJUE` DATE NULL ,
   `objetivosNegociacion` VARCHAR(255) NULL ,
   `tipoNegociacion` VARCHAR(45) NULL ,
   `fechaDocumentacion` DATE NULL ,
@@ -125,11 +127,11 @@ COLLATE = utf8_general_ci;
 DROP TABLE IF EXISTS `datapah`.`Familiares` ;
 
 CREATE  TABLE IF NOT EXISTS `datapah`.`Familiares` (
-  `idFamiliar` INT NOT NULL ,
+  `idFamiliar` INT NOT NULL AUTO_INCREMENT ,
   `nacidoEnAnyo` INT NULL ,
   `sexo` CHAR(1) NULL ,
   `situacionLaboral` VARCHAR(45) NULL ,
-  `discapacidad` VARCHAR(45) NULL ,
+  `discapacidad` TINYINT NULL ,
   `relacionHipoteca` VARCHAR(45) NULL ,
   `idAfectado` INT NULL ,
   PRIMARY KEY (`idFamiliar`) )
@@ -177,4 +179,5 @@ USE `datapah` ;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
 

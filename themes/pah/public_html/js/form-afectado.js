@@ -56,10 +56,11 @@ $(function() {
 		  , num_nuevos = num - desplegados;
 		for (i=0; i<num_nuevos; i++) {
 			var fila = "\n"+'<tr>'+"\n"+
-			'	<td class="field"><input name="familiar['+i+'][nacidoEnAnyo]" class="text input numero" type="text" placeholder="Nacido año" maxlength="4" /></td>'+"\n"+
+			'	<td class="append field"><input name="familiar['+i+'][nacidoEnAnyo]" class="text input numero" type="text" placeholder="Nacido año" maxlength="4" /></td>'+"\n"+
 			'	<td class="field"><select name="familiar['+i+'][sexo]">'+"\n"+
 			'		<option value="" selected>Sexo</option>'+"\n"+
-			'		<option value="H">Hombre</option><option value="M">Mujer</option>'+"\n"+
+			'		<option value="H">Hombre</option>'+"\n"+
+			'		<option value="M">Mujer</option>'+"\n"+
 			'	</select></td>'+"\n"+
 			'	<td class="field"><select name="familiar['+i+'][situacionLaboral]">'+"\n"+
 			'		<option value="">Situación laboral</option>'+"\n"+
@@ -69,18 +70,17 @@ $(function() {
 			'		<option value="AYUDAS_PUBLICAS">Otras ayudas públicas</option>'+"\n"+
 			'		<option value="PENSIONISTA">Pensionista</option>'+"\n"+
 			'		<option value="ESTUDIANTE">Estudiante</option>'+"\n"+
-			'	</select></td>'+
-			'	<td class="field"><select name="familiar['+i+'][discapacidad]">'+"\n"+
-			'		<option value="" selected>Discapacidad</option>'+"\n"+
-			'		<option value="SI">Sí</option>'+"\n"+
-			'		<option value="NO">No</option>'+"\n"+
-			'	</select></td>'+
+			'	</select></td>'+"\n"+
 			'	<td class="field"><select name="familiar['+i+'][relacionHipoteca]">'+"\n"+
 			'		<option value="" selected>Relación hipoteca</option>'+"\n"+
 			'		<option value="TITULAR">Titular</option>'+"\n"+
 			'		<option value="AVALISTA">Avalista</option>'+"\n"+
 			'		<option value="NADA">Nada</option>'+"\n"+
 			'	</select></td>'+"\n"+
+			'	<td class="append field">'+"\n"+
+			'		<input name="familiar['+i+'][discapacidad]" placeholder="Discapacidad" class="text input numero" type="text" maxlength="3" min="-1" max="100" style="text-align:right;">'+"\n"+
+			'		 <span class="adjoined">%</span>'+"\n"+
+			'	</td>'+"\n"+
 			'</tr>';
 			$('#unidadfamiliar').append(fila);
 		}
