@@ -147,7 +147,7 @@ COLLATE = utf8_general_ci;
 DROP TABLE IF EXISTS `datapah`.`Subastas` ;
 
 CREATE  TABLE IF NOT EXISTS `datapah`.`Subastas` (
-  `idSubasta` INT NOT NULL ,
+  `idSubasta` INT NOT NULL AUTO_INCREMENT ,
   `fecha` DATE NULL ,
   `resultado` VARCHAR(45) NULL ,
   `importeAdjudicacion` INT NULL ,
@@ -165,7 +165,7 @@ COLLATE = utf8_general_ci;
 DROP TABLE IF EXISTS `datapah`.`Desahucios` ;
 
 CREATE  TABLE IF NOT EXISTS `datapah`.`Desahucios` (
-  `idDesahucio` INT NOT NULL ,
+  `idDesahucio` INT NOT NULL AUTO_INCREMENT ,
   `fecha` DATE NULL ,
   `resultado` VARCHAR(45) NULL ,
   `idAfectado` INT NULL ,
