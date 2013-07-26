@@ -48,11 +48,13 @@
 	<ul>
 	<input class="input xwide fecha" id="fechaDocumentacion" name="fechaDocumentacion" data-rel="input-fechaDocumentacion" type="hidden" value="{{ @AFECTADO.fechaDocumentacion }}">
 	<li class="field">
-		<input class="input xwide fecha" id="input-fechaDocumentacion" data-rel="fechaDocumentacion" placeholder="Fecha documentación. Ej: 05/07/2013" type="text">
+		<label for="input-fechaDocumentacion" class="normal inline">Fecha documentación</label>
+		<input class="input narrow fecha" id="input-fechaDocumentacion" data-rel="fechaDocumentacion" placeholder="Ej: 05/07/2013" type="text">
 	</li>
 	<input class="input xwide fecha" id="fechaEnvio" name="fechaEnvio" data-rel="input-fechaEnvio" type="hidden" value="{{ @AFECTADO.fechaEnvio }}">
 	<li class="field">
-		<input class="input xwide fecha" id="input-fechaEnvio" data-rel="fechaEnvio" placeholder="Fecha de envío del caso. Ej: 05/07/2013" type="text">
+		<label for="input-fechaEnvio" class="normal inline">Fecha de envío del caso</label>
+		<input class="input narrow fecha" id="input-fechaEnvio" data-rel="fechaEnvio" placeholder="Ej: 05/07/2013" type="text">
 	</li>
 	</ul>
 </li>
