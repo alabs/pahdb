@@ -20,21 +20,33 @@ class Expediente extends Controlador {
 		if (!$f3->exists('PARAMS.idAfectado')) $f3->set('PARAMS.idAfectado',NULL);
 		$afectado->load(array('idAfectado=?', $f3->get('PARAMS.idAfectado')));
 		// Comprobamos permisos
-		if (($f3->get('PARAMS.idAfectado') != NULL) && ($f3->get('SESSION.rol') != 'admin') && ($f3->get('SESSION.idPAH') != $afectado->idPAH)) $f3->reroute('/gandalf');
+		if (($f3->get('PARAMS.idAfectado') != NULL) && 
+		($f3->get('SESSION.rol') != 'admin') && 
+		($f3->get('SESSION.idPAH') != $afectado->idPAH)) $f3->reroute('/gandalf');
+
 		$afectado->copyto('AFECTADO');
-		// Recuperamos los datos de los familiares de la tabla Familiares
-		$f3->set('FAMILIARES', 
-			$bd->exec('SELECT * FROM Familiares WHERE idAfectado=?;', $afectado->idAfectado)
-		);
-		// Recuperamos los datos de las subastas y desahucios
-		$f3->set('SUBASTAS', 
-			$bd->exec('SELECT * FROM Subastas WHERE idAfectado=?;', $afectado->idAfectado)
-		);
-		$f3->set('DESAHUCIOS', 
-			$bd->exec('SELECT * FROM Desahucios WHERE idAfectado=?;', $afectado->idAfectado)
-		);
+
+		if (!$afectado->dry()) {
+			// Recuperamos los datos de los familiares de la tabla Familiares
+			$f3->set('FAMILIARES', 
+					$bd->exec('SELECT * FROM Familiares WHERE idAfectado=?;', $afectado->idAfectado)
+			);
+			// Recuperamos los datos de las subastas y desahucios
+			$f3->set('SUBASTAS', 
+					$bd->exec('SELECT * FROM Subastas WHERE idAfectado=?;', $afectado->idAfectado)
+			);
+			$f3->set('DESAHUCIOS', 
+					$bd->exec('SELECT * FROM Desahucios WHERE idAfectado=?;', $afectado->idAfectado)
+			);
+		} else {
+			$f3->set('FAMILIARES', array());
+			$f3->set('SUBASTAS', array());
+			$f3->set('DESAHUCIOS', array());
+		}
+
 		$f3->set('contenido','form-afectado.html');
 	}
+
 	function guardar() {
 		$f3=$this->framework;
 		$bd=$this->bd;
