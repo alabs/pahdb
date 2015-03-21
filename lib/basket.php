@@ -1,20 +1,26 @@
 <?php
 
 /*
-	Copyright (c) 2009-2013 F3::Factory/Bong Cosca, All rights reserved.
 
-	This file is part of the Fat-Free Framework (http://fatfree.sf.net).
+	Copyright (c) 2009-2015 F3::Factory/Bong Cosca, All rights reserved.
 
-	THE SOFTWARE AND DOCUMENTATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF
-	ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
-	IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR
-	PURPOSE.
+	This file is part of the Fat-Free Framework (http://fatfreeframework.com).
 
-	Please see the license.txt file for more information.
+	This is free software: you can redistribute it and/or modify it under the
+	terms of the GNU General Public License as published by the Free Software
+	Foundation, either version 3 of the License, or later.
+
+	Please see the LICENSE file for more information.
+
 */
 
 //! Session-based pseudo-mapper
-class Basket {
+class Basket extends Magic {
+
+	//@{ Error messages
+	const
+		E_Field='Undefined field %s';
+	//@}
 
 	protected
 		//! Session key
@@ -48,7 +54,7 @@ class Basket {
 	*	@return scalar|FALSE
 	*	@param $key string
 	**/
-	function get($key) {
+	function &get($key) {
 		if ($key=='_id')
 			return $this->id;
 		if (array_key_exists($key,$this->item))
@@ -67,21 +73,35 @@ class Basket {
 	}
 
 	/**
-	*	Return item that matches key/value pair
+	*	Return items that match key/value pair;
+	*	If no key/value pair specified, return all items
+	*	@return array
+	*	@param $key string
+	*	@param $val mixed
+	**/
+	function find($key=NULL,$val=NULL) {
+		$out=array();
+		if (isset($_SESSION[$this->key])) {
+			foreach ($_SESSION[$this->key] as $id=>$item)
+				if (!isset($key) ||
+					array_key_exists($key,$item) && $item[$key]==$val) {
+					$obj=clone($this);
+					$obj->id=$id;
+					$obj->item=$item;
+					$out[]=$obj;
+				}
+		}
+		return $out;
+	}
+
+	/**
+	*	Return first item that matches key/value pair
 	*	@return object|FALSE
 	*	@param $key string
 	*	@param $val mixed
 	**/
-	function find($key,$val) {
-		if (isset($_SESSION[$this->key]))
-			foreach ($_SESSION[$this->key] as $id=>$item)
-				if ($item[$key]==$val) {
-					$obj=clone($this);
-					$obj->id=$id;
-					$obj->item=$item;
-					return $obj;
-				}
-		return FALSE;
+	function findone($key,$val) {
+		return ($data=$this->find($key,$val))?$data[0]:FALSE;
 	}
 
 	/**
@@ -92,8 +112,8 @@ class Basket {
 	**/
 	function load($key,$val) {
 		if ($found=$this->find($key,$val)) {
-			$this->id=$found->id;
-			return $this->item=$found->item;
+			$this->id=$found[0]->id;
+			return $this->item=$found[0]->item;
 		}
 		$this->reset();
 		return array();
@@ -121,8 +141,9 @@ class Basket {
 	**/
 	function save() {
 		if (!$this->id)
-			$this->id=uniqid();
-		return $_SESSION[$this->key][$this->id]=$this->item;
+			$this->id=uniqid(NULL,TRUE);
+		$_SESSION[$this->key][$this->id]=$this->item;
+		return $this->item;
 	}
 
 	/**
@@ -132,7 +153,8 @@ class Basket {
 	*	@param $val mixed
 	**/
 	function erase($key,$val) {
-		if ($id=$this->find($key,$val)->id) {
+		$found=$this->find($key,$val);
+		if ($found && $id=$found[0]->id) {
 			unset($_SESSION[$this->key][$id]);
 			if ($id==$this->id)
 				$this->reset();

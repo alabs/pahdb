@@ -1,16 +1,17 @@
 <?php
 
 /*
-	Copyright (c) 2009-2013 F3::Factory/Bong Cosca, All rights reserved.
 
-	This file is part of the Fat-Free Framework (http://fatfree.sf.net).
+	Copyright (c) 2009-2015 F3::Factory/Bong Cosca, All rights reserved.
 
-	THE SOFTWARE AND DOCUMENTATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF
-	ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
-	IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR
-	PURPOSE.
+	This file is part of the Fat-Free Framework (http://fatfreeframework.com).
 
-	Please see the license.txt file for more information.
+	This is free software: you can redistribute it and/or modify it under the
+	terms of the GNU General Public License as published by the Free Software
+	Foundation, either version 3 of the License, or later.
+
+	Please see the LICENSE file for more information.
+
 */
 
 //! Data validator
@@ -51,7 +52,7 @@ class Audit extends Prefab {
 	*	@param $addr string
 	**/
 	function ipv4($addr) {
-		return filter_var($addr,FILTER_VALIDATE_IP,FILTER_FLAG_IPV4);
+		return (bool)filter_var($addr,FILTER_VALIDATE_IP,FILTER_FLAG_IPV4);
 	}
 
 	/**
@@ -100,10 +101,8 @@ class Audit extends Prefab {
 	**/
 	function isdesktop() {
 		$agent=Base::instance()->get('AGENT');
-		return empty($agent) ||
-			(!preg_match('/('.self::UA_Mobile.')/i',$agent) &&
-				preg_match('/('.self::UA_Desktop.')/i',$agent) ||
-				preg_match('/('.self::UA_Bot.')/i',$agent));
+		return (bool)preg_match('/('.self::UA_Desktop.')/i',$agent) &&
+			!$this->ismobile();
 	}
 
 	/**
@@ -111,7 +110,17 @@ class Audit extends Prefab {
 	*	@return bool
 	**/
 	function ismobile() {
-		return !$this->isdesktop();
+		$agent=Base::instance()->get('AGENT');
+		return (bool)preg_match('/('.self::UA_Mobile.')/i',$agent);
+	}
+
+	/**
+	*	Return TRUE if user agent is a Web bot
+	*	@return bool
+	**/
+	function isbot() {
+		$agent=Base::instance()->get('AGENT');
+		return (bool)preg_match('/('.self::UA_Bot.')/i',$agent);
 	}
 
 	/**
@@ -155,7 +164,7 @@ class Audit extends Prefab {
 
 	/**
 	*	Return entropy estimate of a password (NIST 800-63)
-	*	@return int
+	*	@return int|float
 	*	@param $str string
 	**/
 	function entropy($str) {
