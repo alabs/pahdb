@@ -18,19 +18,12 @@
 
 <input type="hidden" class="multiple" id="renegociacionPrePAH" name="renegociacionPrePAH" data-rel="select-renegociacionPrePAH" value="{{ @AFECTADO.renegociacionPrePAH }}" />
 <h4>¿Ha intentado renegociar la hipoteca o buscar una solución con el banco?</h4>
-<div class="field desplegable">
-<div class="picker narrow">
-<select class="desplegador multiple">
-	<option value=''>No contesta</option>
-	<option value='SI'{{ (@AFECTADO.renegociacionPrePAH != '')?' selected':'' }}>Sí</option>
-	<option value='NO'>No</option>
-</select>
-</div>
 <ul>
 <li class="field">
 <div class="picker xwide">
 <select class="multiple" data-rel="renegociacionPrePAH" id="select-renegociacionPrePAH">
-	<option value=''>¿Qué resultado ha obtenido? (Seleccione)</option>
+	<option value=''>(Seleccione)</option>
+	<option value='NO'>No</option>
 	<option value='CARENCIA'>Carencia</option>
 	<option value='REFINANCIACION'>Refinanciación</option>
 	<option value='PRESTAMO'>Préstamo personal</option>
@@ -41,20 +34,14 @@
 </div>
 </li>
 </ul>
-</div>
+
 <input type="hidden" class="multiple casillas" id="tratoDenigrantePrePAH" name="tratoDenigrantePrePAH" value="{{ @AFECTADO.tratoDenigrantePrePAH }}" />
 <h4>¿Ha recibido algun tipo de trato denigrante por parte del banco?</h4>
-<div class="desplegable">
-<div class="field">
-<div class="picker narrow">
-<select class="desplegador multiple">
-	<option value=''>No contesta</option>
-	<option value='SI'{{ (@AFECTADO.tratoDenigrantePrePAH != '')?' selected':'' }}>Sí</option>
-	<option value='NO'>No</option>
-</select>
-</div>
-</div>
+
 <ul>
+	<li>
+		<label><input type="checkbox" value="NO" class="multiple" data-rel="tratoDenigrantePrePAH"><span></span> No</label>
+	</li>
 	<li>
 		<label><input type="checkbox" value="TF_CASA" class="multiple" data-rel="tratoDenigrantePrePAH"><span></span> Llamadas telefónicas a casa</label>
 	</li>
@@ -92,17 +79,17 @@
 		<input class="multiple input xwide" id="explicaTratoDenigrantePrePAH" name="explicaTratoDenigrantePrePAH" placeholder="Explica" type="text" value="{{ @AFECTADO.explicaTratoDenigrantePrePAH }}">
 	</li>
 </ul>
-</div>
 
 <h4>¿Se ha puesto en contacto con Servicios Sociales?</h4>
-<div class="field desplegable">
-<div class="picker narrow">
-<select class="desplegador multiple" id="select-servSocialesPrePAH">
-	<option value=''>No contesta</option>
-	<option value='SI'{{ (@AFECTADO.valoracionServSocialesPrePAH != '-1' && @AFECTADO.valoracionServSocialesPrePAH != '')?' selected':'' }}>Sí</option>
-	<option value='NO'>No</option>
-</select>
-</div>
+	
+	<input type="hidden" class="multiple casillas" id="noSociales" name="noSociales" value="{{ @AFECTADO.noSociales }}" />
+	<ul>
+	<li>
+		<label><input type="checkbox" value="NO" class="multiple" data-rel="noSociales"><span></span> No</label>
+	</li>
+	</ul>
+
+
 	<input type="hidden" id="valoracionServSocialesPrePAH" name="valoracionServSocialesPrePAH" data-rel="select-valoracionServSocialesPrePAH" value="{{ @AFECTADO.valoracionServSocialesPrePAH }}" />
 	<ul>
 	<li class="field">
@@ -127,19 +114,23 @@
 		<input class="input xwide multiple" name="servSocialesPrePAH" id="servSocialesPrePAH" placeholder="¿Qué te han dicho?" type="text" value="{{ @AFECTADO.servSocialesPrePAH }}">
 	</li>
 	</ul>
-</div>
+
 
 <h4>¿Se ha puesto en contacto con otros servicios de mediación de la Administración Pública?</h4>
-<div class="field desplegable">
-<div class="picker narrow">
-<select class="desplegador multiple" id="select-servMediacionPrePAH">
-	<option value=''>No contesta</option>
-	<option value='SI'{{ (@AFECTADO.valoracionServMediacionPrePAH != '-1' && @AFECTADO.valoracionServMediacionPrePAH != '')?' selected':'' }}>Sí</option>
-	<option value='NO'>No</option>
-</select>
-</div>
+
+        <input type="hidden" class="multiple casillas" id="noMediacion" name="noMediacion" value="{{ @AFECTADO.noMediacion }}" />
+        <ul>
+        <li>
+                <label><input type="checkbox" value="NO" class="multiple" data-rel="noMediacion"><span></span> No</label>
+        </li>
+        </ul>
+
+
 	<input type="hidden" id="valoracionServMediacionPrePAH" name="valoracionServMediacionPrePAH" data-rel="select-valoracionServMediacionPrePAH" value="{{ @AFECTADO.valoracionServMediacionPrePAH }}" />
 <ul>
+	<li class="field">
+		<input class="multiple input xwide" name="cualServMediacionPrePAH" id="cualServMediacionPrePAH" placeholder="¿Cuál? Ofideute, Mediación hipotecaria..." type="text" value="{{ @AFECTADO.cualServMediacionPrePAH }}">
+	</li>
 	<li class="field">
 		<div class="picker xwide">
 		<select id="select-valoracionServMediacionPrePAH" data-rel="valoracionServMediacionPrePAH" class="numero">
@@ -162,23 +153,53 @@
 		<input class="multiple input xwide" name="servMediacionPrePAH" id="servMediacionPrePAH" placeholder="¿Qué te han dicho?" type="text" value="{{ @AFECTADO.servMediacionPrePAH }}">
 	</li>
 </ul>
-</div>
+
+<h4>¿Ha recibido ayuda por parte de la Administración para cubrir sus necesidades básicas?</h4>
+<input type="hidden" id="ayuPrePAH" name="ayuPrePAH" class="casillas" value="{{ @AFECTADO.ayuPrePAH }}" />
+<label><input value="COMIDA" type="checkbox" data-rel="ayuPrePAH">
+        <spam></spam>Comida
+</label>
+<label><input value="SUMINISTROS" type="checkbox" data-rel="ayuPrePAH">
+        <spam></spam>Suministros
+</label>
+<label><input value="EDUCACION" type="checkbox" data-rel="ayuPrePAH">
+        <spam></spam>Educación
+</label>
+
+<h6>Vivienda</h6>
+<input type="hidden" id="viviPrePAH" name="viviPrePAH" class="casillas" value="{{ @AFECTADO.viviPrePAH }}" />
+<label><input value="AYUDA" type="checkbox" data-rel="viviPrePAH">
+        <spam></spam>Ayuda económica puntual
+</label>
+<label><input value="ALQUILER" type="checkbox" data-rel="viviPrePAH">
+        <spam></spam>Alquiler social
+</label>
+
+<h6>Otra/s</h6>
+<ul>
+<li class="field">
+<input class="xwide input" placeholder="Especificar" id="otrasAyuPrePAH" name="otrasAyuPrePAH" type="text" value="{{ @AFECTADO.otrasAyuPrePAH }}" />
+</li>
+</ul>
+
+
+<!-- VIVIENDA con subdesplegable, Otra con input -->
 
 <!--<input type="hidden" id="asocApoyoPrePAH" class="multiple" name="asocApoyoPrePAH" data-rel="select-asocApoyoPrePAH" value="{{ @AFECTADO.asocApoyoPrePAH }}" />-->
-<h4>¿Se ha puesto en contacto con otro tipo de asociaciones de apoyo? {{ @AFECTADO.valoracionAsocApoyoPrePAH }}</h4>
-<div class="field desplegable">
-<div class="picker narrow">
-<select class="desplegador" id="select-asocApoyoPrePAH">
-	<option value=''>No contesta</option>
-	<option value='SI'{{ (@AFECTADO.valoracionAsocApoyoPrePAH != '-1' && @AFECTADO.valoracionAsocApoyoPrePAH != '')?' selected':'' }}>Sí</option>
-	<option value='NO'>No</option>
-</select>
-</div>
+<h4>¿Se ha puesto en contacto con otro tipo de asociaciones de apoyo?</h4>
+
+        <input type="hidden" class="multiple casillas" id="noAsoc" name="noAsoc" value="{{ @AFECTADO.noAsoc }}" />
+        <ul>
+        <li>
+                <label><input type="checkbox" value="NO" class="multiple" data-rel="noAsoc"><span></span> No</label>
+        </li>
+        </ul>
+
 	<ul>
 	<li class="field">
 		<input class="multiple input xwide" name="asocApoyoPrePAH" id="asocApoyoPrePAH" placeholder="¿Cual?" type="text" value="{{ @AFECTADO.asocApoyoPrePAH }}">
 	</li>
-	<input type="hidden" id="valoracionAsocApoyoPrePAH" name="valoracionAsocApoyoPrePAH" data-rel="select-valoracionAsocApoyoPrePAH" value="{{ @AFECTADO.valoracionServSocialesPrePAH }}" />
+	<input type="hidden" id="valoracionAsocApoyoPrePAH" name="valoracionAsocApoyoPrePAH" data-rel="select-valoracionAsocApoyoPrePAH" value="{{ @AFECTADO.valoracionAsocApoyoPrePAH }}" />
 	<li class="field">
 		<div class="picker xwide">
 		<select id="select-valoracionAsocApoyoPrePAH" data-rel="valoracionAsocApoyoPrePAH" class="numero">
@@ -198,21 +219,61 @@
 		</div>
 	</li>
 	</ul>
-</div>
+
 
 <h4>¿Pertenece a alguna organización o asociación?</h4>
-<div class="field desplegable">
-<div class="picker narrow">
-<select class="multiple desplegador" id="select-asocPrePAH">
-	<option value=''>No contesta</option>
-	<option value='SI'{{ (@AFECTADO.asocPrePAH != '')?' selected':'' }}>Sí</option>
-	<option value='NO'>No</option>
-</select>
-</div>
+        <input type="hidden" class="multiple casillas" id="noOrg" name="noOrg" value="{{ @AFECTADO.noOrg }}" />
+        <ul>
+        <li>
+                <label><input type="checkbox" value="NO" class="multiple" data-rel="noOrg"><span></span> No</label>
+        </li>
+        </ul>
+
 	<ul>
 	<li class="field">
 		<input class="multiple input xwide" name="asocPrePAH" id="asocPrePAH" placeholder="¿Cual?" type="text" value="{{ @AFECTADO.asocPrePAH }}">
 	</li>
 	</ul>
-</div>
 
+
+<ul>
+<input type="hidden" id="ley13PrePAH" name="ley13PrePAH" data-rel="select-ley13PrePAH" value="{{ @AFECTADO.ley13PrePAH }}" />
+<li class="field">
+<label class="inline"><h4>¿Se cumple la Ley 1/2013?</h4></label>
+<div class="picker xwide">
+<select id="select-ley13PrePAH" data-rel="ley13PrePAH">
+        <option value=''>(Seleccione)</option>
+	<option value='SI'>Sí</option>
+        <option value='NO'>No</option>
+</select>
+</div>
+</li>
+</ul>
+
+<ul>
+<input type="hidden" id="ley15PrePAH" name="ley15PrePAH" data-rel="select-ley15PrePAH" value="{{ @AFECTADO.ley15PrePAH }}" />
+<li class="field">
+<label class="inline"><h4>¿Se cumple la Ley 1/2015?</h4></label>
+<div class="picker xwide">
+<select id="select-ley15PrePAH" data-rel="ley15PrePAH">
+        <option value=''>(Seleccione)</option>
+	<option value='SI'>Sí</option>
+        <option value='NO'>No</option>
+</select>
+</div>
+</li>
+</ul>
+
+<ul>
+<input type="hidden" id="codibuenasPrePAH" name="codibuenasPrePAH" data-rel="select-codibuenasPrePAH" value="{{ @AFECTADO.codibuenasPrePAH }}" />
+<li class="field">
+<label class="inline"><h4>¿Se cumple el código de buenas prácticas?</h4></label>
+<div class="picker xwide">
+<select id="select-codibuenasPrePAH" data-rel="codibuenasPrePAH">
+        <option value=''>(Seleccione)</option>
+	<option value='SI'>Sí</option>
+        <option value='NO'>No</option>
+</select>
+</div>
+</li>
+</ul>

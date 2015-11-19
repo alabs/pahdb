@@ -3,7 +3,20 @@
 <div id="cabecera" class="anclado" style="background-color:#fff;z-index:999;">
 
 <div class="row">
-	<h2><i class="icon-home"></i> Afectado</h2>
+	<div class="three columns">
+		<h2><i class="icon-home"></i> Caso</h2>
+	</div>
+	<div class="nine columns">
+		<input type="hidden" id="tipoCaso" name="tipoCaso" data-rel="select-tipoCaso" value="{{ @AFECTADO.tipoCaso }}" />
+		<div class="picker narrow pull_right pt">
+			<select id="select-tipoCaso" data-rel="tipoCaso">
+				<option value=''>Tipo</option>
+				<option value='HIPOTECA'>Hipoteca</option>
+				<option value='ALQUILER'>Alquiler</option>
+				<option value='AMBOS'>Ambos</option>
+			</select>
+		</div>
+	</div>
 </div>
 
 <div id="buscador" class="row">
@@ -39,12 +52,13 @@
 		<input type="hidden" name="num_seccion" id="num_seccion" value="{{ isset(@num_seccion)?@num_seccion:0 }}" />
 		<!-- Menú lateral -->
 		<ul class="tab-nav four columns anclado">
-			<li><a href="#">Datos personales</a></li>
-			<li><a href="#">Vivienda hipotecada</a></li>
-			<li><a href="#">Familia y trabajo</a></li>
-			<li><a href="#">Acciones previas a la PAH</a></li>
-			<li><a href="#">Seguimiento judicial</a></li>
-			<li><a href="#">Seguimiento negociación</a></li>
+			<li class="moverarriba"><a href="#">Datos personales</a></li>
+			<li class="moverarriba"><a href="#">Vivienda hipotecada</a></li>
+			<li class="moverarriba"><a href="#">Vivienda alquilada</a></li>
+			<li class="moverarriba"><a href="#">Familia y trabajo</a></li>
+			<li class="moverarriba"><a href="#">Acciones previas a la PAH</a></li>
+			<li class="moverarriba"><a href="#">Seguimiento judicial</a></li>
+			<li class="moverarriba"><a href="#">Seguimiento negociación</a></li>
 		</ul>
 		<!-- SECCION: Datos personales -->
 		<div class="tab-content eight columns active">
@@ -53,6 +67,10 @@
 		<!-- SECCIÓN: Vivienda hipotecada -->
 		<div class="tab-content eight columns">
 			<include href="form-afectado-hipoteca.html" />
+		</div>
+		<!-- SECCIÓN: Vivienda alquilada -->
+		<div class="tab-content eight columns">
+			<include href="form-afectado-alquiler.html" />
 		</div>
 		<!-- SECCIÓN: Familia y trabajo -->
 		<div class="tab-content eight columns">

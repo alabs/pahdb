@@ -71,8 +71,8 @@ class Expediente extends Controlador {
 		$familiares=$f3->get('POST.familiar');
 		$num_familiares=count($familiares);
 		for ($i=0; $i<$num_familiares; $i++) {
-			$bd->exec('INSERT INTO Familiares (nacidoEnAnyo, sexo, situacionLaboral, discapacidad, relacionHipoteca, idAfectado) VALUES (:nacidoEnAnyo,:sexo,:situacionLaboral,:discapacidad,:relacionHipoteca,:idAfectado)',
-				array(':nacidoEnAnyo'=>intval($familiares[$i]['nacidoEnAnyo']),':sexo'=>$familiares[$i]['sexo'],':situacionLaboral'=>$familiares[$i]['situacionLaboral'],':discapacidad'=>$familiares[$i]['discapacidad'],':relacionHipoteca'=>$familiares[$i]['relacionHipoteca'],':idAfectado'=>$afectado->idAfectado)
+			$bd->exec('INSERT INTO Familiares (nacidoEnAnyo, sexo, nacionalidad, situacionLaboral, discapacidad, relacionHipoteca, idAfectado) VALUES (:nacidoEnAnyo,:sexo,:nacionalidad,:situacionLaboral,:discapacidad,:relacionHipoteca,:idAfectado)',
+				array(':nacidoEnAnyo'=>intval($familiares[$i]['nacidoEnAnyo']),':sexo'=>$familiares[$i]['sexo'],':nacionalidad'=>$familiares[$i]['nacionalidad'],':situacionLaboral'=>$familiares[$i]['situacionLaboral'],':discapacidad'=>$familiares[$i]['discapacidad'],':relacionHipoteca'=>$familiares[$i]['relacionHipoteca'],':idAfectado'=>$afectado->idAfectado)
 			);
 		}
 		$bd->commit();
