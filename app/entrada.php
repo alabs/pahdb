@@ -10,7 +10,7 @@ class Entrada {
 		echo Template::instance()->render('entrada.html');
 	}
 
-	function entrar() {	
+	function entrar() {
 	}
 
 	function salir() {

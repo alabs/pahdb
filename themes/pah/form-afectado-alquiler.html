@@ -1,0 +1,198 @@
+<!-- Sección "Vivienda alquilada" -->
+
+<ul class="row">
+
+<li class="field">
+<label class="narrow inline" for="direccionAlquiler">Dirección vivienda alquilada</label>
+<input class="normal input" placeholder="Ejemplo: Calle Recuerdo nº10, 2ºB" id="direccionAlquiler" name="direccionAlquiler" type="text" value="{{ @AFECTADO.direccionAlquiler }}" />
+</li>
+
+<li class="field">
+<label class="narrow inline" for="CPAlquiler">Código Postal</label>
+<input class="normal input numero" placeholder="Ejemplo: 28080" id="CPAlquiler" name="CPAlquiler" type="text" value="{{ @AFECTADO.CPAlquiler }}" />
+</li>
+
+<li class="field">
+<label class="narrow inline" for="provinciaAlquiler">Provincia</label>
+<div class="picker normal">
+<select id="provinciaAlquiler" class="provincia" data-rel="select-idCiudadAlquiler">
+    <option value='0'>(Seleccione)</option>
+</select>
+</div>
+</li>
+
+<input type="hidden" id="idCiudadAlquiler" name="idCiudadAlquiler" data-rel="select-idCiudadAlquiler" data-provincia="provinciaAlquiler" value="{{ @AFECTADO.idCiudadAlquiler }}" />
+<li class="field">
+<label class="narrow inline" for="select-idCiudadAlquiler">Ciudad</label>
+<div class="picker normal">
+<select id="select-idCiudadAlquiler" data-rel="idCiudadAlquiler">
+    <option value='0'>(Seleccione)</option>
+</select>
+</div>
+</li>
+
+<input type="hidden" id="residesEnAlquiler" name="residesEnAlquiler" data-rel="select-residesEnAlquiler" value="{{ @AFECTADO.residesEnAlquiler }}" />
+<li class="field">
+<label class="narrow inline" for="select-residesEnAlquiler">¿Resides en ella?</label>
+<div class="picker normal">
+<select id="select-residesEnAlquiler" data-rel="residesEnAlquiler">
+	<option value=''>No contesta</option>
+	<option value='SI'>Sí</option>
+	<option value='ALQUILADA'>No, la tengo alquilada</option>
+	<option value='DESAHUCIADO'>No, estoy desahuciado</option>
+	<option value='ABANDONADA'>No, he abandonado la vivienda</option>
+</select>
+</div>
+</li>
+
+</ul>
+
+<fieldset>
+<legend><h3>Contrato Aquiler</h3></legend>
+<ul>
+<input type="hidden" id="bancoAlquiler" name="bancoAlquiler" data-rel="select-bancoAlquiler" value="{{ @AFECTADO.bancoAlquiler }}" />
+<li class="field">
+<label class="normal inline" for="select-bancoAlquiler">Entidad bancaria</label>
+<div class="picker narrow">
+<select id="select-bancoAlquiler" data-rel="bancoAlquiler">
+    <option value="">(Seleccione)</option>
+	<option value='0061'>BANCA MARCH</option>
+	<option value='0225'>BANCO CETELEM</option>
+	<option value='0487'>BANCO MARE NOSTRUM BMN (C.MURCIA, C.PENEDES, C.GRANADA, SA NOSTRA)</option>
+	<option value='0235'>BANCO PICHINCHA ESPAÑA</option>
+	<option value='0075'>BANCO POPULAR (B.PASTOR, B.POPULAR)</option>
+	<option value='0081'>BANCO SABADELL (B.SABADELL, GUIPUZCOANO, CAM, URQUIJO)</option>
+	<option value='0038'>BANESTO</option>
+	<option value='2038'>BANKIA (C.MADRID, BANCAJA, C.INSULAR CANARIAS, C.LAIETANA, C.AVILA, C.SEGOVIA, C.RIOJA)</option>
+	<option value='0128'>BANKINTER</option>
+	<option value='0065'>BARCLAYS BANK</option>
+	<option value='0182'>BBVA (BBV, UNNIM-C.SABADELL, C.TERRASSA, C.MANLLEU)</option>
+	<option value='0058'>BNP PARIBAS ESPAÑA</option>
+	<option value='2100'>CAIXABANK (LA CAIXA, CAIXA GIRONA, BANCA CÍVICA-CAJASOL, C. NAVARRA, CAJACANARIAS, C. BURGOS-C. GUADALAJARA, BANCO DE VALENCIA)</option>
+	<option value='3025'>CAJA DE CRÉDITO INGENIEROS (COOP.CRE)</option>
+	<option value='3058'>CAJAS RURALES UNIDAS (GRUPO COOPERATIVO CAJAMAR, GRUPO CRM-RURALCAJA)</option>
+	<option value='2013'>CATALUNYA BANK CX (C.CATALUNYA, C.TARRAGONA, C. MANRESA)</option>
+	<option value='0122'>CITIBANK ESPAÑA</option>
+	<option value='8596'>CREDIFIMO</option>
+	<option value='0019'>DEUTSCHE BANK, SOCIEDAD ANONIMA ESPAÑOLA</option>
+	<option value='0223'>GENERAL ELECTRIC CAPITAL BANK</option>
+	<option value='2085'>IBERCAJA BANCO (CAJA 3-CAI, C.CÍRCULO, C.BADAJOZ) </option>
+	<option value='1465'>ING DIRECT</option>
+	<option value='2095'>KUTXABANK (BBK, C.VITAL, KUTXA)</option>
+	<option value='2048'>LIBERBANK (C.CANTABRIA, GRUPO CAJASTUR-CCM, EXTREMADURA)</option>
+	<option value='0236'>LLOYDS BANK INTERNATIONAL</option>
+	<option value='2080'>NCG BANCO (C.GALICIA, CAIXANOVA)</option>
+	<option value='0049'>SANTANDER</option>
+	<option value='1491'>TRIODOS BANK</option>
+	<option value='0226'>UBS BANK</option>
+	<option value='8512'>UCI</option>
+	<option value='2103'>UNICAJA BANCO (C.JAEN, CAJA ESPAÑA-DUERO)</option>
+	<option value='OTRO'>OTRO</option>
+</select>
+</div>
+</li>
+
+<li class="field">
+<label class="normal inline" for="anyoFirmaHipoteca">Año firma</label>
+<input class="narrow input numero" placeholder="Ejemplo: 1999" id="anyoFirmaAlquiler" name="anyoFirmaAlquiler" type="text" value="{{ @AFECTADO.anyoFirmaAlquiler }}" maxlength="4" />
+</li>
+
+<li class="field">
+<label class="normal inline" for="importeAlquiler">Importe cuota</label>
+<input class="narrow input numero" placeholder="Ejemplo: 120000" id="importeAlquiler" name="importeAlquiler" type="text" value="{{ @AFECTADO.importeAlquiler }}" />
+</li>
+
+<li class="field">
+<label class="normal inline" for="numTitularesAlquiler">Número de titulares</label>
+<input class="narrow input numero" placeholder="Ejemplo: 3" id="numTitularesAlquiler" name="numTitularesAlquiler" type="text" value="{{ @AFECTADO.numTitularesAlquiler }}" />
+</li>
+
+<input type="hidden" id="avalistasAlquiler" name="avalistasAlquiler" data-rel="select-avalistasAlquiler" value="{{ @AFECTADO.avalistasAlquiler }}" />
+<li class="field">
+<label class="normal inline" for="select-avalistasAlquiler">¿Tiene avalistas?</label>
+<div class="picker narrow">
+<select id="select-avalistasAlquiler" data-rel="avalistasAlquiler">
+	<option value=''>No contesta</option>
+	<option value='NO'>No</option>
+	<option value='PADRES'>Sí, mis padres</option>
+	<option value='FAMILIARES'>Sí, otros familiares</option>
+	<option value='AMIGOS'>Sí, amigos</option>
+	<option value='DESCONOCIDOS'>Sí, desconocidos</option>
+</select>
+</div>
+</li>
+
+<li class="field">
+<label class="normal inline" for="numAvalistasAlquiler">Número de avalistas</label>
+<input class="narrow input numero" placeholder="Ejemplo: 3" id="numAvalistasAlquiler" name="numAvalistasAlquiler" type="text" value="{{ @AFECTADO.numAvalistasAlquiler }}" />
+</li>
+
+
+<input type="hidden" id="clausulasAbusivasAlquiler" name="clausulasAbusivasAlquiler" class="casillas" value="{{ @AFECTADO.clausulasAbusivasAlquiler }}" />
+<li class="field desplegable">
+<label class="normal inline" for="si_clausula_abusiva_alquiler">¿Contiene cláusulas abusivas?</label>
+<!--<div class="picker narrow">
+<select id="si_clausula_abusiva_alquiler" name="si_clausula_abusiva_alquiler" class="desplegador">
+	<option value=''>No contesta</option>
+	<option value='SI'{{ (@AFECTADO.clausulasAbusivasAlquiler != '')?' selected':'' }}>Sí</option>
+	<option value='NO'>No</option>
+</select>
+</div>-->
+
+
+</li>
+</ul>
+
+<ul>
+	<li>
+	<label>
+		<input value="RENUNCIA_TANTEO" type="checkbox" data-rel="clausulasAbusivasAlquiler">
+		<spam></spam> Renuncia al derecho de tanteo y retracto
+	</label>
+	</li>
+	<li>
+	<label>
+		<input value="MAS_1_MES" type="checkbox" data-rel="clausulasAbusivasAlquiler">
+		<spam></spam> Más de 1 mes de fianza
+	</label>
+	</li>
+	<li>
+	<label>
+		<input value="NO_DETALLA_COMUNIDAD" type="checkbox" data-rel="clausulasAbusivasAlquiler">
+		<spam></spam> No detalla cuota de comunidad o impuestos
+	</label>
+	</li>
+	<li>
+	<label>
+		<input value="DESISTE_OBLIGACION_PAGAR" type="checkbox" data-rel="clausulasAbusivasAlquiler">
+		<spam></spam> Si desiste contrato, obligación a pagar más de un mes por año incumplido
+	</label>
+	</li>
+	<li>
+	<label>
+		<input value="OTRAS" type="checkbox" data-rel="clausulasAbusivasHipoteca">
+		<spam></spam> Otras
+	</label>
+	</li>
+</ul>
+
+
+<!--</li>-->
+
+
+<!--</ul>-->
+
+
+</fieldset>
+
+<fieldset>
+<legend><h3>Otros datos</h3></legend>
+<ul>
+
+<li class="field">
+<label class="normal inline" for="cuotaMensualAlquiler">Cuota mensual actual</label>
+<input class="narrow input numero" placeholder="Ejemplo: 500" id="cuotaMensualAlquiler" name="cuotaMensualAlquiler" type="text" value="{{ @AFECTADO.cuotaMensualAlquiler }}" />
+</li>
+
+</ul>
+</fieldset>

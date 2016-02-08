@@ -12,7 +12,7 @@ class Controlador {
 		$autorizado=$f3->exists('SESSION.autorizado');
 		if (!$autorizado) {
 			$f3->reroute('/entrar');
-		} 
+		}
 	}
 
 	function afterroute() {

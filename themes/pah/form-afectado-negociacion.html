@@ -36,15 +36,19 @@
 	</select>
 	</div>
 </li>
-<li class="field desplegable">
+<li class="field">
 	<label class="normal inline">¿Ha presentado documentación?</label>
-	<div class="picker narrow">
-	<select class="desplegador">
-		<option value=''>No responde</option>
-		<option value='SI'{{ (@AFECTADO.fechaDocumentacion != '0000-00-00' || @AFECTADO.fechaEnvio != '0000-00-00')?' selected':'' }}>Sí</option>
-		<option value='NO'>No</option>
-	</select>
-	</div>
+
+
+<input type="hidden" id="noDoc" name="noDoc" data-rel="select-noDoc" value="{{ @AFECTADO.noDoc }}" />
+        <div class="picker narrow">
+        <select id="select-noDoc" data-rel="noDoc">
+                <option value=''>No responde</option>
+                <option value='SI'>Sí</option>
+                <option value='NO'>No</option>
+        </select>
+        </div>
+
 	<ul>
 	<input class="input xwide fecha" id="fechaDocumentacion" name="fechaDocumentacion" data-rel="input-fechaDocumentacion" type="hidden" value="{{ @AFECTADO.fechaDocumentacion }}">
 	<li class="field">
@@ -133,6 +137,7 @@
 		<option value='ALQUILER_SOCIAL_BANCO'>Alquiler social banco</option>
 		<option value='REALOJO_VIVIENDA_PUBLICA'>Realojo vivienda pública</option>
 		<option value='ALQUILER_MERCADO_LIBRE'>Alquiler mercado libre</option>
+		<option value='VIVIENDA_HIPO'>Vivienda hipotecada</option>
 		<option value='VIVIENDA_ONG'>Vivienda ONG</option>
 		<option value='HABITACION_ONG'>Habitación ONG</option>
 		<option value='VIVIENDA_FAMILIARES'>Vivienda familiares</option>

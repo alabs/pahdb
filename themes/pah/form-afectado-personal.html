@@ -536,7 +536,19 @@
 <div class="picker normal">
 <select id="select-relacionHipoteca" data-rel="relacionHipoteca">
 	<option value=''>No contesta</option>
-    <option value='TITULAR'>Titular</option>
+	<option value='TITULAR'>Titular</option>
+	<option value='AVALISTA'>Avalista</option>
+</select>
+</div>
+</li>
+
+<input type="hidden" id="relacionAlquiler" name="relacionAlquiler" data-rel="select-relacionAlquiler" value="{{ @AFECTADO.relacionAlquiler }}" />
+<li class="field">
+<label class="narrow inline" for="select-relacionAlquiler">Relación con alquiler</label>
+<div class="picker normal">
+<select id="select-relacionAlquiler" data-rel="relacionAlquiler">
+	<option value=''>No contesta</option>
+	<option value='TITULAR'>Titular</option>
 	<option value='AVALISTA'>Avalista</option>
 </select>
 </div>
@@ -548,11 +560,12 @@
 <div class="picker normal">
 <select id="select-comoHasContactado" data-rel="comoHasContactado">
 	<option value=''>No contesta</option>
-    <option value='BOCA_OREJA'>Boca a oreja</option>
+	<option value='BOCA_OREJA'>Boca a oreja</option>
 	<option value='MEDIOS'>Medios de comunicación tradicionales</option>
 	<option value='INTERNET'>A través de Internet</option>
 	<option value='ADMINISTRACION_PUBLICA'>A través de la Administración Pública</option>
 	<option value='BANCO'>A través de una entidad bancaria</option>
+	<option value='PROPIEDAD'>A través de la propiedad</option>
 </select>
 </div>
 </li>

@@ -1,30 +1,32 @@
 <!-- Sección "Seguimiento Judicial" -->
 
 <h4>¿Ha dejado de pagar la hipoteca?</h4>
-<div class="desplegable">
-	<div class="picker narrow">
-	<select class="desplegador">
-		<option value=''>No contesta</option>
-		<option value='SI'{{ (@AFECTADO.fechaImpago != '0000-00-00')?' selected':'' }}>Sí</option>
-		<option value='NO'>No</option>
-	</select>
-	</div>
+
+        <input type="hidden" class="multiple casillas" id="noPago" name="noPago" value="{{ @AFECTADO.noPago }}" />
+        <ul>
+        <li>
+                <label><input type="checkbox" value="NO" class="multiple" data-rel="noPago"><span></span> No</label>
+                <label><input type="checkbox" value="SI" class="multiple" data-rel="noPago"><span></span> Sí</label>
+        </li>
+        </ul>
+
 	<ul>
 	<input class="input xwide fecha" id="fechaImpago" name="fechaImpago" data-rel="input-fechaImpago" type="hidden" value="{{ @AFECTADO.fechaImpago }}">
 	<li class="field">
 		<input class="input xwide fecha" id="input-fechaImpago" data-rel="fechaImpago" placeholder="Fecha del impago. Ej: 30/04/2000" type="text">
 	</li>
 	</ul>
-</div>
+
 <h4>¿Ha recibido la demanda de ejecución hipotecaria?</h4>
-<div class="desplegable">
-	<div class="picker narrow">
-	<select class="desplegador">
-		<option value=''>No contesta</option>
-		<option value='SI'{{ (@AFECTADO.fechaDemandaJudicial != '0000-00-00')?' selected':'' }}>Sí</option>
-		<option value='NO'>No</option>
-	</select>
-	</div>
+
+        <input type="hidden" class="multiple casillas" id="demandaEje" name="demandaEje" value="{{ @AFECTADO.demandaEje }}" />
+        <ul>
+        <li>
+                <label><input type="checkbox" value="NO" class="multiple" data-rel="demandaEje"><span></span> No</label>
+                <label><input type="checkbox" value="SI" class="multiple" data-rel="demandaEje"><span></span> Sí</label>
+        </li>
+        </ul>
+
 	<ul>
 	<input class="input xwide fecha" id="fechaDemandaJudicial" name="fechaDemandaJudicial" data-rel="input-fechaDemandaJudicial" type="hidden" value="{{ @AFECTADO.fechaDemandaJudicial }}">
 	<li class="field">
@@ -55,7 +57,7 @@
 	</div>
 	</li>
 	</ul>
-</div>
+
 
 <input type="hidden" id="demandaExtrajudicial" name="demandaExtrajudicial" data-rel="select-demandaExtrajudicial" value="{{ @AFECTADO.demandaExtrajudicial }}" />
 <h4>¿Ha recibido demanda extrajudicial?</h4>

@@ -24,3 +24,12 @@ top:2px;
 width:100%;
 z-index:999;
 }
+.pt {
+margin-top:25px;
+}
+@media (max-width:768px) {
+.pt{
+margin-top:0px;
+float: none;
+}
+}
